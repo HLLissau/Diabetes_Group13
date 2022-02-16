@@ -1,5 +1,7 @@
 package group13.model;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,11 +14,12 @@ public class Patient {
 	@Id
 	@Column
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
+	private Long id;
 	@Column
 	private String name;
 	
-	public long getId() {
+	
+	public Long getId() {
 		return id;
 	}
 	
@@ -31,11 +34,5 @@ public class Patient {
 	public void setName(String name) {
 		this.name = name;
 	}
-	@Override
-	public boolean equals(Object obj) {
-		if(obj instanceof Patient) {
-			return ((Patient) obj).id == (this.id) ;
-		}
-		return false;
-	}
+
 }
