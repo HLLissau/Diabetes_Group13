@@ -7,7 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class patient {
+public class Patient {
 	
 	@Id
 	@Column
@@ -30,5 +30,12 @@ public class patient {
 	
 	public void setName(String name) {
 		this.name = name;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if(obj instanceof Patient) {
+			return ((Patient) obj).id == (this.id) ;
+		}
+		return false;
 	}
 }
