@@ -18,6 +18,7 @@ import group13.repositories.PatientRepository;
 @Controller
 @CrossOrigin
 public class PatientController {
+	
 	@Autowired
 	private PatientRepository repository;
 	

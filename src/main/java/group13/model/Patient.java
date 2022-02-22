@@ -18,7 +18,13 @@ public class Patient {
 	@Column
 	private String name;
 	
+	public Patient() {
+	}
 	
+	public Patient(String name) {
+		this.name =name;
+	}
+
 	public Long getId() {
 		return id;
 	}

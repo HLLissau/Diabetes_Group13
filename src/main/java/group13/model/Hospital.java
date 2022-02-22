@@ -21,6 +21,9 @@ public class Hospital {
 	private List<Patient> patients;
 	
 	
+	public Hospital(String name) {
+		this.name=name;
+	}
 	public void addPatient(Patient patient) {
 		this.patients.add(patient);
 	}
