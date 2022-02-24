@@ -5,7 +5,7 @@ import App from './App.vue'
 import Backend from './services/backend'
 import router from './router'
 import {BootstrapVue, IconsPlugin} from 'bootstrap-vue'
-import { Vue } from 'vue/types/vue'
+import { Vue } from 'vue'
 
 Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
