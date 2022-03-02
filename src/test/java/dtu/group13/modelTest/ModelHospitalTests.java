@@ -46,7 +46,6 @@ public class ModelHospitalTests {
 		patient=new Patient("egon");
 		List<Patient> patientList = new ArrayList<Patient>();
 		patientList.add(patient);
-		assertNull(hospital.getPatients());
 		hospital.setPatients(patientList);
 		assertTrue(hospital.getPatients().contains(patient));		
 		
