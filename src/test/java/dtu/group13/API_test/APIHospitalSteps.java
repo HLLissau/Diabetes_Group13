@@ -44,24 +44,24 @@ public class APIHospitalSteps {
 		assertEquals(response.getStatusCode().value(),200);
 		assertThat(response.getBody().equals(Array.newInstance(getClass(), 0)));
 	}
-//	@Test
-//	public void PostAddsItem() throws Exception {
-//		int lenght = controller.getAll().getBody().size();
-//		response= controller.create(hospital);
-//		assertThat(response.getStatusCode().equals(200));
-//		response =controller.getAll();
-//		ArrayList<Patient> reply = (ArrayList<Patient>) response.getBody();
-//		assertEquals(lenght+1,reply.size());
-//		assertThat(reply.contains(patient));
-//	}
-//	@Test
-//	public void DeleteAnItemThatExists() throws Exception {
-//		int lenght = controller.getAll().getBody().size();
-//		patient = ((ArrayList<Patient>) controller.getAll().getBody()).get(0);
-//		controller.delete(patient.getId());
-//		assertEquals(controller.getAll().getBody().size(),lenght-1);
-//		assertFalse(controller.getAll().getBody().contains(patient));
-//	}
+	@Test
+	public void PostAddsItem() throws Exception {
+		int lenght = controller.getAll().getBody().size();
+		response= controller.create(hospital);
+		assertThat(response.getStatusCode().equals(200));
+		response =controller.getAll();
+		ArrayList<Hospital> reply = (ArrayList<Hospital>) response.getBody();
+		assertEquals(lenght+1,reply.size());
+		assertThat(reply.contains(hospital));
+	}
+	@Test
+	public void DeleteAnItemThatExists() throws Exception {
+		int lenght = controller.getAll().getBody().size();
+		hospital = ((ArrayList<Hospital>) controller.getAll().getBody()).get(0);
+		controller.delete(hospital.getId());
+		assertEquals(controller.getAll().getBody().size(),lenght-1);
+		assertFalse(controller.getAll().getBody().contains(hospital));
+	}
 		
 }
 	
