@@ -40,5 +40,12 @@ public class Patient {
 	public void setName(String name) {
 		this.name = name;
 	}
-
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (obj instanceof Patient) {
+			return ((Patient) obj).id.equals(this.id);
+		}
+		return false;
+	}
 }

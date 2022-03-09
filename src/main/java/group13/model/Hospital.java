@@ -59,6 +59,13 @@ public class Hospital {
 	public void setPatients(List<Patient> patients) {
 		this.patients = patients;
 	}
+	@Override
+	public boolean equals(Object obj) {
+		if (obj instanceof Hospital) {
+			return ((Hospital) obj).id.equals(this.id);
+		}
+		return false;
+	}
 	
 	
 }
