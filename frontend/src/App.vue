@@ -12,17 +12,26 @@
         :hospitals="this.hospitals"
         @new-hospital="refresh"
         @hospital-deleted="refresh" />
+
+      <button @click="showChart = !showChart">Chart</button>
+  </div>
+  <div v-if="showChart">
+    <PatientChart/>
   </div>
 </template>
 
 <script>
+import PatientChart from './components/PatientChart.vue'
 import router from './router.js'
 
 export default {
   name: 'App',
-  components: { },
+  components: {
+    PatientChart
+   },
   data() {
     return {
+      showChart: true,
       hospitals: []
     }
   },
