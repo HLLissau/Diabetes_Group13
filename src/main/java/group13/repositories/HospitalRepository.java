@@ -11,4 +11,5 @@ import group13.model.Hospital;
 @Repository
 public interface HospitalRepository extends CrudRepository<Hospital,Long> {
 	List<Hospital> findAll();
+	
 }
