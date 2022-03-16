@@ -10,6 +10,7 @@
   </div>
 </template>
 
+
 <script>
 export default {
   name: 'AddHospital',
@@ -20,6 +21,7 @@ export default {
       }
     }
   },
+  
   methods: {
     submitForm() {
       this.axios.post(this.$backend.getUrlPostHospital(), this.form)
