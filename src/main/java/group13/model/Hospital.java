@@ -1,5 +1,6 @@
 package group13.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -18,8 +19,11 @@ public class Hospital {
 	@Column
 	private String name;
 	@OneToMany
-	private List<Patient> patients;
+	private List<Patient> patients=new ArrayList<Patient>();
 	
+	public Hospital() {
+		
+		}
 	
 	public Hospital(String name) {
 		this.name=name;
@@ -54,6 +58,13 @@ public class Hospital {
 	
 	public void setPatients(List<Patient> patients) {
 		this.patients = patients;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (obj instanceof Hospital) {
+			return ((Hospital) obj).id.equals(this.id);
+		}
+		return false;
 	}
 	
 	

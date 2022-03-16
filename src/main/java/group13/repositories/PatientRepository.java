@@ -10,7 +10,8 @@ import group13.model.Patient;
 
 @Repository
 public interface PatientRepository extends CrudRepository<Patient,Long> {
-	List<Patient> findAll();	
+	List<Patient> findAll();
+		
 	
 }
 
