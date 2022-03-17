@@ -62,7 +62,7 @@ public class Hospital {
 	@Override
 	public boolean equals(Object obj) {
 		if (obj instanceof Hospital) {
-			return ((Hospital) obj).id.equals(this.id);
+			return (((Hospital) obj).id.equals(this.id));
 		}
 		return false;
 	}

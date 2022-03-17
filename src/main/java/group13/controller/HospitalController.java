@@ -33,8 +33,8 @@ public class HospitalController {
 	
 	
 	@DeleteMapping("/api/v1/hospitals/{id}")
-	public ResponseEntity<?> delete(@PathVariable Long Id) {
-		repository.deleteById(Id);
+	public ResponseEntity<?> delete(@PathVariable Long id) {
+		repository.deleteById(id);
 		return ResponseEntity.noContent().build();
 	}
 }
