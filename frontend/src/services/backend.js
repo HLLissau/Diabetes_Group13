@@ -4,12 +4,20 @@ export default class Backend {
     this.url = "http://localhost:8080/api/v1"
   }
 
-  getUrlHospitalList() {
-    return this.url + "/patients"
+  getUrlHospitals() {
+    return this.url + "/hospitals"
+  }
+
+  getUrlHospitalPatients(id) {
+    return this.url + "/hospitals/" + id + "/patients"
   }
 
   getUrlPostHospital() {
-    return this.url + "/patients"
+    return this.url + "/hospitals"
+  }
+
+  getUrlPostPatient(id) {
+    return this.url + "/hospitals/" + id + "/patients"
   }
 
   getUrlDeleteHospital(id) {

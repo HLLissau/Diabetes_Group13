@@ -1,22 +1,53 @@
 <template>
+
   <div>
-      <h2>List of patients at hospital with id {{ hospitalId }}</h2>
-      <ul>
-          <li>Here goes the list of patients for the given hospital...</li>
-      </ul>
+    <h2>List of patients of hospital {{hospitalId}} </h2>
+    <ul>
+       <li
+        v-bind:key="h.name"
+        v-for="h in hospitalPatients">
+        {{ h.name }}
+        </li>
+    </ul>
+ 
+
+    <form v-on:submit.prevent="submitForm">
+        <label>
+          Name: <input type="text" v-model="form.name" />
+        </label>
+        <button>Submit</button>
+    </form>
   </div>
+
 </template>
 
 <script>
 export default {
   name: 'ListPatients',
-  data() {
+  props: ['patients','hospitals'],
+  data(){
     return {
-      hospitalId: null
+      form: {
+        name: ""
+      },
+      hospitalId: null,
+      hospitalPatients: []
     }
   },
   mounted() {
-    this.hospitalId = this.$route.params.id
+  this.hospitalId = this.$route.params.id
+  this.hospitalPatients = this.$route.params.patients
+  },
+  methods: {
+    submitForm() {
+      this.axios.post(this.$backend.getUrlPostPatient(this.hospitalId), this.form)
+        .then(() => {
+          this.form.name = ""
+          //this.$emit('new-patient')
+        })
+    }
   }
 }
 </script>
+
+

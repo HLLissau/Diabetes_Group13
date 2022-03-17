@@ -4,8 +4,8 @@
 
       <h3>Functions</h3>
       <ol>
-        <li><router-link :to="{ name: 'ListHospital' }">List of patients</router-link></li>
-        <li><router-link :to="{ name: 'AddHospital' }">Add new patient</router-link></li>
+        <li><router-link :to="{ name: 'ListHospitals' }">List of hospitals</router-link></li>
+        <li><router-link :to="{ name: 'AddHospital' }">Add new hospital</router-link></li>
       </ol>
 
       <router-view
@@ -38,10 +38,10 @@ export default {
   methods: {
     refresh() {
       this.axios
-        .get(this.$backend.getUrlHospitalList())
+        .get(this.$backend.getUrlHospitals())
         .then(res => {
           this.hospitals = res.data
-          router.push({ name: 'ListHospital' })
+          router.push({ name: 'ListHospitals' })
         })
     }
   },
