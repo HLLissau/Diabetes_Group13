@@ -8,7 +8,7 @@ import java.util.List;
 
 import group13.Application;
 import group13.model.Hospital;
-import group13.model.Patient;
+import group13.model.User;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -16,9 +16,9 @@ import io.cucumber.java.en.When;
 public class Hospital_steps {
 	private Application application;
 	private Hospital hospital;
-	private Patient patient;
+	private User patient;
 	private Patient_Helper patient_helper;
-	private List<Patient> patientList;
+	private List<User> patientList;
 
 	
 	
@@ -58,7 +58,7 @@ public class Hospital_steps {
 	public void thePatientCalledIsAddedToTheHospital(String name) {
 		patientList = this.hospital.getPatients();
 		Boolean value=false;
-		for (Patient x : patientList) {
+		for (User x : patientList) {
 	    	value = x.getName().equals(name) || value;
 	    }
 	    assertTrue(value);
