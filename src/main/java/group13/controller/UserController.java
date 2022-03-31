@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import group13.model.Doctor;
 import group13.model.Hospital;
 import group13.model.User;
-import group13.repositories.HospitalRepository;
+import group13.repositories.DoctorRepository;
 import group13.repositories.UserRepository;
 
 @Controller
@@ -26,16 +26,18 @@ public class UserController {
 	
 	@Autowired
 	private UserRepository repository;
+	@Autowired
+	private DoctorRepository doctorRepository;
 	
 	
 	
 	@GetMapping("/api/v1/doctor/{doctorId}/patients")
 	public ResponseEntity<List<User>> getAll(@PathVariable Long doctorId) {
-		//Optional<Hospital> h = repositoryHospital.findById(doctorId);
-		if (h.isEmpty()) {
+		Optional<Doctor> d = doctorRepository.findById(doctorId);
+		if (d.isEmpty() || d.get().getPatients().isEmpty()) {
 			return ResponseEntity.notFound().build();
 		}
-			return ResponseEntity.ok(h.get().getPatients());
+			return ResponseEntity.ok(d.get().getPatients());
 		}
 	
 	@PostMapping("/api/v1/login/user")
