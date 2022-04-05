@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import group13.model.Doctor;
-import group13.model.Hospital;
 import group13.model.User;
 import group13.repositories.DoctorRepository;
 import group13.repositories.UserRepository;
@@ -23,35 +22,31 @@ import group13.repositories.UserRepository;
 @Controller
 @CrossOrigin
 public class UserController {
-	
+
 	@Autowired
 	private UserRepository repository;
 	@Autowired
 	private DoctorRepository doctorRepository;
-	
-	
-	
-	@GetMapping("/api/v1/doctor/{doctorId}/patients")
-	public ResponseEntity<List<User>> getAll(@PathVariable Long doctorId) {
-		Optional<Doctor> d = doctorRepository.findById(doctorId);
-		if (d.isEmpty() || d.get().getPatients().isEmpty()) {
-			return ResponseEntity.notFound().build();
-		}
-			return ResponseEntity.ok(d.get().getPatients());
-		}
-	
-	@PostMapping("/api/v1/login/user")
-	public ResponseEntity<User> create(@RequestBody User user){
+
+	// create user
+	@PostMapping("/api/v1/login/create/user")
+	public ResponseEntity<User> create(@RequestBody User user) {
 		return ResponseEntity.ok(repository.save(user));
 	}
-	
-	@PostMapping("/api/v1/login/doctor")
-	public ResponseEntity<User> create(@RequestBody Doctor doctor){
-		return ResponseEntity.ok(repository.save(doctor));
+
+	// get user
+	@GetMapping("/api/v1/login/get/{patientId}")
+	public ResponseEntity<Doctor> getUser(@PathVariable Long patientId) {
+		Optional<Doctor> p = doctorRepository.findById(patientId);
+		if (p.isEmpty()) {
+			return ResponseEntity.notFound().build();
+		}
+		return ResponseEntity.ok(p.get());
 	}
-	
-	@DeleteMapping("/api/v1/login/{patientId}")
-	public ResponseEntity<?> delete(@PathVariable Long patientId) {
+
+	// delete user
+	@DeleteMapping("/api/v1/login/delete/{patientId}")
+	public ResponseEntity<?> deleteUser(@PathVariable Long patientId) {
 		Optional<User> p = repository.findById(patientId);
 		if (p.isEmpty()) {
 			return ResponseEntity.notFound().build();
@@ -60,19 +55,17 @@ public class UserController {
 		repository.delete(p.get());
 		return ResponseEntity.noContent().build();
 	}
-	
-	@PutMapping("/api/v1/{patientId}/{doctorId}")
-	public ResponseEntity<?> assignDoctor(@PathVariable Long patientId, @PathVariable Long doctorId) {
+
+	// remove Doctor
+	@PutMapping("/api/v1/remove/doctor/{patientId}/{doctorId}")
+	public ResponseEntity<?> removeDoctor(@PathVariable Long patientId) {
 		Optional<User> p = repository.findById(patientId);
 		if (p.isEmpty()) {
 			return ResponseEntity.notFound().build();
 		}
-		Optional<User> d = repository.findById(doctorId);
-		if (d.isEmpty() || !(d.get() instanceof Doctor)) {
-			return ResponseEntity.notFound().build();
-		}
-		//Der ligger kun User i UserRepository og altså ingen Doctor
-		p.get().setDoctor(d.get());
+		p.get().getDoctor().deletePatient(p.get());
+		p.get().setDoctor(null);
+		return (ResponseEntity<?>) ResponseEntity.ok();
 	}
-	
+
 }

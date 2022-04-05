@@ -22,5 +22,7 @@ public class Doctor extends User {
 	public List<User> getPatients(){
 		return this.patients;
 	}
+	
+	
 
 }
