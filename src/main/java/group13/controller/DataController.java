@@ -18,42 +18,42 @@ import group13.repositories.UserRepository;
 @Controller
 @CrossOrigin
 public class DataController {
-	
-	// Get data of dataType in the period of time startDate - endDate
-	@GetMapping("/api/v1/patient/{patientId}/getData/{dataType}/{startDate}/{endDate}")
-	public ResponseEntity<Data> getData(@PathVariable long patientId, @PathVariable long dataType, @PathVariable long startDate, @PathVariable long endDate) {
-		return null;
-		
-	}
-	
-	// Get averages:
-	// By day
-	@GetMapping("/api/v1/patient/{patientId}/getData/{dataType}/average/byDay")
-	public ResponseEntity<Data> averageByDay(@PathVariable long patientId, @PathVariable long dataType) {
-		return null;
-		
-	}
-	
-	// By week
-	@GetMapping("/api/v1/patient/{patientId}/getData/{dataType}/average/byWeek")
-	public ResponseEntity<Data> averageByWeek(@PathVariable long patientId, @PathVariable long dataType) {
-		return null;
-		
-	}
-	
-	// By month
-	@GetMapping("/api/v1/patient/{patientId}/getData/{dataType}/average/byMonth")
-	public ResponseEntity<Data> averageByMonth(@PathVariable long patientId, @PathVariable long dataType) {
-		return null;
-		
-	}
-	
-	// By year
-	@GetMapping("/api/v1/patient/{patientId}/getData/{dataType}/average/byDay")
-	public ResponseEntity<Data> averageByYear(@PathVariable long patientId, @PathVariable long dataType) {
-		return null;
-		
-	}
+//	
+//	// Get data of dataType in the period of time startDate - endDate
+//	@GetMapping("/api/v1/patient/{patientId}/getData/{dataType}/{startDate}/{endDate}")
+//	public ResponseEntity<Data> getData(@PathVariable long patientId, @PathVariable long dataType, @PathVariable long startDate, @PathVariable long endDate) {
+//		return null;
+//		
+//	}
+//	
+//	// Get averages:
+//	// By day
+//	@GetMapping("/api/v1/patient/{patientId}/getData/{dataType}/average/byDay")
+//	public ResponseEntity<Data> averageByDay(@PathVariable long patientId, @PathVariable long dataType) {
+//		return null;
+//		
+//	}
+//	
+//	// By week
+//	@GetMapping("/api/v1/patient/{patientId}/getData/{dataType}/average/byWeek")
+//	public ResponseEntity<Data> averageByWeek(@PathVariable long patientId, @PathVariable long dataType) {
+//		return null;
+//		
+//	}
+//	
+//	// By month
+//	@GetMapping("/api/v1/patient/{patientId}/getData/{dataType}/average/byMonth")
+//	public ResponseEntity<Data> averageByMonth(@PathVariable long patientId, @PathVariable long dataType) {
+//		return null;
+//		
+//	}
+//	
+//	// By year
+//	@GetMapping("/api/v1/patient/{patientId}/getData/{dataType}/average/byDay")
+//	public ResponseEntity<Data> averageByYear(@PathVariable long patientId, @PathVariable long dataType) {
+//		return null;
+//		
+//	}
 
 
 }

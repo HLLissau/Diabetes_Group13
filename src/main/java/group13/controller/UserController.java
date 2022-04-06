@@ -1,6 +1,5 @@
 package group13.controller;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +10,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
+
 import org.springframework.web.bind.annotation.RequestBody;
 
 import group13.model.Doctor;
@@ -51,21 +50,8 @@ public class UserController {
 		if (p.isEmpty()) {
 			return ResponseEntity.notFound().build();
 		}
-		p.get().getDoctor().deletePatient(p.get());
 		repository.delete(p.get());
 		return ResponseEntity.noContent().build();
-	}
-
-	// remove Doctor
-	@PutMapping("/api/v1/remove/doctor/{patientId}/{doctorId}")
-	public ResponseEntity<?> removeDoctor(@PathVariable Long patientId) {
-		Optional<User> p = repository.findById(patientId);
-		if (p.isEmpty()) {
-			return ResponseEntity.notFound().build();
-		}
-		p.get().getDoctor().deletePatient(p.get());
-		p.get().setDoctor(null);
-		return (ResponseEntity<?>) ResponseEntity.ok();
 	}
 
 }

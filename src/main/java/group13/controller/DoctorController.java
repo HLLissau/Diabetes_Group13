@@ -30,8 +30,12 @@ public class DoctorController {
 
 	// create doctor
 	@PostMapping("/api/v1/login/create/doctor")
-	public ResponseEntity<User> create(@RequestBody Doctor doctor) {
+	public ResponseEntity<Doctor> create(@RequestBody Doctor doctor) {
 		return ResponseEntity.ok(doctorRepository.save(doctor));
+	}
+	@GetMapping("/api/v1/login/getAllDoctor")
+	public ResponseEntity<List<Doctor>> getDoctors() {
+		return ResponseEntity.ok(doctorRepository.findAll());
 	}
 
 	// get doctor
@@ -43,63 +47,48 @@ public class DoctorController {
 		}
 		return ResponseEntity.ok(d.get());
 	}
-
-	// delete doctor
-	@DeleteMapping("/api/v1/login/delete/{patientId}")
-	public ResponseEntity<?> deleteDoctor(@PathVariable Long doctorId) {
-		Optional<Doctor> d = doctorRepository.findById(doctorId);
-		if (d.isEmpty()) {
-			return ResponseEntity.notFound().build();
-		}
-		while (!d.get().getPatients().isEmpty()) {
-			d.get().getPatients().get(0).setDoctor(null);
-			d.get().deletePatient(d.get().getPatients().get(0));
-		}
-		doctorRepository.delete(d.get());
-		return ResponseEntity.noContent().build();
-	}
-
-	// return patients of doctor {doctorId}
-	@GetMapping("/api/v1/doctor/{doctorId}/patients")
-	public ResponseEntity<List<User>> getAll(@PathVariable Long doctorId) {
-		Optional<Doctor> d = doctorRepository.findById(doctorId);
-		if (d.isEmpty() || d.get().getPatients().isEmpty()) {
-			return ResponseEntity.notFound().build();
-		}
-		return ResponseEntity.ok(d.get().getPatients());
-	}
-	
-	// assign doctor
-	@PutMapping("/api/v1/{patientId}/{doctorId}")
-	public ResponseEntity<?> assignDoctor(@PathVariable Long patientId, @PathVariable Long doctorId) {
-		Optional<User> p = repository.findById(patientId);
-		Optional<Doctor> d = doctorRepository.findById(doctorId);
-		if (p.isEmpty() || d.isEmpty()) {
-			return ResponseEntity.notFound().build();
-		}
-		if (p.get().getDoctor() != null) {
-			p.get().getDoctor().deletePatient(p.get());
-		}
-		p.get().setDoctor(d.get());
-		d.get().addPatient(p.get());
-		return (ResponseEntity<?>) ResponseEntity.ok();
-	}
-	
+//
+//	// delete doctor
+//	@DeleteMapping("/api/v1/login/delete/{patientId}")
+//	public ResponseEntity<?> deleteDoctor(@PathVariable Long doctorId) {
+//		Optional<Doctor> d = doctorRepository.findById(doctorId);
+//		if (d.isEmpty()) {
+//			return ResponseEntity.notFound().build();
+//		}
+//		while (!d.get().getPatients().isEmpty()) {
+//			
+//			d.get().deletePatient(d.get().getPatients().get(0));
+//		}
+//		doctorRepository.delete(d.get());
+//		return ResponseEntity.noContent().build();
+//	}
+//
+//	// return patients of doctor {doctorId}
+//	@GetMapping("/api/v1/doctor/{doctorId}/patients")
+//	public ResponseEntity<List<User>> getAll(@PathVariable Long doctorId) {
+//		Optional<Doctor> d = doctorRepository.findById(doctorId);
+//		if (d.isEmpty() || d.get().getPatients().isEmpty()) {
+//			return ResponseEntity.notFound().build();
+//		}
+//		return ResponseEntity.ok(d.get().getPatients());
+//	}
+//	
+//	
 	// remove patient
-	@PutMapping("/api/v1/remove/patient/{patientId}/{doctorId}")
-	public ResponseEntity<?> removePatient(@PathVariable Long patientId, @PathVariable Long doctorId) {
-		Optional<User> p = repository.findById(patientId);
-		Optional<Doctor> d = doctorRepository.findById(doctorId);
-		if (p.isEmpty() || d.isEmpty()) {
-			return ResponseEntity.notFound().build();
-		}
-		if(d.get().getPatients().contains(p.get())) {
-			d.get().deletePatient(p.get());
-			p.get().setDoctor(null);
-		}
-		return (ResponseEntity<?>) ResponseEntity.ok();
-	}
-	
-	
+//	@PutMapping("/api/v1/remove/patient/{patientId}/{doctorId}")
+//	public ResponseEntity<?> removePatient(@PathVariable Long patientId, @PathVariable Long doctorId) {
+//		Optional<User> p = repository.findById(patientId);
+//		Optional<Doctor> d = doctorRepository.findById(doctorId);
+//		if (p.isEmpty() || d.isEmpty()) {
+//			return ResponseEntity.notFound().build();
+//		}
+//		if(d.get().getPatients().contains(p.get())) {
+//			d.get().deletePatient(p.get());
+//			
+//		}
+//		return (ResponseEntity<?>) ResponseEntity.ok();
+//	}
+//	
+//	
 
 }

@@ -19,8 +19,6 @@ public class User {
 	private String firstName;
 	@Column
 	private String lastName;
-	@Column
-	private Doctor doctor;
 	
 	public User() {
 	}
@@ -60,13 +58,6 @@ public class User {
 		return password;
 	}
 	
-	public Doctor getDoctor() {
-		return doctor;
-	}
-	
-	public void setDoctor(Doctor doctor) {
-		this.doctor = doctor;
-	}
 	
 	@Override
 	public boolean equals(Object obj) {
