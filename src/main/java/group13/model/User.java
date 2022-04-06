@@ -1,5 +1,7 @@
 package group13.model;
 
+import java.sql.Timestamp;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,19 +16,15 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	@Column
-	private String password;
+	private String fullName;
 	@Column
-	private String firstName;
-	@Column
-	private String lastName;
+	private Timestamp createdAt;
 	
 	public User() {
 	}
 	
-	public User(String firstName, String lastName, String password) {
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.password = password;
+	public User(String fullName) {
+		this.fullName = fullName;
 	}
 
 	public Long getId() {
@@ -37,26 +35,13 @@ public class User {
 		this.id = id;
 	}
 	
-	public String getFirstName() {
-		return firstName;
+	public void setName(String fullName) {
+		this.fullName = fullName;
 	}
 	
-	public String getLastName() {
-		return lastName;
-	}
+
 	
-	public void setName(String firstName, String lastName) {
-		this.firstName = firstName;
-		this.lastName = lastName;
-	}
-	
-	public void setPassword(String password) {
-		this.password = password;
-	}
-	
-	public String getPassword() {
-		return password;
-	}
+
 	
 	
 	@Override

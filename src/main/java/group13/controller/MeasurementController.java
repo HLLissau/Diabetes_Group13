@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-import group13.model.Data;
+import group13.model.Measurement;
 import group13.model.Doctor;
 import group13.model.User;
 import group13.repositories.DoctorRepository;
@@ -17,7 +17,7 @@ import group13.repositories.UserRepository;
 
 @Controller
 @CrossOrigin
-public class DataController {
+public class MeasurementController {
 //	
 //	// Get data of dataType in the period of time startDate - endDate
 //	@GetMapping("/api/v1/patient/{patientId}/getData/{dataType}/{startDate}/{endDate}")

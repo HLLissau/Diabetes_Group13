@@ -1,5 +1,6 @@
 package group13.model;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -15,11 +16,9 @@ public class Doctor  {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	@Column
-	private String password;
+	private String fullName;
 	@Column
-	private String firstName;
-	@Column
-	private String lastName;
+	private Timestamp createdAt;
 	
 	//@Column
 	//private List<User> patients;

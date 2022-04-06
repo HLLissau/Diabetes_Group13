@@ -7,13 +7,18 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Data {
+public class Note {
 	@Id
 	@Column
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
+	@Column
+	private String author;
+	@Column
+	private Long patientId;
+	@Column
+	private Long doctortId;
+	@Column
+	private String note;
 
-
-	
-	
 }
