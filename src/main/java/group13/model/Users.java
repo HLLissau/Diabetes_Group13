@@ -9,7 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class User {
+public class Users {
 	
 	@Id
 	@Column
@@ -20,10 +20,10 @@ public class User {
 	@Column
 	private Timestamp createdAt;
 	
-	public User() {
+	public Users() {
 	}
 	
-	public User(String fullName) {
+	public Users(String fullName) {
 		this.fullName = fullName;
 	}
 
@@ -46,8 +46,8 @@ public class User {
 	
 	@Override
 	public boolean equals(Object obj) {
-		if (obj instanceof User) {
-			return ((User) obj).id.equals(this.id);
+		if (obj instanceof Users) {
+			return ((Users) obj).id.equals(this.id);
 		}
 		return false;
 	}

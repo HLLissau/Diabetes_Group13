@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import group13.model.Doctor;
-import group13.model.User;
+import group13.model.Users;
 import group13.repositories.DoctorRepository;
 import group13.repositories.UserRepository;
 
@@ -29,7 +29,7 @@ public class UserController {
 
 	// create user
 	@PostMapping("/api/v1/login/create/user")
-	public ResponseEntity<User> create(@RequestBody User user) {
+	public ResponseEntity<Users> create(@RequestBody Users user) {
 		return ResponseEntity.ok(repository.save(user));
 	}
 
@@ -46,7 +46,7 @@ public class UserController {
 	// delete user
 	@DeleteMapping("/api/v1/login/delete/{patientId}")
 	public ResponseEntity<?> deleteUser(@PathVariable Long patientId) {
-		Optional<User> p = repository.findById(patientId);
+		Optional<Users> p = repository.findById(patientId);
 		if (p.isEmpty()) {
 			return ResponseEntity.notFound().build();
 		}

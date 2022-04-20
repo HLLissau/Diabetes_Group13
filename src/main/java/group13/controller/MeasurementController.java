@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import group13.model.Measurement;
 import group13.model.Doctor;
-import group13.model.User;
+import group13.model.Users;
 import group13.repositories.DoctorRepository;
 import group13.repositories.UserRepository;
 
