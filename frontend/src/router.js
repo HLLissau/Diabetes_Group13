@@ -16,7 +16,7 @@ const routes = [
     name: 'AddHospital'
   },
   {
-    path: '/hospital/:id',
+    path: '/hospital/:id/:patients',
     component: ListPatients,
     name: 'ListPatients'
   }
