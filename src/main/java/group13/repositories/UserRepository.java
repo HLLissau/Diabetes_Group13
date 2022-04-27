@@ -6,11 +6,11 @@ import org.springframework.data.repository.CrudRepository;
 
 import org.springframework.stereotype.Repository;
 
-import group13.model.User;
+import group13.model.Users;
 
 @Repository
-public interface UserRepository extends CrudRepository<User,Long> {
-	List<User> findAll();
+public interface UserRepository extends CrudRepository<Users,Long> {
+	List<Users> findAll();
 		
 }
 

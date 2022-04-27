@@ -16,13 +16,13 @@ public class Measurement {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	@Column
-	private int userId;
+	private int user_Id;
 	@Column
 	private Timestamp time;
+	//@Column
+	//private Date date;
 	@Column
-	private Date date;
-	@Column
-	private int deviceId;
+	private int device_Id;
 	@Column
 	private double meals;
 	@Column
@@ -31,7 +31,8 @@ public class Measurement {
 	private double basal;
 	@Column
 	private double bolus;
-
+	@Column 
+	private double measurement; 
 	
 	
 }
