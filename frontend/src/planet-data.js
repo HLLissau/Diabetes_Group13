@@ -15,7 +15,7 @@ export const planetChartData = {
         },
         {
           label: "Exercise",
-          data: [55, 32, 23, 54, 56, 28, 43],
+          data: [55, 32, 150, 54, 56, 28, 43],
           backgroundColor: "rgba(71, 183,132,.5)",
           borderColor: "#47b784",
           borderWidth: 3

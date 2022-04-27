@@ -21,6 +21,7 @@ public class User {
 	private Timestamp createdAt;
 	
 	public User() {
+		this.createdAt = new Timestamp(System.currentTimeMillis());
 	}
 	
 	public User(String fullName) {

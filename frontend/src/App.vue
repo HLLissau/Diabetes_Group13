@@ -1,5 +1,9 @@
 <template>
+<formatter>
   <div>
+    <header>
+      <navigationBar />
+    </header>
       <h1>Patient management</h1>
 
       <h3>Functions</h3>
@@ -18,16 +22,20 @@
   <div v-if="showChart">
     <PatientChart/>
   </div>
+  </formatter>
 </template>
 
 <script>
 import PatientChart from './components/PatientChart.vue'
 import router from './router.js'
+import navigationBar from './components/NavigationBar.vue'
+
 
 export default {
   name: 'App',
   components: {
-    PatientChart
+    PatientChart,
+    navigationBar
    },
   data() {
     return {
@@ -54,5 +62,13 @@ export default {
 <style>
 * {
   font-family: sans-serif;
+}
+header {
+  width: 50vw;
+  background-color: #222;
+  padding: 15px;
+}
+formatter {
+  width: 50vw;
 }
 </style>
