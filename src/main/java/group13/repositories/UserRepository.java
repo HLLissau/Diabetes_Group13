@@ -11,6 +11,8 @@ import group13.model.Users;
 @Repository
 public interface UserRepository extends CrudRepository<Users,Long> {
 	List<Users> findAll();
+	
+	
 		
 }
 

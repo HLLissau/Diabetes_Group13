@@ -24,9 +24,7 @@ public class UserController {
 
 	@Autowired
 	private UserRepository repository;
-	@Autowired
-	private DoctorRepository doctorRepository;
-
+	
 	// create user
 	@PostMapping("/api/v1/login/create/user")
 	public ResponseEntity<Users> create(@RequestBody Users user) {
@@ -35,8 +33,8 @@ public class UserController {
 
 	// get user
 	@GetMapping("/api/v1/login/get/{patientId}")
-	public ResponseEntity<Doctor> getUser(@PathVariable Long patientId) {
-		Optional<Doctor> p = doctorRepository.findById(patientId);
+	public ResponseEntity<Users> getUser(@PathVariable Long patientId) {
+		Optional<Users> p = repository.findById(patientId);
 		if (p.isEmpty()) {
 			return ResponseEntity.notFound().build();
 		}
