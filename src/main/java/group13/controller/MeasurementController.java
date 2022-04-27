@@ -1,5 +1,10 @@
 package group13.controller;
 
+
+import java.awt.List;
+import java.util.ArrayList;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -14,14 +19,26 @@ import group13.model.Doctor;
 import group13.model.Users;
 import group13.repositories.DoctorRepository;
 import group13.repositories.UserRepository;
+import group13.repositories.MeasurementRepository;
 
 @Controller
 @CrossOrigin
 public class MeasurementController {
-//	
+	
+	
+	@Autowired
+	private UserRepository UserRepository;
+	
+	@Autowired
+	private MeasurementRepository MeasurementRepository;
+
+	@GetMapping("/api/v1/patient/{patientId}/getData/{datatype}")
+	public ResponseEntity<java.util.List<Measurement>> getall(@PathVariable Long patientId, @PathVariable String datatype) {
+		return ResponseEntity.ok(MeasurementRepository.findAllByUserID(patientId));
+	}
 //	// Get data of dataType in the period of time startDate - endDate
 //	@GetMapping("/api/v1/patient/{patientId}/getData/{dataType}/{startDate}/{endDate}")
-//	public ResponseEntity<Data> getData(@PathVariable long patientId, @PathVariable long dataType, @PathVariable long startDate, @PathVariable long endDate) {
+//	public ResponseEntity<Measurement> getData(@PathVariable long patientId, @PathVariable long dataType, @PathVariable long startDate, @PathVariable long endDate) {
 //		return null;
 //		
 //	}
