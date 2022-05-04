@@ -18,7 +18,8 @@ export default {
            variabels: [
             {
                title: 'CGM',
-               link: '#'
+               link: '#',
+
            },
            {
                title: 'Carbohydrate',
@@ -36,7 +37,8 @@ export default {
                title: 'Bolus',
                link: '#'
            }
-           ]
+           ],
+           variabel: 'test'
         }
     }
 }

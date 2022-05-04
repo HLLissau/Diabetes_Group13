@@ -32,10 +32,11 @@ public class MeasurementController {
 	@Autowired
 	private MeasurementRepository MeasurementRepository;
 
-	@GetMapping("/api/v1/patient/{patientId}/getData/{datatype}")
-	public ResponseEntity<java.util.List<Measurement>> getall(@PathVariable Long patientId, @PathVariable String datatype) {
+	@GetMapping("/api/v1/patient/{patientId}/getData")
+	public ResponseEntity<java.util.List<Measurement>> getall(@PathVariable Long patientId) {
 		return ResponseEntity.ok(MeasurementRepository.findAllByUserID(patientId));
 	}
+	
 //	// Get data of dataType in the period of time startDate - endDate
 //	@GetMapping("/api/v1/patient/{patientId}/getData/{dataType}/{startDate}/{endDate}")
 //	public ResponseEntity<Measurement> getData(@PathVariable long patientId, @PathVariable long dataType, @PathVariable long startDate, @PathVariable long endDate) {

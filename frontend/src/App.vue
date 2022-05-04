@@ -1,8 +1,7 @@
 <template>
-<formatter>
-  <div>
+  <div class="wrap">
     <header>
-      <navigationBar />
+      <navigationBar/>
     </header>
       <h1>Patient management</h1>
 
@@ -18,18 +17,17 @@
         @hospital-deleted="refresh" />
 
       <button @click="showChart = !showChart">Chart</button>
+
+      <PatientChart/>
   </div>
-  <div v-if="showChart">
-    <PatientChart/>
-  </div>
-  </formatter>
+
+
 </template>
 
 <script>
 import PatientChart from './components/PatientChart.vue'
 import router from './router.js'
 import navigationBar from './components/NavigationBar.vue'
-
 
 export default {
   name: 'App',
@@ -63,12 +61,12 @@ export default {
 * {
   font-family: sans-serif;
 }
-header {
+.wrap {
   width: 50vw;
-  background-color: #222;
   padding: 15px;
 }
-formatter {
-  width: 50vw;
+header {
+  background-color: #222;
+  padding: 15px;
 }
 </style>

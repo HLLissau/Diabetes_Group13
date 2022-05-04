@@ -20,7 +20,7 @@ public class Users {
 	@Column
 	private Timestamp createdAt;
 	
-	public User() {
+	public Users() {
 		this.createdAt = new Timestamp(System.currentTimeMillis());
 	}
 	
