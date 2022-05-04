@@ -16,8 +16,6 @@
         @new-hospital="refresh"
         @hospital-deleted="refresh" />
 
-      <button @click="showChart = !showChart">Chart</button>
-
       <PatientChart/>
   </div>
 
@@ -44,7 +42,7 @@ export default {
   methods: {
     refresh() {
       this.axios
-        .get(this.$backend.getUrlGetUsers())
+        .get(this.$backend.getUrlCreateUser())
         .then(res => {
           this.hospitals = res.data
           router.push({ name: 'ListHospitals' })
