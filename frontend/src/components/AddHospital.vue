@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2>New user</h2>
+    <h2>Add new hospital</h2>
     <form v-on:submit.prevent="submitForm">
         <label>
           Name: <input type="text" v-model="form.name" />
@@ -24,7 +24,7 @@ export default {
   
   methods: {
     submitForm() {
-      this.axios.post(this.$backend.getUrlCreateUser(), this.form)
+      this.axios.post(this.$backend.getUrlPostHospital(), this.form)
         .then(() => {
           this.form.name = ""
           this.$emit('new-hospital')

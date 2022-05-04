@@ -44,7 +44,7 @@ export default {
   methods: {
     refresh() {
       this.axios
-        .get(this.$backend.getUrlHospitals())
+        .get(this.$backend.getUrlGetUsers())
         .then(res => {
           this.hospitals = res.data
           router.push({ name: 'ListHospitals' })
