@@ -4,8 +4,8 @@ export default class Backend {
     this.url = "http://localhost:8080/api/v1"
   }
 
-  getUrlHospitals() {
-    return this.url + "/hospitals"
+  getUrlUsers() {
+    return this.url + "/login/get/users"
   }
 
   getUrlHospitalPatients(id) {
