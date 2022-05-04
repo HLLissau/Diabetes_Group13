@@ -12,8 +12,8 @@ export default class Backend {
     return this.url + "/hospitals/" + id + "/patients"
   }
 
-  getUrlPostHospital() {
-    return this.url + "/hospitals"
+  getUrlCreateUser() {
+    return this.url + "/login/create/user"
   }
 
   getUrlPostPatient(id) {

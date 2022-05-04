@@ -7,8 +7,8 @@
 
       <h3>Functions</h3>
       <ol>
-        <li><router-link :to="{ name: 'ListHospitals' }">List of hospitals</router-link></li>
-        <li><router-link :to="{ name: 'AddHospital' }">Add new hospital</router-link></li>
+        <li><router-link :to="{ name: 'ListHospitals' }">List of users</router-link></li>
+        <li><router-link :to="{ name: 'AddHospital' }">Create user</router-link></li>
       </ol>
 
       <router-view
