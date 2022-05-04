@@ -2,6 +2,7 @@ package group13.controller;
 
 
 import java.awt.List;
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Optional;
 
@@ -34,7 +35,9 @@ public class MeasurementController {
 
 	@GetMapping("/api/v1/patient/{patientId}/getData")
 	public ResponseEntity<java.util.List<Measurement>> getall(@PathVariable Long patientId) {
-		return ResponseEntity.ok(MeasurementRepository.findAllByUserID(patientId));
+		java.util.List<Measurement> result =MeasurementRepository.findAllByUserID(patientId);
+		
+		return ResponseEntity.ok(result);
 	}
 	
 //	// Get data of dataType in the period of time startDate - endDate

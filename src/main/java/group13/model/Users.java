@@ -40,6 +40,12 @@ public class Users {
 		this.fullName = fullName;
 	}
 	
+	public String getName() {
+		return this.fullName;
+	}
+	
+	
+	
 
 	
 

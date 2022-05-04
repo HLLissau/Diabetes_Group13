@@ -11,9 +11,13 @@ import group13.model.Measurement;
 
 @Repository
 public interface MeasurementRepository extends CrudRepository<Measurement,Long> {
-	//List<Measurement> findAll();
 	
-	@Query("Select time,measurement from Measurement WHERE userId= ?1")
+	
+	List<Measurement> findAll();
+	
+
+	@Query(value = "Select * from Measurement WHERE user_id= ?1",
+			nativeQuery = true)
 	List<Measurement> findAllByUserID(Long patientId);
 	
 }
