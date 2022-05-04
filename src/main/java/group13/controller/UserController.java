@@ -1,5 +1,6 @@
 package group13.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,13 +33,19 @@ public class UserController {
 	}
 
 	// get user
-	@GetMapping("/api/v1/login/get/{patientId}")
+	@GetMapping("/api/v1/login/get/user/{patientId}")
 	public ResponseEntity<Users> getUser(@PathVariable Long patientId) {
 		Optional<Users> p = repository.findById(patientId);
 		if (p.isEmpty()) {
 			return ResponseEntity.notFound().build();
 		}
 		return ResponseEntity.ok(p.get());
+	}
+	
+	// get users
+	@GetMapping("/api/v1/login/get/users")
+	public ResponseEntity<List<Users>> getUsers() {
+		return ResponseEntity.ok(repository.findAll());
 	}
 
 	// delete user
