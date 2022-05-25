@@ -1,5 +1,7 @@
 package group13.model;
 
+
+
 import java.sql.Timestamp;
 
 import javax.persistence.Column;
@@ -14,10 +16,10 @@ import javax.persistence.Table;
 public class Measurement {
 	@Id
 	@Column
-	private int user_Id;
+	private Long userId;
 	@Id
 	@Column
-	private Timestamp time;
+	private  Timestamp time;
 	@Column
 	private Integer device_Id;
 	@Column
@@ -31,11 +33,11 @@ public class Measurement {
 	@Column 
 	private Double measurement;
 	
-	public int getUser_Id() {
-		return user_Id;
+	public Long getUserId() {
+		return userId;
 	}
-	public void setUser_Id(int user_Id) {
-		this.user_Id = user_Id;
+	public void setUserId(Long user_Id) {
+		this.userId = user_Id;
 	}
 	public Timestamp getTime() {
 		return time;

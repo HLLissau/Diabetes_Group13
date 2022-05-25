@@ -5,14 +5,14 @@ import java.util.Objects;
 
 public class MeasurementId implements Serializable {
 
-    private int user_Id;
+    private Long userId;
     private Timestamp time;
 
     public MeasurementId() {
     }
 
-    public MeasurementId(int UId, Timestamp time) {
-        this.user_Id = UId;
+    public MeasurementId(Long UId, Timestamp time) {
+        this.userId = UId;
         this.time = time;
     }
 
@@ -21,12 +21,12 @@ public class MeasurementId implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         MeasurementId measurementId = (MeasurementId) o;
-        return this.user_Id == measurementId.user_Id &&
+        return this.userId == measurementId.userId &&
                 time.equals(measurementId.time);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(user_Id, time);
+        return Objects.hash(userId, time);
     }
 }
