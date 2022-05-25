@@ -1,10 +1,7 @@
 package group13.controller;
 
 
-import java.awt.List;
-import java.sql.Time;
-import java.util.ArrayList;
-import java.util.Optional;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -12,31 +9,22 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import group13.model.Measurement;
-import group13.model.Doctor;
-import group13.model.Users;
-import group13.repositories.DoctorRepository;
-import group13.repositories.UserRepository;
 import group13.repositories.MeasurementRepository;
 
 @Controller
 @CrossOrigin
 public class MeasurementController {
 	
-	
-	@Autowired
-	private UserRepository UserRepository;
-	
+
+
 	@Autowired
 	private MeasurementRepository MeasurementRepository;
 
 	@GetMapping("/api/v1/patient/{patientId}/getData")
 	public ResponseEntity<java.util.List<Measurement>> getall(@PathVariable Long patientId) {
 		java.util.List<Measurement> result =MeasurementRepository.findAllByUserID(patientId);
-		
 		return ResponseEntity.ok(result);
 	}
 	

@@ -1,23 +1,23 @@
 package group13.model;
 
-import java.sql.Date;
 import java.sql.Timestamp;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.IdClass;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "Measurement")
+@IdClass(MeasurementId.class)
 public class Measurement {
 	@Id
 	@Column
 	private int user_Id;
+	@Id
 	@Column
 	private Timestamp time;
-	//@Column
-	//private Date date;
 	@Column
 	private Integer device_Id;
 	@Column
