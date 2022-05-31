@@ -17,9 +17,9 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import group13.Application;
 import group13.controller.HospitalController;
-import group13.controller.PatientController;
+import group13.controller.UserController;
 import group13.model.Hospital;
-import group13.model.Patient;
+import group13.model.User;
 
 
 @RunWith(SpringRunner.class)
@@ -29,7 +29,7 @@ public class APIHospitalSteps {
 	@Autowired
 	private HospitalController controller;
 	
-	private Patient patient=new Patient("Hans");
+	private User patient=new User("Hans");
 	private Hospital hospital=controller.create(new Hospital("angel")).getBody();
 	
 	

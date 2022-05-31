@@ -1,41 +1,29 @@
+//let newLabel = ''
+
+//function test(){
+//  let newLabel = 'Dataset 2'
+//}
+
 export const planetChartData = {
 
-
-
-    type: "line",
-    data: {
-      labels: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
-      datasets: [
-        {
-          label: "Insulin",
-          data: [15, 23, 5, 40, 23, 61, 5],
-          backgroundColor: "rgba(54,73,93,.5)",
-          borderColor: "#36495d",
-          borderWidth: 3
-        },
-        {
-          label: "Exercise",
-          data: [55, 32, 23, 54, 56, 28, 43],
-          backgroundColor: "rgba(71, 183,132,.5)",
-          borderColor: "#47b784",
-          borderWidth: 3
-        }
-      ]
-    },
+    type: "scatter",
+    data: {datasets: [{
+      label: 'ghjk',
+      data: [
+        {x:12,y:17},{x:14,y:19},{x:25,y:21},{x:33,y:24},{x:37,y:22},{x:40,y:27}
+      ],
+      backgroundColor: 'rgba(12,15,166,0.2)',
+      borderColor: 'rgb(78,67,190,1)',
+      showLine: true
+    }]},
     options: {
-      responsive: true,
-      lineTension: 1,
+      maintainAspectRatio: true,
       scales: {
-        yAxes: [
-          {
-            ticks: {
-              beginAtZero: true,
-              padding: 25
-            }
-          }
-        ]
+        y: {
+          beginAtZero: true
+        }
       }
     }
-  };
+};
   
   export default planetChartData;

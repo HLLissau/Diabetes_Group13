@@ -5,6 +5,6 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 
 @Controller
 @CrossOrigin
-public class HospitalController {
+public class DevelopedController {
 
 }

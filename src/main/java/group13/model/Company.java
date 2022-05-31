@@ -7,7 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Hospital {
+public class Company {
 	
 	@Id
 	@Column
@@ -15,5 +15,10 @@ public class Hospital {
 	private Long id;
 	@Column
 	private String name;
+	@Column
+	private String address;
+	@Column
+	private String headquarterCountry;
+	
 
 }

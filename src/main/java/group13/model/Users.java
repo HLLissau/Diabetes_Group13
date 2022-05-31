@@ -1,6 +1,6 @@
 package group13.model;
 
-import java.util.List;
+import java.sql.Timestamp;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,20 +9,23 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Patient {
+public class Users {
 	
 	@Id
 	@Column
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	@Column
-	private String name;
+	private String fullName;
+	@Column
+	private Timestamp createdAt;
 	
-	public Patient() {
+	public Users() {
+		this.createdAt = new Timestamp(System.currentTimeMillis());
 	}
 	
-	public Patient(String name) {
-		this.name =name;
+	public Users(String fullName) {
+		this.fullName = fullName;
 	}
 
 	public Long getId() {
@@ -33,18 +36,25 @@ public class Patient {
 		this.id = id;
 	}
 	
-	public String getName() {
-		return name;
+	public void setName(String fullName) {
+		this.fullName = fullName;
 	}
 	
-	public void setName(String name) {
-		this.name = name;
+	public String getName() {
+		return this.fullName;
 	}
+	
+	
+	
+
+	
+
+	
 	
 	@Override
 	public boolean equals(Object obj) {
-		if (obj instanceof Patient) {
-			return ((Patient) obj).id.equals(this.id);
+		if (obj instanceof Users) {
+			return ((Users) obj).id.equals(this.id);
 		}
 		return false;
 	}
