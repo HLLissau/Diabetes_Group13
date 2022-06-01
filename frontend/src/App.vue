@@ -1,7 +1,7 @@
 <template>
   <div class="wrap">
     <header>
-      <navigationBar/>
+      <navigationBar v-on:child-choice="updateChoice"/>
     </header>
       <h1>Patient management</h1>
 
@@ -41,12 +41,30 @@ export default {
   },
   methods: {
     refresh() {
+      console.log('refresh')
       this.axios
         .get(this.$backend.getUrlUsers())
         .then(res => {
           this.hospitals = res.data
           router.push({ name: 'ListHospitals' })
         })
+    },
+    updateChoice(choice_from_child){
+      if (choice_from_child == "Bolus") {
+        console.log("APP: " + choice_from_child)
+      }
+      if (choice_from_child == "CGM"){
+        console.log("APP: " + choice_from_child)
+      }
+      if (choice_from_child == "Basal"){
+        console.log("APP: " + choice_from_child)
+      }
+      if (choice_from_child == "Exercise"){
+        console.log("APP: " + choice_from_child)
+      }
+      if (choice_from_child == "Carbohydrate"){
+        console.log("APP: " + choice_from_child)
+      }
     }
   },
   mounted() {
