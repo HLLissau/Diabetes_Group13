@@ -36,7 +36,8 @@ export default {
   data() {
     return {
       showChart: true,
-      hospitals: []
+      hospitals: [],
+      isActive: false
     }
   },
   methods: {

@@ -1,7 +1,7 @@
 <template>
     <nav>
         <dropDown title="Variabels" :items="variabels"/>
-        <div class="menu-item"><a href="#">Average</a></div>
+        <div :style="isClicked ? { 'green': 'red' } : null" class="menu-item" ><a @click="toggle">{{isToggled ? 'ON' : 'OFF'}}</a></div>
         <div class="menu-item"><a href="#">Settings</a></div>
     </nav>
 </template>
@@ -15,6 +15,7 @@ export default {
     },
     data () {
         return {
+           isToggled: false,
            variabels: [
             {
                title: 'CGM',
@@ -38,8 +39,15 @@ export default {
                link: '#'
            }
            ],
-           variabel: 'test'
+           variabel: 'test',
+           
         }
+    },
+     methods: {
+       toggle() {
+         this.isToggled = !this.isToggled
+    },
+        
     }
 }
 </script>
