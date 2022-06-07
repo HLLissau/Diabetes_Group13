@@ -17,6 +17,7 @@
         @hospital-deleted="refresh" />
 
       <PatientChart/>
+
   </div>
 
 
@@ -69,6 +70,14 @@ export default {
   },
   mounted() {
     this.refresh()
+  },
+  pullData() {
+    this.axios
+        .get(this.$backend.getUrlUsers())
+        .then(res => {
+          this.hospitals = res.data
+          router.push({ name: 'ListHospitals' })
+        })
   }
 }
 </script>
