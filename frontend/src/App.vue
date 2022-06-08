@@ -1,10 +1,12 @@
 <template>
-  <WelcomePage></WelcomePage>
-  
+  <div>
+    <router-link to="/pages/TestPage">Go to next page</router-link>
+  <router-view/>
+</div>
 </template>
 
 <script>
-import WelcomePage from './pages/WelcomePage'
+//import WelcomePage from './pages/WelcomePage.vue'
 
 export default {
   name: 'App',
@@ -14,7 +16,7 @@ export default {
     }
   },
   components: {
-    WelcomePage, 
+    //WelcomePage, 
   }
 }
 </script>
