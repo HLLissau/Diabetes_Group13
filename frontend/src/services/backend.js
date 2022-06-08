@@ -5,7 +5,7 @@ export default class Backend {
   }
 
   getAllData() {
-    return this.url + "/patient/" + 1 + "/getData/average/byDay"
+    return this.url + "/patient/" + 2 + "/getData/average/byDay"
   }
 
   getUrlUsers() {

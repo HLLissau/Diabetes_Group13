@@ -10,14 +10,15 @@
         <li><router-link :to="{ name: 'ListHospitals' }">List of users</router-link></li>
         <li><router-link :to="{ name: 'AddHospital' }">Create user</router-link></li>
       </ol>
-
+      <!--
       <router-view
         :hospitals="this.hospitals"
         @new-hospital="refresh"
         @hospital-deleted="refresh" />
-
-      <PatientChart :propLabel = "label" :propData = "backendData" />
-
+-->
+      <canvas id="myChart"></canvas>
+      <PatientChart :propLabel = "label" :propData = "backendData" :key = "componentKey" />
+      
   </div>
 
 
@@ -28,11 +29,14 @@ import PatientChart from './components/PatientChart.vue'
 import router from './router.js'
 import navigationBar from './components/NavigationBar.vue'
 
+ 
+
 export default {
   name: 'App',
   components: {
     PatientChart,
-    navigationBar
+    navigationBar,
+  
    },
   data() {
     return {
@@ -52,10 +56,16 @@ export default {
           router.push({ name: 'ListHospitals' })
         })
     },
+    
     updateChoice(choice_from_child){
-        //PatientChart.updateTable(choice_from_child)
         console.log(choice_from_child)
         this.label = choice_from_child
+        PatientChart.methods.testcon("hello")
+        console.log("test",PatientChart.myChart)
+        this.componentKey += 1;
+        
+        
+        
     },
     pullChartData(){
     var arr = []
@@ -76,15 +86,17 @@ export default {
           });
         })
         this.backendData = arr
+        
   }
   },
   mounted() {
     console.log("parentmount")
     this.refresh()
+    
   },
   created(){
     this.pullChartData()
-      console.log("parentcreate",this.backendData)
+        
   },
   pullData() {
     this.axios

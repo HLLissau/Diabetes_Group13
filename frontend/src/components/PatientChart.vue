@@ -6,19 +6,22 @@
 
 <script>
 import Chart from 'chart.js';
-import 'chartjs-adapter-date-fns';
+//import 'chartjs-adapter-date-fns';
 
 export default {
   name: 'PatientChart',
+  
   props: ['propData','propLabel'],
   watch: {
     propLabel: function (newValue) {
       this.updateTable(newValue)
+      
     }
   },
   chosenData: [],
   data() {
     return {
+      componentKey: 0,
       planetChartData: {
         type: "scatter",
         data: {
@@ -62,14 +65,20 @@ export default {
   },
 
   methods: {
+    
+    testcon(input) {
+      console.log("testcon: ", input)
+    },
+     
     updateTable(choice){
     this.planetChartData.data.datasets[0].label=choice
     console.log("PatientChart-updateTable",this.propData)
+    console.log("PatientChart-updateTable2",this.planetChartData.data.datasets[0].label)
     var overTime = []
     this.propData.forEach(data => {
             var payload = {
               x:new Date(data.time),
-              y:1
+              y:2
             }
             if (choice == "measurement"){
                 payload.y=data.measurement
@@ -86,11 +95,14 @@ export default {
             if (choice == "exercise"){
                 payload.y=data.exercise
             }
-            console.log("payload",payload)
             overTime.push(payload) 
           });
+          
           this.chosenData = overTime
-          console.log("updateTable(done)",this.chosenData)
+          this.planetChartData.data.datasets[0].data=this.chosenData
+          console.log("updateTable(done)",this.planetChartData.data.datasets[0].data)
+          this.planetChartData
+          
     }
   },
 
@@ -120,12 +132,17 @@ export default {
   }, */
 
   mounted() {
+
+      
+
       this.planetChartData.data.datasets[0].data=this.chosenData
       const ctx = document.getElementById('patient-chart');
-      new Chart(ctx, this.planetChartData);
+      const myChart = new Chart(ctx, this.planetChartData);
+      myChart
   },
-  created(){
-      this.updateTable("measurement")
+  created(){   
+      this.updateTable(this.propLabel)
+      
   }
 
 }
