@@ -16,7 +16,7 @@
         @new-hospital="refresh"
         @hospital-deleted="refresh" />
 
-      <PatientChart/>
+      <PatientChart :propLabel = "label" :propData = "backendData" />
 
   </div>
 
@@ -37,12 +37,14 @@ export default {
   data() {
     return {
       showChart: true,
-      hospitals: []
+      hospitals: [],
+      backendData: [],
+      label: 'basal',
+      loaded: [],
     }
   },
   methods: {
     refresh() {
-      console.log('refresh')
       this.axios
         .get(this.$backend.getUrlUsers())
         .then(res => {
@@ -51,25 +53,38 @@ export default {
         })
     },
     updateChoice(choice_from_child){
-      if (choice_from_child == "Bolus") {
-        console.log("APP: " + choice_from_child)
-      }
-      if (choice_from_child == "CGM"){
-        console.log("APP: " + choice_from_child)
-      }
-      if (choice_from_child == "Basal"){
-        console.log("APP: " + choice_from_child)
-      }
-      if (choice_from_child == "Exercise"){
-        console.log("APP: " + choice_from_child)
-      }
-      if (choice_from_child == "Carbohydrate"){
-        console.log("APP: " + choice_from_child)
-      }
-    }
+        //PatientChart.updateTable(choice_from_child)
+        console.log(choice_from_child)
+        this.label = choice_from_child
+    },
+    pullChartData(){
+    var arr = []
+    this.axios
+        .get(this.$backend.getAllData())
+        .then(res => {
+          this.backendData = res.data
+          this.backendData.forEach(data => {
+            var payload = {
+              t:new Date(data.time),
+              measurement:data.measurement,
+              meal:data.meals,
+              exercise:data.exercise,
+              bolus:data.bolus,
+              basal:data.basal
+            }  
+            arr.push(payload) 
+          });
+        })
+        this.backendData = arr
+  }
   },
   mounted() {
+    console.log("parentmount")
     this.refresh()
+  },
+  created(){
+    this.pullChartData()
+      console.log("parentcreate",this.backendData)
   },
   pullData() {
     this.axios
