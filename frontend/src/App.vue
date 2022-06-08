@@ -43,7 +43,7 @@ export default {
       showChart: true,
       hospitals: [],
       backendData: [],
-      label: 'basal',
+      label: 'measurement',
       loaded: [],
     }
   },
@@ -60,7 +60,6 @@ export default {
     updateChoice(choice_from_child){
         console.log(choice_from_child)
         this.label = choice_from_child
-        PatientChart.methods.testcon("hello")
         console.log("test",PatientChart.myChart)
         this.componentKey += 1;
         
@@ -96,6 +95,7 @@ export default {
   },
   created(){
     this.pullChartData()
+    this.componentKey += 1;
         
   },
   pullData() {
