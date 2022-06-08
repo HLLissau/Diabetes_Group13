@@ -1,11 +1,10 @@
 <template>
-
-    <h1>Test</h1>
+  <WelcomePage></WelcomePage>
+  
 </template>
 
 <script>
-//import WelcomePage from './pages/Welcome'
-//import MainPage from './Main.vue'
+import WelcomePage from './pages/WelcomePage'
 
 export default {
   name: 'App',
@@ -13,11 +12,10 @@ export default {
     return {
       title: 'test'
     }
+  },
+  components: {
+    WelcomePage, 
   }
-  //components: {
-    //WelcomePage,
-  //  data() 
- //  }
 }
 </script>
 

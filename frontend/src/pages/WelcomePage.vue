@@ -1,20 +1,18 @@
 <template>
-   <div id="app">
+   <div id="nav">
     <h1>Login page</h1>
   <p>
-    <router-link to="/Stats">Login</router-link>
+    <router-link to="/StatsPage">Login</router-link>
   </p>
-  <router-view></router-view>
+  <router-view/>
 </div>
 </template>
 
 
 <script>
-//import StatsPage from '/Stats'
 export default {
   name: 'WelcomePage',
   components: {
-   // StatsPage
    },
   
 }

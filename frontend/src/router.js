@@ -3,8 +3,8 @@ import { createRouter, createWebHistory } from 'vue-router'
 import ListHospital from './components/ListHospitals.vue'
 import AddHospital from './components/AddHospital.vue'
 import ListPatients from './components/ListPatients'
-//import StatsPage from './pages/Stats.vue'
-//import WelcomePage from './pages/Welcome.vue'
+import StatsPage from './pages/WelcomePage.vue'
+import WelcomePage from './pages/StatsPage.vue'
 
 const routes = [
   {
@@ -22,12 +22,23 @@ const routes = [
     component: ListPatients,
     name: 'ListPatients'
   },
+  {
+    path: './pages/StatsPage',
+    component: StatsPage,
+    name: 'StatsPage'
+  },
+  {
+    path: './pages/WelcomePage',
+    component: WelcomePage,
+    name: 'WelcomePage'
+  },
+  
  
 
 ]
 
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHistory(process.env.BASE_URL),
   routes
 })
 
