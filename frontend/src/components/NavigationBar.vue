@@ -1,7 +1,7 @@
 <template>
     <nav>
         <dropDown title="Variabels" :items="variabels"/>
-        <div :style="isClicked ? { 'green': 'red' } : null" class="menu-item" ><a @click="toggle">{{isToggled ? 'ON' : 'OFF'}}</a></div>
+        <div class="menu-item" ><a @click="toggle">{{isToggled ? 'ON' : 'OFF'}}</a></div>
         <div class="menu-item"><a href="#">Settings</a></div>
     </nav>
 </template>
@@ -16,6 +16,9 @@ export default {
     data () {
         return {
            isToggled: false,
+            //colorStyle:{
+            //backgroundColor:"#16a085" 
+            //},
            variabels: [
             {
                title: 'CGM',

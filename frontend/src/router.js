@@ -3,6 +3,8 @@ import { createRouter, createWebHistory } from 'vue-router'
 import ListHospital from './components/ListHospitals.vue'
 import AddHospital from './components/AddHospital.vue'
 import ListPatients from './components/ListPatients'
+//import StatsPage from './pages/Stats.vue'
+//import WelcomePage from './pages/Welcome.vue'
 
 const routes = [
   {
@@ -19,7 +21,8 @@ const routes = [
     path: '/hospital/:id/:patients',
     component: ListPatients,
     name: 'ListPatients'
-  }
+  },
+ 
 
 ]
 
