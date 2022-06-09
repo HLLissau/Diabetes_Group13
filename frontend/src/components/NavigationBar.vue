@@ -1,7 +1,9 @@
 <template>
     <nav>
+
         <dropDown title="Variabels" :items="variabels" v-on:child-choice="updateChoice"/>
         <div class="menu-item"><a href="#"> Average</a></div>
+        
         <div class="menu-item"><a href="#">Settings</a></div>
     </nav>
 </template>
@@ -15,7 +17,9 @@ export default {
     },
     data () {
         return {
+
            choice : "",
+
            variabels: [
             {
                title: 'measurement',
@@ -39,9 +43,11 @@ export default {
                link: '#'
            }
            ],
-           variabel: 'test'
+           variabel: 'test',
+           
         }
     },
+
     methods: {
         Settings(){
             console.log()
@@ -52,6 +58,7 @@ export default {
         updateChoice(choice_from_child){
             this.$emit('child-choice',choice_from_child)
         }
+
     }
 }
 </script>
