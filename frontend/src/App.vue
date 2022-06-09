@@ -1,22 +1,21 @@
 <template>
   <div>
-    <router-link to="/pages/TestPage">Go to next page</router-link>
-  <router-view/>
+    <WelcomePage/>
+  <!--<router-view/>-->
 </div>
 </template>
 
 <script>
-//import WelcomePage from './pages/WelcomePage.vue'
+import WelcomePage from './pages/WelcomePage.vue'
 
 export default {
   name: 'App',
   data() {
     return {
-      title: 'test'
     }
   },
   components: {
-    //WelcomePage, 
+    WelcomePage, 
   }
 }
 </script>
