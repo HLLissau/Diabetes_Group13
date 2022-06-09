@@ -28,8 +28,4 @@ export default class Backend {
     return this.url + "/hospitals/" + id
   }
 
-  getAllData() {
-    return this.url + "/patients/" + 2 + "/getData/average/byDay"
-  }
-
 }
