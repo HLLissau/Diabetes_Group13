@@ -3,8 +3,8 @@ import { createRouter, createWebHistory } from 'vue-router'
 import ListHospital from './components/ListHospitals.vue'
 import AddHospital from './components/AddHospital.vue'
 import ListPatients from './components/ListPatients'
-import StatsPage from './pages/WelcomePage.vue'
-import WelcomePage from './pages/StatsPage.vue'
+import StatsPage from './pages/StatsPage.vue'
+import WelcomePage from './pages/WelcomePage.vue'
 import TestPage from './pages/TestPage.vue'
 
 const routes = [
