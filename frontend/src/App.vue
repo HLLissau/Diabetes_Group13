@@ -10,13 +10,15 @@
         <li><router-link :to="{ name: 'ListHospitals' }">List of users</router-link></li>
         <li><router-link :to="{ name: 'AddHospital' }">Create user</router-link></li>
       </ol>
-
+      <!--
       <router-view
         :hospitals="this.hospitals"
         @new-hospital="refresh"
         @hospital-deleted="refresh" />
-
-      <PatientChart/>
+-->
+      <canvas id="myChart"></canvas>
+      <PatientChart :propLabel = "label" :propData = "backendData" :key = "componentKey" />
+      
   </div>
 
 
@@ -27,21 +29,26 @@ import PatientChart from './components/PatientChart.vue'
 import router from './router.js'
 import navigationBar from './components/NavigationBar.vue'
 
+ 
+
 export default {
   name: 'App',
   components: {
     PatientChart,
-    navigationBar
+    navigationBar,
+  
    },
   data() {
     return {
       showChart: true,
-      hospitals: []
+      hospitals: [],
+      backendData: [],
+      label: 'measurement',
+      loaded: [],
     }
   },
   methods: {
     refresh() {
-      console.log('refresh')
       this.axios
         .get(this.$backend.getUrlUsers())
         .then(res => {
@@ -49,26 +56,55 @@ export default {
           router.push({ name: 'ListHospitals' })
         })
     },
+    
     updateChoice(choice_from_child){
-      if (choice_from_child == "Bolus") {
-        console.log("APP: " + choice_from_child)
-      }
-      if (choice_from_child == "CGM"){
-        console.log("APP: " + choice_from_child)
-      }
-      if (choice_from_child == "Basal"){
-        console.log("APP: " + choice_from_child)
-      }
-      if (choice_from_child == "Exercise"){
-        console.log("APP: " + choice_from_child)
-      }
-      if (choice_from_child == "Carbohydrate"){
-        console.log("APP: " + choice_from_child)
-      }
-    }
+        console.log(choice_from_child)
+        this.label = choice_from_child
+        console.log("test",PatientChart.myChart)
+        this.componentKey += 1;
+        
+        
+        
+    },
+    pullChartData(){
+    var arr = []
+    this.axios
+        .get(this.$backend.getAllData())
+        .then(res => {
+          this.backendData = res.data
+          this.backendData.forEach(data => {
+            var payload = {
+              t:new Date(data.time),
+              measurement:data.measurement,
+              meal:data.meals,
+              exercise:data.exercise,
+              bolus:data.bolus,
+              basal:data.basal
+            }  
+            arr.push(payload) 
+          });
+        })
+        this.backendData = arr
+        
+  }
   },
   mounted() {
+    console.log("parentmount")
     this.refresh()
+    
+  },
+  created(){
+    this.pullChartData()
+    this.componentKey += 1;
+        
+  },
+  pullData() {
+    this.axios
+        .get(this.$backend.getUrlUsers())
+        .then(res => {
+          this.hospitals = res.data
+          router.push({ name: 'ListHospitals' })
+        })
   }
 }
 </script>

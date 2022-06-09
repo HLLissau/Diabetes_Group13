@@ -18,24 +18,24 @@ export default {
            choice : "",
            variabels: [
             {
-               title: 'CGM',
+               title: 'measurement',
                link: '#'
 
            },
            {
-               title: 'Carbohydrate',
+               title: 'meals',
                link: '#'
            },
            {
-               title: 'Exercise',
+               title: 'exercise',
                link: '#'
            },
            {
-               title: 'Basal',
+               title: 'basal',
                link: '#'
            },
            {
-               title: 'Bolus',
+               title: 'bolus',
                link: '#'
            }
            ],
