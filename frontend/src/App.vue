@@ -1,4 +1,5 @@
 <template>
+
   <div>
     <StatsPage/>
 </div>
@@ -7,6 +8,8 @@
 <script>
 //import WelcomePage from './pages/WelcomePage.vue'
 import StatsPage from './pages/StatsPage.vue'
+
+ 
 
 export default {
   name: 'App',
@@ -17,6 +20,7 @@ export default {
   components: {
     //WelcomePage, 
     StatsPage
+
   }
 }
 </script>

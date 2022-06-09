@@ -4,6 +4,10 @@ export default class Backend {
     this.url = "http://localhost:8080/api/v1"
   }
 
+  getAllData() {
+    return this.url + "/patient/" + 2 + "/getData/average/byDay"
+  }
+
   getUrlUsers() {
     return this.url + "/login/get/users"
   }

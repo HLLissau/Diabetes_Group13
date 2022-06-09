@@ -1,7 +1,9 @@
 <template>
     <nav>
-        <dropDown title="Variabels" :items="variabels"/>
-        <div class="menu-item" ><a @click="toggle">{{isToggled ? 'ON' : 'OFF'}}</a></div>
+
+        <dropDown title="Variabels" :items="variabels" v-on:child-choice="updateChoice"/>
+        <div class="menu-item"><a href="#"> Average</a></div>
+        
         <div class="menu-item"><a href="#">Settings</a></div>
     </nav>
 </template>
@@ -15,30 +17,29 @@ export default {
     },
     data () {
         return {
-           isToggled: false,
-            //colorStyle:{
-            //backgroundColor:"#16a085" 
-            //},
+
+           choice : "",
+
            variabels: [
             {
-               title: 'CGM',
-               link: '#',
+               title: 'measurement',
+               link: '#'
 
            },
            {
-               title: 'Carbohydrate',
+               title: 'meals',
                link: '#'
            },
            {
-               title: 'Exercise',
+               title: 'exercise',
                link: '#'
            },
            {
-               title: 'Basal',
+               title: 'basal',
                link: '#'
            },
            {
-               title: 'Bolus',
+               title: 'bolus',
                link: '#'
            }
            ],
@@ -46,11 +47,18 @@ export default {
            
         }
     },
-     methods: {
-       toggle() {
-         this.isToggled = !this.isToggled
-    },
-        
+
+    methods: {
+        Settings(){
+            console.log()
+        },
+        Average(){
+            console.log()
+        },
+        updateChoice(choice_from_child){
+            this.$emit('child-choice',choice_from_child)
+        }
+
     }
 }
 </script>
