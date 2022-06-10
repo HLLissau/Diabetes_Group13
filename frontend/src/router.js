@@ -7,6 +7,7 @@ import StatsPage from './pages/StatsPage.vue'
 import WelcomePage from './pages/WelcomePage.vue'
 import TestPage from './pages/TestPage.vue'
 import WelcomeChart from './components/WelcomeChart.vue'
+import BackMenu from './pages/BackMenu.vue'
 
 const routes = [
   {
@@ -28,7 +29,7 @@ const routes = [
     path: '/pages/StatsPage',
     component: StatsPage,
     name: 'StatsPage',
-    meta: { hideWelcomeChart: true }
+    meta: { closeWelcomeChart: true }
   },
   {
     path: '/pages/WelcomePage',
@@ -39,12 +40,18 @@ const routes = [
   path: '/pages/TestPage',
   component: TestPage,
   name: 'TestPage',
-  meta: { hideWelcomeChart: true }
+  meta: { closeWelcomeChart: true }
  },
  {
   path: '/pages/WelcomeChart',
   component: WelcomeChart,
   name: 'WelcomeChart'
+ },
+ {
+  path: '/pages/BackMenu',
+  component: BackMenu,
+  name: 'BackMenu',
+  meta: { closeWelcomeChart: true }
  }
 ]
 
