@@ -47,7 +47,7 @@ export default {
   float: left;
   width: 30vw;
   padding: 15px;
-  background-color: rebeccapurple;
+  background-color: rgb(128, 0, 255);
 }
 .wrap{
   overflow: hidden;

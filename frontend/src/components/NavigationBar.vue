@@ -1,11 +1,11 @@
 <template>
     <nav>
 
-        <dropDown title="Variable" :items="variabels" v-on:child-choice="updateChoice"/>
-        <dropDown title="Interval" :items="interval" v-on:child-choice="updateChoice"/>
-        <div class="menu-item"><a href="#"> Average</a></div>
+        <dropDown title="Variable" :items="variabels" @child-choice="updateChoice"/>
+        <dropDown title="Interval" :items="interval" @child-choice="updateChoice"/>
+        <div class="menu-item"><a > Average</a></div>
         
-        <div class="menu-item"><a href="#">Settings</a></div>
+        <div class="menu-item"><a >Settings</a></div>
     </nav>
 </template>
 
@@ -25,47 +25,37 @@ export default {
            variabels: [
             {
                title: 'measurement',
-               link: '#'
 
            },
            {
                title: 'meals',
-               link: '#'
            },
            {
                title: 'exercise',
-               link: '#'
            },
            {
                title: 'basal',
-               link: '#'
            },
            {
                title: 'bolus',
-               link: '#'
            }
            ],
            interval: [
             {
                title: 'Day',
-               link: '#'
 
            },
            {
                title: 'Week',
-               link: '#'
            },
            {
                title: 'Month',
-               link: '#'
            },
            {
                title: 'Year',
-               link: '#'
            },
            {
                title: 'All time',
-               link: '#'
            }
            ],
            //variabel: 'test',

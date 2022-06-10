@@ -1,6 +1,6 @@
 <template>
     <div class="menu-item" @click="isOpen = !isOpen">
-      <a href="#">
+      <a >
           {{ title }}
       </a>
       <svg viewBox="0 0 1030 638" width="10">
