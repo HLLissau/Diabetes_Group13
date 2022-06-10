@@ -31,12 +31,13 @@ public class MeasurementController {
 		return ResponseEntity.ok(result);
 	}
 	
-//	// Get data of dataType in the period of time startDate - endDate
-//	@GetMapping("/api/v1/patient/{patientId}/getData/{dataType}/{startDate}/{endDate}")
-//	public ResponseEntity<Measurement> getData(@PathVariable long patientId, @PathVariable long dataType, @PathVariable long startDate, @PathVariable long endDate) {
-//		return null;
-//		
-//	}
+
+	
+	@GetMapping("/api/v1/patient/{patientId}/getData/{startDate}/{endDate}")
+	public ResponseEntity<List<Measurement>> getData(@PathVariable long patientId, @PathVariable String startDate, @PathVariable String endDate) {
+		List<Measurement> result =MeasurementRepository.findAllByUserIdByTimeBetween(patientId,startDate,endDate);
+		return ResponseEntity.ok(result);
+	}
 //	
 // Get averages:
 // By day

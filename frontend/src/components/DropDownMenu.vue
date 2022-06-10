@@ -27,7 +27,7 @@ export default {
     },
     methods: {
       choice(item){
-        console.log(item.title)
+        console.log("emitting from dropdownmenu", item.title)
         this.$emit('child-choice',item.title)
       }
     }

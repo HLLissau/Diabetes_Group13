@@ -1,7 +1,8 @@
 <template>
     <nav>
 
-        <dropDown title="Variabels" :items="variabels" v-on:child-choice="updateChoice"/>
+        <dropDown title="Variable" :items="variabels" v-on:child-choice="updateChoice"/>
+        <dropDown title="Interval" :items="interval" v-on:child-choice="updateChoice"/>
         <div class="menu-item"><a href="#"> Average</a></div>
         
         <div class="menu-item"><a href="#">Settings</a></div>
@@ -18,7 +19,8 @@ export default {
     data () {
         return {
 
-           choice : "",
+           //variableChoice : "",
+           //invervalChoice : "",
 
            variabels: [
             {
@@ -43,7 +45,30 @@ export default {
                link: '#'
            }
            ],
-           variabel: 'test',
+           interval: [
+            {
+               title: 'Day',
+               link: '#'
+
+           },
+           {
+               title: 'Week',
+               link: '#'
+           },
+           {
+               title: 'Month',
+               link: '#'
+           },
+           {
+               title: 'Year',
+               link: '#'
+           },
+           {
+               title: 'All time',
+               link: '#'
+           }
+           ],
+           //variabel: 'test',
            
         }
     },
@@ -56,6 +81,7 @@ export default {
             console.log()
         },
         updateChoice(choice_from_child){
+            console.log("Navigationbaremit", choice_from_child)
             this.$emit('child-choice',choice_from_child)
         }
 
