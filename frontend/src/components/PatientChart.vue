@@ -32,11 +32,18 @@ export default {
               backgroundColor: 'rgba(12,15,166,0.2)',
               borderColor: 'rgb(78,67,190,1)',
               showLine: true
+              
             }
           ]
         },
         options: {
           maintainAspectRatio: true,
+          elements: {
+            point:{
+              radius: 2,
+              backgroundColor: 'rgba(0,0,0,0)'
+            }
+          },
           scales: {
             xAxes: [{
                 type: 'time',
@@ -72,8 +79,8 @@ export default {
      
     updateTable(choice){
     this.planetChartData.data.datasets[0].label=choice
-    console.log("PatientChart-updateTable",this.propData)
-    console.log("PatientChart-updateTable2",this.planetChartData.data.datasets[0].label)
+    //console.log("PatientChart-updateTable",this.propData)
+    //console.log("PatientChart-updateTable2",this.planetChartData.data.datasets[0].label)
     var overTime = []
     this.propData.forEach(data => {
             var payload = {
@@ -100,7 +107,7 @@ export default {
           
           this.chosenData = overTime
           this.planetChartData.data.datasets[0].data=this.chosenData
-          console.log("updateTable(done)",this.planetChartData.data.datasets[0].data)
+          //console.log("updateTable(done)",this.planetChartData.data.datasets[0].data)
           this.planetChartData
           
     }

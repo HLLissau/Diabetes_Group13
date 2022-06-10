@@ -27,5 +27,17 @@ export default class Backend {
   getUrlDeleteHospital(id) {
     return this.url + "/hospitals/" + id
   }
-
+  getUrlByInterval(patient,after,before) {
+    var link = this.url + "/patient/" + patient + "/getData/" + after + "/" + before
+    return link
+  }
+  getUrlByUserIdbyHourBetween(patient,after,before) {
+    var link =this.url + "/patient/" + patient + "/getData/average/byHour/" + after + "/" + before
+    return link
+  }
+  n
+  getUrlByUserIdbyDayBetween(patient,after,before) {
+    var link =this.url + "/patient/" + patient + "/getData/average/byDay/" + after + "/" + before
+    return link
+  }
 }
