@@ -24,7 +24,7 @@ public interface MeasurementRepository extends CrudRepository<Measurement,Long> 
 	
 	@Query(value = "SELECT *  FROM measurement "
 		     + "WHERE user_id= ?1 "  
-		     + "And time BETWEEN ?2 AND ?3",
+		     + "And time BETWEEN ?2 AND ?3 ",
 		nativeQuery=true)
 	List<Measurement> findAllByUserIdByTimeBetween(Long UserId,String startDate, String endDate);
 	

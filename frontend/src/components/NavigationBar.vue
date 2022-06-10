@@ -81,7 +81,7 @@ export default {
             console.log()
         },
         updateChoice(choice_from_child){
-            console.log("Navigationbaremit", choice_from_child)
+            //console.log("Navigationbaremit", choice_from_child)
             this.$emit('child-choice',choice_from_child)
         }
 

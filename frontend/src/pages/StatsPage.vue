@@ -18,7 +18,9 @@
 import moment from 'moment'
 import navigationBar from '../components/NavigationBar.vue'
 import PatientChart from '../components/PatientChart.vue'
+
 export default {
+  testfunctions: true,
   name: 'StatsPage',
   components: {
     navigationBar,
@@ -34,6 +36,7 @@ export default {
     }
   },
   methods: {
+    testfunctions: true,
     refresh() {
       this.axios
         .get(this.$backend.getUrlUsers())
@@ -48,20 +51,28 @@ export default {
         var interval= ["Day","Week","Month","Year","All time"]
         if (values.includes(choice_from_child)) {
         this.label = choice_from_child
-        console.log("updateChoice", choice_from_child)
+        //console.log("updateChoice", choice_from_child)
         }
         if (interval.includes(choice_from_child)) {
           var dates =this.getDatesFromChoice(choice_from_child)
           
-          this.pullDefaultChartData(2,dates[0],dates[1])
+          this.pullChartData(2,dates[0],dates[1],choice_from_child)
         }
+
 
 
         this.componentKey += 1;
     },
     
     getDatesFromChoice(choice_from_child){
-        var myCurrentDate=new Date()
+        var  myCurrentDate= new Date()
+        if (this.testfunctions){
+           myCurrentDate.setMonth(0)
+           myCurrentDate.setDate(29)
+           console.log("testdate:", myCurrentDate)
+        }
+
+
         var myPastDate=new Date(myCurrentDate);
           switch (choice_from_child) {
             case "Day": 
@@ -71,10 +82,13 @@ export default {
                      myPastDate.setDate(myPastDate.getDate() - 7)  //myPastDate is now 8 days in the past
                        break
             case "Month":
+                      if (this.testfunctions) console.log("getMonth")   
                      myPastDate.setMonth(myPastDate.getMonth() - 1)  //myPastDate is now 8 days in the past
                        break
-            case "Year":
-                    
+            case "Year":      
+                      
+                     if (this.testfunctions) console.log("getyear")  
+                          
                      myPastDate.setFullYear(myPastDate.getFullYear() - 1)  //myPastDate is now 8 days in the past
                        break
             case "All time":
@@ -92,10 +106,32 @@ export default {
           return [myPastDate,myCurrentDate]
     },
 
-    pullDefaultChartData(user,before,after){
+    pullChartData(user,before,after,choice){
+    var data = []
+    switch (choice) {
+          case "Day": 
+                      data =this.$backend.getUrlByInterval(user,before,after) 
+                      break
+          case "Week": 
+                      data =this.$backend.getUrlByInterval(user,before,after)
+                      break
+          case "Month": 
+                      data =this.$backend.getUrlByInterval(user,before,after)
+                      break
+          
+          case "Year": 
+                      data =this.$backend.getUrlByInterval(user,before,after)
+                      break
+          case "All time": 
+                      data =this.$backend.getUrlByInterval(user,before,after)
+                      break
+          
+          
+          }
+
     var arr = []
     this.axios
-        .get(this.$backend.getUrlByInterval(user,before,after))
+        .get(data)
         .then(res => {
           this.backendData = res.data
           this.backendData.forEach(data => {
@@ -115,12 +151,15 @@ export default {
   }
   },
   mounted() {
-    console.log("parentmount")
+    if (this.testfunctions){
+      console.log("parentmount")
+    }
     this.refresh()
     
   },
   created(){
-    this.pullDefaultChartData(2,"2020-01-08 00:00:00","2022-01-08 00:00:00")
+    this.testfunctions = true
+    this.pullChartData(2,"2020-01-08 00:00:00","2022-01-08 00:00:00","Day")
     this.componentKey += 1;
         
   },

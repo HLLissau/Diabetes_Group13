@@ -72,8 +72,8 @@ export default {
      
     updateTable(choice){
     this.planetChartData.data.datasets[0].label=choice
-    console.log("PatientChart-updateTable",this.propData)
-    console.log("PatientChart-updateTable2",this.planetChartData.data.datasets[0].label)
+    //console.log("PatientChart-updateTable",this.propData)
+    //console.log("PatientChart-updateTable2",this.planetChartData.data.datasets[0].label)
     var overTime = []
     this.propData.forEach(data => {
             var payload = {
@@ -100,7 +100,7 @@ export default {
           
           this.chosenData = overTime
           this.planetChartData.data.datasets[0].data=this.chosenData
-          console.log("updateTable(done)",this.planetChartData.data.datasets[0].data)
+          //console.log("updateTable(done)",this.planetChartData.data.datasets[0].data)
           this.planetChartData
           
     }
