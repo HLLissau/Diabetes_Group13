@@ -4,6 +4,7 @@ package group13.controller;
 
 
 import java.math.BigInteger;
+import java.sql.Timestamp;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,11 +42,10 @@ public class MeasurementController {
 //	
 // Get averages:
 // By day
-	@GetMapping("/api/v1/patient/{user_Id}/getData/average/byDay")
-	public ResponseEntity<List<Measurement>> averageByDay(@PathVariable long user_Id) {
-		List<Measurement> result =MeasurementRepository.findAvgByDayForUserId(user_Id);
-	return ResponseEntity.ok(result);
-		
+	@GetMapping("/api/v1/patient/{user_Id}/getData/average/byDay/{startDate}/{endDate}")
+	public ResponseEntity<List<Measurement>> averageByDay(@PathVariable long user_Id, @PathVariable String t1, @PathVariable String t2) {
+		List<Measurement> result =MeasurementRepository.findAllAvgByUserIdByTimeBetween(user_Id, t1, t2);
+	    return ResponseEntity.ok(result);
 	}
 	
 	// By week
