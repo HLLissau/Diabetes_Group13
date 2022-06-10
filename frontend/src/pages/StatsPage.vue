@@ -173,7 +173,7 @@ export default {
 }
 .wrap {
   width: 50vw;
-  padding: 0;
+  padding: 15px;
   background-color: aqua;
 }
 header {

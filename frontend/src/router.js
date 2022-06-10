@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
 import StatsPage from './pages/StatsPage.vue'
-import WelcomePage from './pages/WelcomePageNoLinks.vue'
+import WelcomePageNoLinks from './pages/WelcomePageNoLinks.vue'
 import TestPage from './pages/TestPage.vue'
 
 const routes = [
@@ -9,11 +9,11 @@ const routes = [
     path: '/pages/StatsPage',
     component: StatsPage,
     name: 'StatsPage',
-    meta: { closeWelcomeChart: true }
+    meta: { hideWelcomeChart: true }
   },
   {
     path: '/pages/WelcomePageNoLinks',
-    component: WelcomePage,
+    component: WelcomePageNoLinks,
     name: 'WelcomePageNoLinks'
   },
  {

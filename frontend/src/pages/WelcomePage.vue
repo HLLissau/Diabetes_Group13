@@ -11,6 +11,10 @@
     
      <router-view :key="$route.path"></router-view>
 
+    <div id="chart">
+      <WelcomeChart v-if="!$route.meta.hideWelcomeChart"/>
+    </div>
+
   </div>
 </template>
 
@@ -23,13 +27,6 @@ export default {
     WelcomeChart
   }
 }
-/* 
-  align-items: center;
-  justify-content: center;
-  position: relative;
- */
-
-
 
 
 </script>
@@ -48,10 +45,12 @@ export default {
 .chart {
   justify-content: flex-start;
   float: left;
-  width: 50vw;
+  width: 30vw;
   padding: 15px;
   background-color: rebeccapurple;
 }
 .wrap{
+  overflow: hidden;
+  widows: 50vw;
 }
 </style>
