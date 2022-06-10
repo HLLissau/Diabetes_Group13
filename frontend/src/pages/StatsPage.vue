@@ -113,7 +113,7 @@ export default {
                       data =this.$backend.getUrlByInterval(user,before,after) 
                       break
           case "Week": 
-                      data =this.$backend.getUrlByInterval(user,before,after)
+                      data =this.$backend.getUrlByUserIdByHourBetween(user,before,after)
                       break
           case "Month": 
                       data =this.$backend.getUrlByInterval(user,before,after)
@@ -151,9 +151,7 @@ export default {
   }
   },
   mounted() {
-    if (this.testfunctions){
-      console.log("parentmount")
-    }
+    if (this.testfunctions){ console.log("parentmount")}
     this.refresh()
     
   },

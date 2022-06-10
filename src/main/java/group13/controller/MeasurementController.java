@@ -41,13 +41,18 @@ public class MeasurementController {
 	}
 //	
 // Get averages:
-// By day
-	@GetMapping("/api/v1/patient/{user_Id}/getData/average/byDay/{startDate}/{endDate}")
-	public ResponseEntity<List<Measurement>> averageByDay(@PathVariable long user_Id, @PathVariable String startDate, @PathVariable String endDate) {
-		List<Measurement> result =MeasurementRepository.findAllAvgByUserIdByTimeBetween(user_Id, startDate, endDate);
+// By Hour
+	@GetMapping("/api/v1/patient/{user_Id}/getData/average/byHour/{startDate}/{endDate}")
+	public ResponseEntity<List<Measurement>> averageByHour(@PathVariable long user_Id, @PathVariable String startDate, @PathVariable String endDate) {
+		List<Measurement> result =MeasurementRepository.findAvgByUserIdByHourByTimeBetween(user_Id, startDate, endDate);
 	    return ResponseEntity.ok(result);
 	}
-	
+	// By day
+		@GetMapping("/api/v1/patient/{user_Id}/getData/average/byDay/{startDate}/{endDate}")
+		public ResponseEntity<List<Measurement>> averageByDay(@PathVariable long user_Id, @PathVariable String startDate, @PathVariable String endDate) {
+			List<Measurement> result =MeasurementRepository.findAvgByUserIdByTimeBetween(user_Id, startDate, endDate);
+		    return ResponseEntity.ok(result);
+		}	
 	// By week
 	@GetMapping("/api/v1/patient/{user_Id}/getData/average/byWeek")
 	public ResponseEntity<List<Measurement>> averageByWeek(@PathVariable long user_Id) {

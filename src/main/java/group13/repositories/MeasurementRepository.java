@@ -34,9 +34,15 @@ public interface MeasurementRepository extends CrudRepository<Measurement,Long> 
 		     + "And time BETWEEN ?2 AND ?3"
 		     + " GROUP BY Day(Time)",
 		nativeQuery=true)
-	List<Measurement> findAllAvgByUserIdByTimeBetween(Long UserId,String startDate, String endDate);
+	List<Measurement> findAvgByUserIdByTimeBetween(Long UserId,String startDate, String endDate);
 
-	
+	@Query(value = "SELECT time,user_id,avg(basal) as basal,avg(bolus) as bolus,device_id,avg(exercise) exercise,avg(meals) as meals,avg(measurement) as measurement"
+		     + "  FROM measurement "
+		     + " WHERE user_id= ?1 "
+		     + " And time BETWEEN ?2 AND ?3 "
+		     + " GROUP BY UNIX_TIMESTAMP(time) DIV 3600 ",
+		nativeQuery=true)
+	List<Measurement> findAvgByUserIdByHourByTimeBetween(Long UserId,String startDate, String endDate);
 	
 	List<Measurement> findAllByTime(Timestamp time);
 
