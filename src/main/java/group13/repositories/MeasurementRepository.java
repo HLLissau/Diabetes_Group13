@@ -20,31 +20,32 @@ public interface MeasurementRepository extends CrudRepository<Measurement,Long> 
 		     + "WHERE user_id= ?1 "  
 		     + "And time BETWEEN ?2 AND ?3 ",
 		nativeQuery=true)
-	List<Measurement> findByUserIdByTimeBetween(Long UserId,String startDate, String endDate);
+	List<Measurement> findByUserIdByTimeBetween(Long userId,String startDate, String endDate);
 	
 	@Query(value = "SELECT time,user_id,avg(basal) as basal,avg(bolus) as bolus,device_id,avg(exercise) exercise,avg(meals) as meals,avg(measurement) as measurement"
-		     + "  FROM measurement "
-		     + " WHERE user_id= ?1 "
-		     + " And time BETWEEN ?2 AND ?3 "
-		     + " GROUP BY UNIX_TIMESTAMP(time) DIV 3600 ",
+		     + "  FROM measurement"
+		     + " WHERE user_id= ?1"
+		     + " And time BETWEEN ?2 AND ?3"
+		     + " GROUP BY UNIX_TIMESTAMP(time) DIV 3600",
 		nativeQuery=true)
-	List<Measurement> findAvgByUserIdByHourByTimeBetween(Long UserId,String startDate, String endDate);
+	List<Measurement> findAvgByUserIdByHourByTimeBetween(Long userId,String startDate, String endDate);
 	
 	@Query(value = "SELECT DATE(time) as time,user_id,avg(basal) as basal,avg(bolus) as bolus,device_id,avg(exercise) exercise,avg(meals) as meals,avg(measurement) as measurement"
-		     + "  FROM measurement "
-		     + "WHERE user_id= ?1 "
-		     + "And time BETWEEN ?2 AND ?3"
+		     + " FROM measurement"
+		     + " WHERE user_id= ?1"
+		     + " And time BETWEEN ?2 AND ?3"
 		     + " GROUP BY Day(Time)",
 		nativeQuery=true)
-	List<Measurement> findAvgByUserIdByDayByTimeBetween(Long UserId,String startDate, String endDate);
+	List<Measurement> findAvgByUserIdByDayByTimeBetween(Long userId,String startDate, String endDate);
 
 	
 	@Query(value = "SELECT DATE(time) as time,user_id,avg(basal) as basal,avg(bolus) as bolus,device_id,avg(exercise) exercise,avg(meals) as meals,avg(measurement) as measurement"
-		     + "  FROM measurement "
-		     + "WHERE user_id= ?1 "  
-		     + " GROUP BY Week(Time) ",
+		     + " FROM measurement"
+		     + " WHERE user_id= ?1"
+		     + " And time BETWEEN ?2 AND ?3"
+		     + " GROUP BY Week(Time)",
 		nativeQuery=true)
-	List<Measurement> findAvgByWeekForUserId(Long user_Id);
+	List<Measurement> findAvgByUserIdByWeekbyTimeBetween(Long userId, String startDate, String endDate);
 
 	
 	
