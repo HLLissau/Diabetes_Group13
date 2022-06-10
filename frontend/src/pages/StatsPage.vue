@@ -100,7 +100,8 @@ export default {
 }
 .wrap {
   width: 50vw;
-  padding: 15px;
+  padding: 0;
+  background-color: aqua;
 }
 header {
   background-color: #222;

@@ -24,8 +24,4 @@ export default {
   width: 50vw;
   padding: 15px;
 }
-header {
-  background-color: rgb(0, 255, 0);
-  padding: 15px;
-}
 </style>
