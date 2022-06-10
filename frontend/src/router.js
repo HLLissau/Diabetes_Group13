@@ -9,7 +9,7 @@ const routes = [
     path: '/pages/StatsPage',
     component: StatsPage,
     name: 'StatsPage',
-    meta: { hideWelcomeChart: true }
+    meta: { closeWelcomeChart: true }
   },
   {
     path: '/pages/WelcomePageNoLinks',

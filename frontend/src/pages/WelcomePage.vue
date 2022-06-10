@@ -8,16 +8,9 @@
         <router-link class="routerlink" :to="'/pages/WelcomePageNoLinks'" >Menu</router-link>
       </ul>
     </div>
-
-    <router-view :key="$route.path"></router-view>
-
     
+     <router-view :key="$route.path"></router-view>
 
-    <div class="chart">
-      <WelcomeChart v-if="!$route.meta.hideWelcomeChart"/>
-    </div>
-
-   
   </div>
 </template>
 
