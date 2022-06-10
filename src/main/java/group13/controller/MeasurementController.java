@@ -43,8 +43,8 @@ public class MeasurementController {
 // Get averages:
 // By day
 	@GetMapping("/api/v1/patient/{user_Id}/getData/average/byDay/{startDate}/{endDate}")
-	public ResponseEntity<List<Measurement>> averageByDay(@PathVariable long user_Id, @PathVariable String t1, @PathVariable String t2) {
-		List<Measurement> result =MeasurementRepository.findAllAvgByUserIdByTimeBetween(user_Id, t1, t2);
+	public ResponseEntity<List<Measurement>> averageByDay(@PathVariable long user_Id, @PathVariable String startDate, @PathVariable String endDate) {
+		List<Measurement> result =MeasurementRepository.findAllAvgByUserIdByTimeBetween(user_Id, startDate, endDate);
 	    return ResponseEntity.ok(result);
 	}
 	
