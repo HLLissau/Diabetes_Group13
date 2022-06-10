@@ -60,9 +60,9 @@ public class MeasurementController {
 	}
 	
 	// Average measurements for a user over each week within a time interval
-	@GetMapping("/api/v1/patient/{userId}/getData/average/byWeek")
-	public ResponseEntity<List<Measurement>> averageByWeek(@PathVariable long userId) {
-		List<Measurement> result =MeasurementRepository.findAvgByWeekForUserId(userId);
+	@GetMapping("/api/v1/patient/{userId}/getData/average/byWeek/{startDate}/{endDate}")
+	public ResponseEntity<List<Measurement>> averageByWeek(@PathVariable long userId, @PathVariable String startDate, @PathVariable String endDate) {
+		List<Measurement> result =MeasurementRepository.findAvgByUserIdByWeekbyTimeBetween(userId, startDate, endDate);
 		return ResponseEntity.ok(result);
 	}
 }
