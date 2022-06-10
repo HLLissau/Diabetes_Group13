@@ -6,6 +6,7 @@ import ListPatients from './components/ListPatients'
 import StatsPage from './pages/StatsPage.vue'
 import WelcomePage from './pages/WelcomePage.vue'
 import TestPage from './pages/TestPage.vue'
+import WelcomeChart from './components/WelcomeChart.vue'
 
 const routes = [
   {
@@ -26,7 +27,8 @@ const routes = [
   {
     path: '/pages/StatsPage',
     component: StatsPage,
-    name: 'StatsPage'
+    name: 'StatsPage',
+    meta: { hideWelcomeChart: true }
   },
   {
     path: '/pages/WelcomePage',
@@ -36,7 +38,13 @@ const routes = [
  {
   path: '/pages/TestPage',
   component: TestPage,
-  name: 'TestPage'
+  name: 'TestPage',
+  meta: { hideWelcomeChart: true }
+ },
+ {
+  path: '/pages/WelcomeChart',
+  component: WelcomeChart,
+  name: 'WelcomeChart'
  }
 ]
 

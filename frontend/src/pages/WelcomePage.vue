@@ -1,12 +1,13 @@
 <template>
    <div id="nav">
-    <router-view/>
+    <router-view :key="$route.path"></router-view>
+
     <router-link :to="'/pages/StatsPage'">Stats page</router-link>
     <router-link :to="'/pages/TestPage'">Test page</router-link>
-
+    <!--<router-link :to="'/pages/WelcomeChart'" >Menu</router-link>-->
 
     <div id="chart">
-      <WelcomeChart />
+      <WelcomeChart v-if="!$route.meta.hideWelcomeChart"/>
     </div>
 
     <div id="test">
