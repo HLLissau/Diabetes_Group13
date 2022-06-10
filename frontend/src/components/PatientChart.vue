@@ -32,11 +32,18 @@ export default {
               backgroundColor: 'rgba(12,15,166,0.2)',
               borderColor: 'rgb(78,67,190,1)',
               showLine: true
+              
             }
           ]
         },
         options: {
           maintainAspectRatio: true,
+          elements: {
+            point:{
+              radius: 2,
+              backgroundColor: 'rgba(0,0,0,0)'
+            }
+          },
           scales: {
             xAxes: [{
                 type: 'time',

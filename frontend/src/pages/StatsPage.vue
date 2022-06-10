@@ -113,17 +113,17 @@ export default {
                       data =this.$backend.getUrlByInterval(user,before,after) 
                       break
           case "Week": 
-                      data =this.$backend.getUrlByUserIdByHourBetween(user,before,after)
+                      data =this.$backend.getUrlByUserIdbyHourBetween(user,before,after)
                       break
           case "Month": 
-                      data =this.$backend.getUrlByInterval(user,before,after)
+                      data =this.$backend.getUrlByUserIdbyDayBetween(user,before,after)
                       break
           
           case "Year": 
-                      data =this.$backend.getUrlByInterval(user,before,after)
+                      data =this.$backend.getUrlByUserIdbyDayBetween(user,before,after)
                       break
           case "All time": 
-                      data =this.$backend.getUrlByInterval(user,before,after)
+                      data =this.$backend.getUrlByUserIdbyDayBetween(user,before,after)
                       break
           
           

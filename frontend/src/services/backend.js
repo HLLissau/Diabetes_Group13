@@ -29,14 +29,15 @@ export default class Backend {
   }
   getUrlByInterval(patient,after,before) {
     var link = this.url + "/patient/" + patient + "/getData/" + after + "/" + before
-    console.log("get:" , link)
     return link
   }
-  getUrlByUserIdByHourBetween(patient,after,before) {
+  getUrlByUserIdbyHourBetween(patient,after,before) {
     var link =this.url + "/patient/" + patient + "/getData/average/byHour/" + after + "/" + before
-    console.log("get2:" , link)
     return link
   }
-  
-
+  n
+  getUrlByUserIdbyDayBetween(patient,after,before) {
+    var link =this.url + "/patient/" + patient + "/getData/average/byDay/" + after + "/" + before
+    return link
+  }
 }
