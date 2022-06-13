@@ -3,8 +3,7 @@
 
         <dropDown title="Variable" :items="variabels" @child-choice="updateChoice"/>
         <dropDown title="Interval" :items="interval" @child-choice="updateChoice"/>
-        <div class="menu-item"><a > Average</a></div>
-        
+        <div class="menu-item" v-bind:style= "[this.average ? {'background-color': '#FF5858'} : {'background-color': '#222222'}]" v-on:click="Average()" ><a> Average</a></div>
         <div class="menu-item"><a >Settings</a></div>
     </nav>
 </template>
@@ -18,14 +17,13 @@ export default {
     },
     data () {
         return {
-
+            average: false,
            //variableChoice : "",
            //invervalChoice : "",
 
            variabels: [
             {
                title: 'measurement',
-
            },
            {
                title: 'meals',
@@ -67,12 +65,13 @@ export default {
         Settings(){
             console.log()
         },
-        Average(){
-            console.log()
-        },
         updateChoice(choice_from_child){
             //console.log("Navigationbaremit", choice_from_child)
             this.$emit('child-choice',choice_from_child)
+        },
+        Average() {
+            this.average = !this.average
+            this.$emit('clicked', this.average)
         }
 
     }
