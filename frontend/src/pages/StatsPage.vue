@@ -1,11 +1,14 @@
 <template>
   
   <div class="wrap"> 
+    <div id="menubar">
+       <MenuBar/>
+    </div>
     
     <header>
-      
       <navigationBar v-on:child-choice="updateChoice"   />
     </header>
+    <router-view :key="$route.path"></router-view>
     <h1>Stats page</h1>
 
      <canvas id="myChart"></canvas>
@@ -18,13 +21,15 @@
 import moment from 'moment'
 import navigationBar from '../components/NavigationBar.vue'
 import PatientChart from '../components/PatientChart.vue'
+import MenuBar from '../components/MenuBar.vue'
 
 export default {
   testfunctions: true,
   name: 'StatsPage',
   components: {
     navigationBar,
-    PatientChart
+    PatientChart,
+    MenuBar
   },
    data() {
     return {
@@ -168,6 +173,17 @@ export default {
 
 
 <style>
+.links .routerlink {
+  color:orange;
+  background-color: yellow;
+  text-decoration: none;
+
+  border-bottom: 3px solid transparent;
+  border-top: 3px solid transparent;
+  padding: 10px 20px;
+
+}
+
 * {
   font-family: sans-serif;
 }

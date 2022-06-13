@@ -1,29 +1,24 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
 import StatsPage from './pages/StatsPage.vue'
-import MenuPage from './pages/MenuPage.vue'
 import TestPage from './pages/TestPage.vue'
 import UserLogin from './pages/UserLogin.vue'
 import DoctorLogin from './pages/DoctorLogin.vue'
 import CreateNewAccount from './pages/CreateNewAccount.vue'
 import FrontPage from './pages/FrontPage.vue'
+import UserWelcomePage from './pages/UserWelcomePage.vue'
 const routes = [
   {
     path: '/pages/StatsPage',
     component: StatsPage,
     name: 'StatsPage',
-    meta: { hideWelcomeChart: true }
-  },
-  {
-    path: '/Menu',
-    component: MenuPage,
-    name: 'MenuPage'
+    meta: { hideWelcomeChart: true, hideFrontPage: true}
   },
  {
   path: '/pages/TestPage',
   component: TestPage,
   name: 'TestPage',
-  meta: { hideWelcomeChart: true }
+  meta: { hideWelcomeChart: true, hideFrontPage: true,hideRouterLinks: false}
  },
  {
   path: '/pages/UserLogin',
@@ -47,6 +42,12 @@ const routes = [
   path: '/pages/FrontPage',
   component: FrontPage,
   name: 'FrontPage',
+},
+{
+  path: '/pages/UserWelcomePage',
+  component: UserWelcomePage,
+  name: 'UserWelcomePage',
+  meta: { hideFrontPage: true }
 },
 
 ]
