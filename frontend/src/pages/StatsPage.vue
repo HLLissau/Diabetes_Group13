@@ -9,7 +9,7 @@
     <h1>Stats page</h1>
 
      <canvas id="myChart"></canvas>
-    <PatientChart :propLabel = "label" :propData = "backendData" :key = "componentKey" />
+    <PatientChart :propLabel = "label" :propData = "backendData" :propAverage = "backendAverage" :key = "componentKey" />
   </div>
 </template>
 
@@ -31,6 +31,7 @@ export default {
       showChart: true,
       hospitals: [],
       backendData: [],
+      backendAverage: [],
       label: 'measurement',
       loaded: [],
     }
@@ -45,6 +46,37 @@ export default {
           //router.push({ name: 'ListHospitals' })
         })
     },
+
+    pullAverage(){
+
+      var  startDate= new Date()
+      startDate.setDate(startDate.getDate() - 2000)
+      startDate =moment(String(startDate)).format('YYYY-MM-DD hh:mm:ss')
+
+
+      //pull all averages for alle variable
+      var arr = []
+      this.axios
+        .get(this.$backend.getUrlAveragesByHour(startDate, moment(String(new Date())).format('YYYY-MM-DD hh:mm:ss')))
+        .then(res => {
+          this.backendAverage = res.data
+          this.backendAverage.forEach(data => {
+            var payload = {
+              t:new Date(data.time),
+              measurement:data.measurement,
+              meal:data.meals,
+              exercise:data.exercise,
+              bolus:data.bolus,
+              basal:data.basal
+            }  
+            arr.push(payload) 
+          });
+        })
+        this.backendAverage = arr
+
+        console.log("pullaverage",this.backendAverage)
+        this.backendAverage
+    },
     
     updateChoice(choice_from_child){
         var values = ["measurement","meals","exercise", "basal","bolus"]
@@ -57,6 +89,7 @@ export default {
           var dates =this.getDatesFromChoice(choice_from_child)
           
           this.pullChartData(2,dates[0],dates[1],choice_from_child)
+          this.pullAverage()
         }
 
 
@@ -108,6 +141,7 @@ export default {
 
     pullChartData(user,before,after,choice){
     var data = []
+    //var average = []
     switch (choice) {
           case "Day": 
                       data =this.$backend.getUrlByInterval(user,before,after) 
