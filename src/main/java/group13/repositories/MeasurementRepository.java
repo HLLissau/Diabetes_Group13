@@ -26,7 +26,7 @@ public interface MeasurementRepository extends CrudRepository<Measurement,Long> 
 		     + "  FROM measurement"
 		     + " WHERE user_id= ?1"
 		     + " And time BETWEEN ?2 AND ?3"
-		     + " GROUP BY UNIX_TIMESTAMP(time) DIV 3600",
+		     + " GROUP BY Year(time), Month(time), Day(time), Hour(time)",
 		nativeQuery=true)
 	List<Measurement> findAvgByUserIdByHourByTimeBetween(Long userId,String startDate, String endDate);
 	
@@ -34,7 +34,7 @@ public interface MeasurementRepository extends CrudRepository<Measurement,Long> 
 		     + " FROM measurement"
 		     + " WHERE user_id= ?1"
 		     + " And time BETWEEN ?2 AND ?3"
-		     + " GROUP BY Day(Time)",
+		     + " GROUP BY Year(time), Month(time), Day(time)",
 		nativeQuery=true)
 	List<Measurement> findAvgByUserIdByDayByTimeBetween(Long userId,String startDate, String endDate);
 
@@ -43,12 +43,32 @@ public interface MeasurementRepository extends CrudRepository<Measurement,Long> 
 		     + " FROM measurement"
 		     + " WHERE user_id= ?1"
 		     + " And time BETWEEN ?2 AND ?3"
-		     + " GROUP BY Week(Time)",
+		     + " GROUP BY Year(Time), Week(Time)",
 		nativeQuery=true)
 	List<Measurement> findAvgByUserIdByWeekbyTimeBetween(Long userId, String startDate, String endDate);
 
+	@Query(value = "SELECT DATE(time) as time,user_id,avg(basal) as basal,avg(bolus) as bolus,device_id,avg(exercise) exercise,avg(meals) as meals,avg(measurement) as measurement"
+		     + " FROM measurement"
+		     + " WHERE user_id= ?1"
+		     + " And time BETWEEN ?2 AND ?3"
+		     + " GROUP BY Year(Time), Month(Time)",
+		nativeQuery=true)
+	List<Measurement> findAvgByUserIdByMonthbyTimeBetween(Long userId, String startDate, String endDate);
+		
+	@Query(value = "SELECT DATE(time) as time,user_id,avg(basal) as basal,avg(bolus) as bolus,device_id,avg(exercise) exercise,avg(meals) as meals,avg(measurement) as measurement"
+		     + " FROM measurement"
+		     + " WHERE user_id= ?1"
+		     + " And time BETWEEN ?2 AND ?3"
+		     + " GROUP BY Year(Time)",
+		nativeQuery=true)
+	List<Measurement> findAvgByUserIdByYearbyTimeBetween(Long userId, String startDate, String endDate);
 	
-	
+	@Query(value = "SELECT DATE(time) as time,user_id,avg(basal) as basal,avg(bolus) as bolus,device_id,avg(exercise) exercise,avg(meals) as meals,avg(measurement) as measurement"
+		     + " FROM measurement"
+		     + " WHERE user_id= ?1"
+		     + " And time BETWEEN ?2 AND ?3",
+		nativeQuery=true)
+	List<Measurement> findAvgByUserIdByallTimebyTimeBetween(Long userId, String startDate, String endDate);
 }
 
 
