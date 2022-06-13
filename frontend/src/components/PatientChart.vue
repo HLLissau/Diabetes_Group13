@@ -11,7 +11,7 @@ import Chart from 'chart.js';
 export default {
   name: 'PatientChart',
   
-  props: ['propData','propLabel','propAverage'],
+  props: ['propData','propLabel','propAverageData','propAverage'],
   watch: {
     propLabel: function (newValue) {
       this.updateTable(newValue)
@@ -20,6 +20,7 @@ export default {
   },
   data() {
     return {
+      legend: "average",
       componentKey: 0,
       planetChartData: {
         type: "scatter",
@@ -28,7 +29,7 @@ export default {
             {
               label: '',
               data: [],
-              backgroundColor: 'rgba(12,15,166,0.2)',
+              backgroundColor: 'rgba(12,15,166,0.4)',
               borderColor: 'rgb(78,67,190,1)',
               showLine: true
               
@@ -36,8 +37,8 @@ export default {
             {
               label: 'average',
               data: [],
-              backgroundColor: 'rgba(12,15,166,0.2)',
-              borderColor: 'rgb(78,67,190,1)',
+              backgroundColor: 'rgba(12,15,166,0)',
+              borderColor: 'rgb(255, 88, 88)',
               showLine: true,
               hidden: true
               
@@ -45,6 +46,13 @@ export default {
           ]
         },
         options: {
+          legend: {
+            labels: {
+               filter: item => {
+                    return item.text != this.legend
+                }
+            }
+          },
           maintainAspectRatio: true,
           elements: {
             point:{
@@ -114,7 +122,7 @@ export default {
           });
  
     var averageSpan = []
-    this.propAverage.forEach(data => {
+    this.propAverageData.forEach(data => {
             var payload = {
               x:new Date(data.time),
               y:2
@@ -144,6 +152,12 @@ export default {
 
           //console.log("updateTable(done)",this.planetChartData.data.datasets[0].data)
           this.planetChartData
+
+          this.planetChartData.data.datasets[1].hidden = this.propAverage
+          if (this.propAverage){
+            this.legend = "average"
+          }
+          else { this.legend = "" }
           
     }
   },

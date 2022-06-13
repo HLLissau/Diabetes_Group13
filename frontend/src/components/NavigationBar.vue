@@ -71,7 +71,7 @@ export default {
         },
         Average() {
             this.average = !this.average
-            this.$emit('clicked', this.average)
+            this.updateChoice(this.average)
         }
 
     }

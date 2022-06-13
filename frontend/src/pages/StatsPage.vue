@@ -9,7 +9,7 @@
     <h1>Stats page</h1>
 
      <canvas id="myChart"></canvas>
-    <PatientChart :propLabel = "label" :propData = "backendData" :propAverage = "backendAverage" :key = "componentKey" />
+    <PatientChart :propLabel = "label" :propData = "backendData" :propAverageData = "backendAverage" :propAverage = "average" :key = "componentKey" />
   </div>
 </template>
 
@@ -32,6 +32,7 @@ export default {
       hospitals: [],
       backendData: [],
       backendAverage: [],
+      average: false,
       label: 'measurement',
       loaded: [],
     }
@@ -91,9 +92,9 @@ export default {
           this.pullChartData(2,dates[0],dates[1],choice_from_child)
           this.pullAverage()
         }
-
-
-
+        else {
+          this.average = choice_from_child
+        }
         this.componentKey += 1;
     },
     
