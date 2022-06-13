@@ -65,4 +65,29 @@ public class MeasurementController {
 		List<Measurement> result =MeasurementRepository.findAvgByUserIdByWeekbyTimeBetween(userId, startDate, endDate);
 		return ResponseEntity.ok(result);
 	}
+	
+	// Average measurements for a user over each month within a time interval
+	@GetMapping("/api/v1/patient/{userId}/getData/average/byMonth/{startDate}/{endDate}")
+	public ResponseEntity<List<Measurement>> averageByMonth(@PathVariable long userId, @PathVariable String startDate, @PathVariable String endDate) {
+		List<Measurement> result =MeasurementRepository.findAvgByUserIdByMonthbyTimeBetween(userId, startDate, endDate);
+		return ResponseEntity.ok(result);
+	}
+	
+	// Average measurements for a user over each month within a time interval
+	@GetMapping("/api/v1/patient/{userId}/getData/average/byYear/{startDate}/{endDate}")
+	public ResponseEntity<List<Measurement>> averageByYear(@PathVariable long userId, @PathVariable String startDate, @PathVariable String endDate) {
+		List<Measurement> result =MeasurementRepository.findAvgByUserIdByYearbyTimeBetween(userId, startDate, endDate);
+		return ResponseEntity.ok(result);
+	}
+	
+	// Average measurements for a user over each month within a time interval
+	@GetMapping("/api/v1/patient/{userId}/getData/average/allTime/{startDate}/{endDate}")
+	public ResponseEntity<List<Measurement>> averageByAllTime(@PathVariable long userId, @PathVariable String startDate, @PathVariable String endDate) {
+		List<Measurement> result =MeasurementRepository.findAvgByUserIdByallTimebyTimeBetween(userId, startDate, endDate);
+		return ResponseEntity.ok(result);
+	}
+	
+	
+	
+	
 }
