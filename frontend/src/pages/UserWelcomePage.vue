@@ -6,7 +6,7 @@
     </div>
     
      <router-view :key="$route.path"></router-view>
-
+      <button @click="printname()">Printname</button>
    
 
     <div id="menubar">
@@ -26,10 +26,17 @@ import MenuBar from '../components/MenuBar.vue'
 
 export default {
   name: 'UserWelcomePage',
+  props: ['Id'],
   components: {
     WelcomeChart,
     MenuBar
+  },
+  methods: {
+    printname(){
+      console.log("name", this.$backend.getUserId())
+    }
   }
+
 }
 
 

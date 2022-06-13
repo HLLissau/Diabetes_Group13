@@ -3,9 +3,10 @@
     <h1 v-if="!$route.meta.hideFrontPage">User Login</h1>
      <ul>
         <router-view :key="$route.path"></router-view>
-        <input v-model="message" placeholder="User ID" />
-        <p>Message is: {{ message }}</p>
-        <button @click="$router.push('/pages/UserWelcomePage')">Login</button>
+        <button @click="printname(UserId)">Printname</button>
+        <input v-model="UserId" placeholder="User ID" />
+        <router-link :to="{name: 'UserWelcomePage', props: { Id: UserId } }">Log in</router-link>
+        <button @click="$router.push('/pages/UserWelcomePage') ">Login</button>
         <button @click="$router.go(-1)">Go Back</button>
         
 
@@ -15,10 +16,24 @@
 
 
 <script>
+
 export default {
+data(){
+    return {
+        UserId: "test"
+     }
+},
   name: 'UserLogin',
   components: {
     
+  },
+   methods: {
+    printname(String){
+    this.UserId = String   
+      this.$backend.setUserId(String)
+    console.log("name", this.$backend.getUserId()) 
+      
+    }
   }
 }
 </script>

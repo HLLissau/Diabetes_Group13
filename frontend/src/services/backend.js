@@ -2,10 +2,18 @@ export default class Backend {
 
   constructor() {
     this.url = "http://localhost:8080/api/v1"
+    this.UserId = 2
   }
 
   getAllData() {
     return this.url + "/patient/" + 2 + "/getData/average/byDay"
+  }
+
+  getUserId() {
+    return this.UserId
+  }
+  setUserId(UserId) {
+     this.UserId = UserId
   }
 
   getUrlUsers() {

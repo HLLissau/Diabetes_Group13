@@ -47,6 +47,7 @@ const routes = [
   path: '/pages/UserWelcomePage',
   component: UserWelcomePage,
   name: 'UserWelcomePage',
+  props: true,
   meta: { hideFrontPage: true }
 },
 
