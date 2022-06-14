@@ -58,5 +58,18 @@ public class UserController {
 		repository.delete(p.get());
 		return ResponseEntity.noContent().build();
 	}
+	//login User
+	@GetMapping("/api/v1/login/loginUser/{id}/{password}")
+	public ResponseEntity<Users> loginUser(@PathVariable Long id,@PathVariable String password){
+		
+		//System.out.println("userid: "+ userId + ". password: " + password);
+				
+		Optional<Users> p = repository.loginUser(id,password);
+		if (!p.isPresent()) {
+			return ResponseEntity.notFound().build();
+		}
+		return ResponseEntity.ok(p.get());
+		
+	}
 
 }

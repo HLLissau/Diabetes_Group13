@@ -1,18 +1,18 @@
 <template>
-   <div class="wrap">
+   <div class="welcome-wrap">
 
     <div class="links">
-      <ul>
-        <router-link class="routerlink" :to="'/pages/StatsPage'">Stats page</router-link>
-        <router-link class="routerlink" :to="'/pages/TestPage'">Test page</router-link>
-        <router-link class="routerlink" :to="'/pages/WelcomePageNoLinks'" >Menu</router-link>
-      </ul>
+      
     </div>
     
-     <router-view :key="$route.path"></router-view>
+     <router-view :key="$route.path"></router-view>  
+
+    <div id="menubar">
+       <MenuBar/>
+    </div>
 
     <div id="chart">
-      <WelcomeChart v-if="!$route.meta.hideWelcomeChart"/>
+      <WelcomeChart/>
     </div>
 
   </div>
@@ -20,12 +20,21 @@
 
 <script>
 import WelcomeChart from '../components/WelcomeChart.vue'
+import MenuBar from '../components/MenuBar.vue'
 
 export default {
-  name: 'WelcomePage',
+  name: 'UserWelcomePage',
+  props: ['Id'],
   components: {
-    WelcomeChart
+    WelcomeChart,
+    MenuBar
+  },
+  methods: {
+    printname(){
+      console.log("name", this.$backend.getUserId())
+    }
   }
+
 }
 
 
@@ -49,8 +58,12 @@ export default {
   padding: 15px;
   background-color: rgb(128, 0, 255);
 }
-.wrap{
+.welcome-wrap{
   overflow: hidden;
   widows: 50vw;
+}
+header {
+  background-color: #222;
+  padding: 15px;
 }
 </style>

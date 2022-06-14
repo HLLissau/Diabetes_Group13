@@ -1,11 +1,14 @@
 <template>
   
   <div class="wrap"> 
+    <div id="menubar">
+       <MenuBar/>
+    </div>
     
     <header>
-      
       <navigationBar v-on:child-choice="updateChoice"   />
     </header>
+    <router-view :key="$route.path"></router-view>
     <h1>Stats page</h1>
 
      <canvas id="myChart"></canvas>
@@ -18,13 +21,15 @@
 import moment from 'moment'
 import navigationBar from '../components/NavigationBar.vue'
 import PatientChart from '../components/PatientChart.vue'
+import MenuBar from '../components/MenuBar.vue'
 
 export default {
   testfunctions: true,
   name: 'StatsPage',
   components: {
     navigationBar,
-    PatientChart
+    PatientChart,
+    MenuBar
   },
    data() {
     return {
@@ -87,10 +92,12 @@ export default {
         this.label = choice_from_child
         //console.log("updateChoice", choice_from_child)
         }
-        else if (interval.includes(choice_from_child)) {
+
+        if (interval.includes(choice_from_child)) { 
           var dates =this.getDatesFromChoice(choice_from_child)
-          this.pullChartData(2,dates[0],dates[1],choice_from_child)
-          this.pullAverage()
+          
+          this.pullChartData(dates[0],dates[1],choice_from_child)
+
         }
         else {
           this.average = choice_from_child
@@ -141,30 +148,30 @@ export default {
           return [myPastDate,myCurrentDate]
     },
 
-    pullChartData(user,before,after,choice){
+    pullChartData(before,after,choice){
     var data = []
     //var average = []
     switch (choice) {
           case "Day": 
-                      data =this.$backend.getUrlByInterval(user,before,after) 
+                      data =this.$backend.getUrlByInterval(before,after) 
                       break
           case "Week": 
-                      data =this.$backend.getUrlByUserIdbyHourBetween(user,before,after)
+                      data =this.$backend.getUrlByUserIdbyHourBetween(before,after)
                       break
           case "Month": 
-                      data =this.$backend.getUrlByUserIdbyDayBetween(user,before,after)
+                      data =this.$backend.getUrlByUserIdbyDayBetween(before,after)
                       break
           
           case "Year": 
-                      data =this.$backend.getUrlByUserIdbyDayBetween(user,before,after)
+                      data =this.$backend.getUrlByUserIdbyDayBetween(before,after)
                       break
           case "All time": 
-                      data =this.$backend.getUrlByUserIdbyDayBetween(user,before,after)
+                      data =this.$backend.getUrlByUserIdbyDayBetween(before,after)
                       break
           
           
           }
-
+    console.log("data:",data)
     var arr = []
     this.axios
         .get(data)
@@ -193,9 +200,12 @@ export default {
   },
   created(){
     this.testfunctions = true
-    this.pullChartData(2,"2020-01-08 00:00:00","2022-01-08 00:00:00","Day")
+
+    this.pullChartData("2020-01-08 00:00:00","2022-01-08 00:00:00","Day")
+
     this.pullAverage()
     this.updateChoice("measurement")
+
     this.componentKey += 1;
         
   },
@@ -206,6 +216,17 @@ export default {
 
 
 <style>
+.links .routerlink {
+  color:orange;
+  background-color: yellow;
+  text-decoration: none;
+
+  border-bottom: 3px solid transparent;
+  border-top: 3px solid transparent;
+  padding: 10px 20px;
+
+}
+
 * {
   font-family: sans-serif;
 }

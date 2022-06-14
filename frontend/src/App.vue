@@ -1,11 +1,12 @@
 <template>
   <div>
-    <WelcomePage/>
+    <FrontPage/>
 </div>
 </template>
 
 <script>
-import WelcomePage from './pages/WelcomePage.vue'
+//import WelcomePage from './pages/WelcomePage.vue'
+import FrontPage from './pages/FrontPage.vue'
 //import StatsPage from './pages/StatsPage.vue'
 
  
@@ -17,8 +18,9 @@ export default {
     }
   },
   components: {
-    WelcomePage, 
+    //WelcomePage, 
     //StatsPage
+    FrontPage
 
   }
 }

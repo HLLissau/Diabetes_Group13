@@ -13,10 +13,13 @@ public class Users {
 	
 	@Id
 	@Column
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	//@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	@Column
 	private String fullName;
+	@Column 
+	private String password;
+
 	@Column
 	private Timestamp createdAt;
 	
@@ -43,13 +46,15 @@ public class Users {
 	public String getName() {
 		return this.fullName;
 	}
-	
-	
-	
 
-	
+	public String getPassword() {
+		return password;
+	}
 
-	
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
 	
 	@Override
 	public boolean equals(Object obj) {
