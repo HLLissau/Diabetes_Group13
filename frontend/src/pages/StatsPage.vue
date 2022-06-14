@@ -80,21 +80,22 @@ export default {
     },
     
     updateChoice(choice_from_child){
+        console.log("choice from child",choice_from_child)
         var values = ["measurement","meals","exercise", "basal","bolus"]
         var interval= ["Day","Week","Month","Year","All time"]
         if (values.includes(choice_from_child)) {
         this.label = choice_from_child
         //console.log("updateChoice", choice_from_child)
         }
-        if (interval.includes(choice_from_child)) {
+        else if (interval.includes(choice_from_child)) {
           var dates =this.getDatesFromChoice(choice_from_child)
-          
           this.pullChartData(2,dates[0],dates[1],choice_from_child)
           this.pullAverage()
         }
         else {
           this.average = choice_from_child
         }
+        console.log("Average registered as",this.average)
         this.componentKey += 1;
     },
     
@@ -110,7 +111,7 @@ export default {
         var myPastDate=new Date(myCurrentDate);
           switch (choice_from_child) {
             case "Day": 
-                       myPastDate.setDate(myPastDate.getDate() - 1)  //myPastDate is now 8 days in the past
+                      myPastDate.setDate(myPastDate.getDate() - 1)  //myPastDate is now 8 days in the past
                        break
             case "Week":
                      myPastDate.setDate(myPastDate.getDate() - 7)  //myPastDate is now 8 days in the past
@@ -193,6 +194,8 @@ export default {
   created(){
     this.testfunctions = true
     this.pullChartData(2,"2020-01-08 00:00:00","2022-01-08 00:00:00","Day")
+    this.pullAverage()
+    this.updateChoice("measurement")
     this.componentKey += 1;
         
   },

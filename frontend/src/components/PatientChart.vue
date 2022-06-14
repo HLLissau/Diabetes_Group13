@@ -15,7 +15,6 @@ export default {
   watch: {
     propLabel: function (newValue) {
       this.updateTable(newValue)
-      
     }
   },
   data() {
@@ -153,11 +152,12 @@ export default {
           //console.log("updateTable(done)",this.planetChartData.data.datasets[0].data)
           this.planetChartData
 
-          this.planetChartData.data.datasets[1].hidden = this.propAverage
+          console.log("chartAverage",this.propAverage)
+          this.planetChartData.data.datasets[1].hidden = !this.propAverage
           if (this.propAverage){
-            this.legend = "average"
+            this.legend = ""
           }
-          else { this.legend = "" }
+          else { this.legend = "average" }
           
     }
   },
@@ -189,15 +189,12 @@ export default {
 
   mounted() {
 
-      
-
       const ctx = document.getElementById('patient-chart');
-      const myChart = new Chart(ctx, this.planetChartData);
-      myChart
-  },
-  created(){   
-      this.updateTable(this.propLabel)
+      new Chart(ctx, this.planetChartData);
       
+  },
+  created(){
+      this.updateTable(this.propLabel)
   }
 
 }
