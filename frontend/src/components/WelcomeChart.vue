@@ -36,22 +36,32 @@ export default {
     current2: {
         type:'bar',
         data: {
-        labels: ['tester'],
+        labels: ['%'],
         datasets: [
         {
-            label: 'Dataset 1',
+            label: 'Very low',
             data: [26],
-            backgroundColor:['rgb(255, 99, 132)','rgb(200, 99, 4)']
+            backgroundColor: 'rgb(0, 15, 180)'
         },
         {
-            label: 'Dataset 2',
-            data: [60],
-            backgroundColor: 'rgb(15, 99, 132)'
+            label: 'Low',
+            data: [26],
+            backgroundColor: 'rgb(0, 200, 200)'
         },
         {
-            label: 'Dataset 3',
+            label: 'Target',
             data: [85],
-            backgroundColor: 'rgb(255, 205, 86)'
+            backgroundColor: 'rgb(0, 182, 55)'
+        },
+        {
+            label: 'High',
+            data: [60],
+            backgroundColor: 'rgb(255, 239, 0)'
+        },
+        {
+            label: 'Very high',
+            data: [26],
+            backgroundColor:'rgb(235, 23, 0)'
         }
         ]},
         options: {

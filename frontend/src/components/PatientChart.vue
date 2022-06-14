@@ -11,16 +11,15 @@ import Chart from 'chart.js';
 export default {
   name: 'PatientChart',
   
-  props: ['propData','propLabel'],
+  props: ['propData','propLabel','propAverageData','propAverage'],
   watch: {
     propLabel: function (newValue) {
       this.updateTable(newValue)
-      
     }
   },
-  chosenData: [],
   data() {
     return {
+      legend: "average",
       componentKey: 0,
       planetChartData: {
         type: "scatter",
@@ -29,14 +28,30 @@ export default {
             {
               label: '',
               data: [],
-              backgroundColor: 'rgba(12,15,166,0.2)',
+              backgroundColor: 'rgba(12,15,166,0.4)',
               borderColor: 'rgb(78,67,190,1)',
               showLine: true
+              
+            },
+            {
+              label: 'average',
+              data: [],
+              backgroundColor: 'rgba(12,15,166,0)',
+              borderColor: 'rgb(255, 88, 88)',
+              showLine: true,
+              hidden: true
               
             }
           ]
         },
         options: {
+          legend: {
+            labels: {
+               filter: item => {
+                    return item.text != this.legend
+                }
+            }
+          },
           maintainAspectRatio: true,
           elements: {
             point:{
@@ -104,11 +119,45 @@ export default {
             }
             overTime.push(payload) 
           });
+ 
+    var averageSpan = []
+    this.propAverageData.forEach(data => {
+            var payload = {
+              x:new Date(data.time),
+              y:2
+            }
+            if (choice == "measurement"){
+                payload.y=data.measurement
+              }
+            if (choice == "bolus"){
+                payload.y=data.bolus
+            }
+            if (choice == "basal"){
+                payload.y=data.basal
+            }
+            if (choice == "meals"){
+                payload.y=data.meals
+            }
+            if (choice == "exercise"){
+                payload.y=data.exercise
+            }
+            averageSpan.push(payload) 
+          });
+      
           
-          this.chosenData = overTime
-          this.planetChartData.data.datasets[0].data=this.chosenData
+          //this.chosenData = overTime
+          this.planetChartData.data.datasets[0].data=overTime
+          this.planetChartData.data.datasets[1].data=averageSpan
+
           //console.log("updateTable(done)",this.planetChartData.data.datasets[0].data)
           this.planetChartData
+
+          console.log("chartAverage",this.propAverage)
+          this.planetChartData.data.datasets[1].hidden = !this.propAverage
+          if (this.propAverage){
+            this.legend = ""
+          }
+          else { this.legend = "average" }
           
     }
   },
@@ -140,16 +189,12 @@ export default {
 
   mounted() {
 
-      
-
-      this.planetChartData.data.datasets[0].data=this.chosenData
       const ctx = document.getElementById('patient-chart');
-      const myChart = new Chart(ctx, this.planetChartData);
-      myChart
-  },
-  created(){   
-      this.updateTable(this.propLabel)
+      new Chart(ctx, this.planetChartData);
       
+  },
+  created(){
+      this.updateTable(this.propLabel)
   }
 
 }
