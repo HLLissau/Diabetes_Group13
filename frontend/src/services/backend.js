@@ -41,6 +41,7 @@ export default class Backend {
     return link
   }
   getUrlAveragesByHour(startDate, endDate) {
-    return this.url + "patient/" + 2 + "/getData/average/byHour/"+ startDate + "/" + endDate
+    console.log("url",this.url + "patient/" + 2 + "/getData/average/byHour/"+ startDate + "/" + endDate)
+    return this.url + "/patient/" + 2 + "/getData/average/byHour/"+ startDate + "/" + endDate
   }
 }

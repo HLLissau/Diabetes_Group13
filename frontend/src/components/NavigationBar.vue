@@ -71,7 +71,11 @@ export default {
         },
         Average() {
             this.average = !this.average
-            this.$emit('clicked', this.average)
+            this.updateChoice(this.average)
+            console.log("button average",this.average)
+        },
+        created(){
+            this.average = false
         }
 
     }
