@@ -61,7 +61,7 @@ export default {
         if (interval.includes(choice_from_child)) {
           var dates =this.getDatesFromChoice(choice_from_child)
           
-          this.pullChartData(2,dates[0],dates[1],choice_from_child)
+          this.pullChartData(this.$backend.UserId,dates[0],dates[1],choice_from_child)
         }
 
 
@@ -162,7 +162,7 @@ export default {
   },
   created(){
     this.testfunctions = true
-    this.pullChartData(2,"2020-01-08 00:00:00","2022-01-08 00:00:00","Day")
+    this.pullChartData(this.$backend.UserId,"2020-01-08 00:00:00","2022-01-08 00:00:00","Day")
     this.componentKey += 1;
         
   },

@@ -5,9 +5,7 @@
       
     </div>
     
-     <router-view :key="$route.path"></router-view>
-      <button @click="printname()">Printname</button>
-   
+     <router-view :key="$route.path"></router-view>  
 
     <div id="menubar">
        <MenuBar/>

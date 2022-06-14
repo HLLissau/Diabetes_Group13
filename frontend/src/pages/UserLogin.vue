@@ -3,10 +3,9 @@
     <h1 v-if="!$route.meta.hideFrontPage">User Login</h1>
      <ul>
         <router-view :key="$route.path"></router-view>
-        <button @click="printname(UserId)">Printname</button>
         <input v-model="UserId" placeholder="User ID" />
-        <router-link :to="{name: 'UserWelcomePage', props: { Id: UserId } }">Log in</router-link>
-        <button @click="$router.push('/pages/UserWelcomePage') ">Login</button>
+        <input v-model="Password" placeholder="Password" />
+        <button @click="tryLogIn(UserId)">Login</button>
         <button @click="$router.go(-1)">Go Back</button>
         
 
@@ -28,10 +27,11 @@ data(){
     
   },
    methods: {
-    printname(String){
+    tryLogIn(String){
     this.UserId = String   
       this.$backend.setUserId(String)
-    console.log("name", this.$backend.getUserId()) 
+      this.$router.push('/pages/UserWelcomePage')
+    //console.log("name", this.$backend.getUserId()) 
       
     }
   }
