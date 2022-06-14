@@ -53,8 +53,28 @@ export default {
         })
     },
 
-    pullAverage(){
-
+    pullAverage(before,after,choice){
+          var data
+          switch (choice) {
+          case "Day": 
+                      data =this.$backend.getUrlAveragesByHour(before,after)
+                      break
+          case "Week": 
+                      data =this.$backend.getUrlByUserIdbyHourBetween(before,after)
+                      break
+          case "Month": 
+                      data =this.$backend.getUrlByUserIdbyDayBetween(before,after)
+                      break
+          
+          case "Year": 
+                      data =this.$backend.getUrlByUserIdbyDayBetween(before,after)
+                      break
+          case "All time": 
+                      data =this.$backend.getUrlByUserIdbyDayBetween(before,after)
+                      break
+          
+          
+          }
       var  startDate= new Date()
       startDate.setDate(startDate.getDate() - 2000)
       startDate =moment(String(startDate)).format('YYYY-MM-DD hh:mm:ss')
@@ -63,7 +83,8 @@ export default {
       //pull all averages for alle variable
       var arr = []
       this.axios
-        .get(this.$backend.getUrlAveragesByHour(startDate, moment(String(new Date())).format('YYYY-MM-DD hh:mm:ss')))
+        //.get(this.$backend.getUrlAveragesByHour(startDate, moment(String(new Date())).format('YYYY-MM-DD hh:mm:ss')))
+        .get(data)
         .then(res => {
           this.backendAverage = res.data
           this.backendAverage.forEach(data => {
@@ -74,7 +95,13 @@ export default {
               exercise:data.exercise,
               bolus:data.bolus,
               basal:data.basal
-            }  
+            } 
+            console.log("payload time before:", payload.t) 
+            var temptime = new Date(new Date(payload.t).setDate(29)) 
+            console.log("payload time middle:", temptime) 
+            payload.t=temptime
+            console.log("payload time after:", payload.t) 
+            console.log("complete payload:", payload) 
             arr.push(payload) 
           });
         })
@@ -104,6 +131,7 @@ export default {
         }
         console.log("Average registered as",this.average)
         this.componentKey += 1;
+        
     },
     
     getDatesFromChoice(choice_from_child){
@@ -189,9 +217,16 @@ export default {
             arr.push(payload) 
           });
         })
+        this.pullAverage(before,after,choice)
+
         this.backendData = arr
+
+        
         
   }
+
+
+
   },
   mounted() {
     if (this.testfunctions){ console.log("parentmount")}
@@ -203,7 +238,7 @@ export default {
 
     this.pullChartData("2020-01-08 00:00:00","2022-01-08 00:00:00","Day")
 
-    this.pullAverage()
+    this.pullAverage("2020-01-08 00:00:00","2022-01-08 00:00:00","Day")
     this.updateChoice("measurement")
 
     this.componentKey += 1;

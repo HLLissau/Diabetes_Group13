@@ -73,7 +73,7 @@ public class MeasurementController {
 		return ResponseEntity.ok(result);
 	}
 	
-	// Average measurements for a user over each month within a time interval
+	// Average measurements for a user over each year within a time interval
 	@GetMapping("/api/v1/patient/{userId}/getData/average/byYear/{startDate}/{endDate}")
 	public ResponseEntity<List<Measurement>> averageByYear(@PathVariable long userId, @PathVariable String startDate, @PathVariable String endDate) {
 		List<Measurement> result =MeasurementRepository.findAvgByUserIdByYearbyTimeBetween(userId, startDate, endDate);
@@ -86,7 +86,12 @@ public class MeasurementController {
 		List<Measurement> result =MeasurementRepository.findAvgByUserIdByallTimebyTimeBetween(userId, startDate, endDate);
 		return ResponseEntity.ok(result);
 	}
-	
+	// Average measurements for a user over each month within a time interval
+		@GetMapping("/api/v1/patient/{userId}/getData/average/allTime/{time}")
+		public ResponseEntity<List<Measurement>> findAvgByUserIdByTime(@PathVariable long userId, @PathVariable String time) {
+			List<Measurement> result =MeasurementRepository.findAvgByUserIdByTime(userId, time);
+			return ResponseEntity.ok(result);
+		}
 	
 	
 	
