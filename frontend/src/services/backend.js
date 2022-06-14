@@ -2,7 +2,9 @@ export default class Backend {
 
   constructor() {
     this.url = "http://localhost:8080/api/v1"
-    this.UserId = 2
+    this.UserId = 0
+    this.password = ""
+
   }
 
   getAllData() {
@@ -15,37 +17,48 @@ export default class Backend {
   setUserId(UserId) {
      this.UserId = UserId
   }
+  getUserpassword() {
+    return this.password
+  }
+  setUserpassword(password) {
+     this.password = password
+  }
 
   getUrlUsers() {
     return this.url + "/login/get/users"
   }
 
-  getUrlHospitalPatients(id) {
-    return this.url + "/hospitals/" + id + "/patients"
+  getUrlHospitalPatients() {
+    return this.url + "/hospitals/" + this.UserId + "/patients"
   }
 
   getUrlCreateUser() {
     return this.url + "/login/create/user"
   }
 
-  getUrlPostPatient(id) {
-    return this.url + "/hospitals/" + id + "/patients"
+  getUrlPostPatient() {
+    return this.url + "/hospitals/" + this.UserId + "/patients"
   }
 
-  getUrlDeleteHospital(id) {
-    return this.url + "/hospitals/" + id
+  getUrlDeleteHospital() {
+    return this.url + "/hospitals/" + this.UserId
   }
-  getUrlByInterval(patient,after,before) {
-    var link = this.url + "/patient/" + patient + "/getData/" + after + "/" + before
+  getUrlByInterval(after,before) {
+    var link = this.url + "/patient/" + this.UserId + "/getData/" + after + "/" + before
     return link
   }
-  getUrlByUserIdbyHourBetween(patient,after,before) {
-    var link =this.url + "/patient/" + patient + "/getData/average/byHour/" + after + "/" + before
+  getUrlByUserIdbyHourBetween(after,before) {
+    var link =this.url + "/patient/" + this.UserId + "/getData/average/byHour/" + after + "/" + before
     return link
   }
-  n
-  getUrlByUserIdbyDayBetween(patient,after,before) {
-    var link =this.url + "/patient/" + patient + "/getData/average/byDay/" + after + "/" + before
+  
+  getUrlByUserIdbyDayBetween(after,before) {
+    var link =this.url + "/patient/" + this.UserId + "/getData/average/byDay/" + after + "/" + before
     return link
   }
+  getUrlLoginUser(){
+    var link = this.url + "/login/loginUser"
+    return link
+  }
+
 }

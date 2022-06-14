@@ -1,6 +1,3 @@
-
-
-
 <template>
   <div>
     <canvas id="welcome-chart"></canvas>

@@ -58,10 +58,10 @@ export default {
         this.label = choice_from_child
         //console.log("updateChoice", choice_from_child)
         }
-        if (interval.includes(choice_from_child)) {
+        if (interval.includes(choice_from_child)) { 
           var dates =this.getDatesFromChoice(choice_from_child)
           
-          this.pullChartData(this.$backend.UserId,dates[0],dates[1],choice_from_child)
+          this.pullChartData(dates[0],dates[1],choice_from_child)
         }
 
 
@@ -111,29 +111,29 @@ export default {
           return [myPastDate,myCurrentDate]
     },
 
-    pullChartData(user,before,after,choice){
+    pullChartData(before,after,choice){
     var data = []
     switch (choice) {
           case "Day": 
-                      data =this.$backend.getUrlByInterval(user,before,after) 
+                      data =this.$backend.getUrlByInterval(before,after) 
                       break
           case "Week": 
-                      data =this.$backend.getUrlByUserIdbyHourBetween(user,before,after)
+                      data =this.$backend.getUrlByUserIdbyHourBetween(before,after)
                       break
           case "Month": 
-                      data =this.$backend.getUrlByUserIdbyDayBetween(user,before,after)
+                      data =this.$backend.getUrlByUserIdbyDayBetween(before,after)
                       break
           
           case "Year": 
-                      data =this.$backend.getUrlByUserIdbyDayBetween(user,before,after)
+                      data =this.$backend.getUrlByUserIdbyDayBetween(before,after)
                       break
           case "All time": 
-                      data =this.$backend.getUrlByUserIdbyDayBetween(user,before,after)
+                      data =this.$backend.getUrlByUserIdbyDayBetween(before,after)
                       break
           
           
           }
-
+    console.log("data:",data)
     var arr = []
     this.axios
         .get(data)
@@ -162,7 +162,7 @@ export default {
   },
   created(){
     this.testfunctions = true
-    this.pullChartData(this.$backend.UserId,"2020-01-08 00:00:00","2022-01-08 00:00:00","Day")
+    this.pullChartData("2020-01-08 00:00:00","2022-01-08 00:00:00","Day")
     this.componentKey += 1;
         
   },
