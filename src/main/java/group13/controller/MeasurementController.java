@@ -86,14 +86,23 @@ public class MeasurementController {
 		List<Measurement> result =MeasurementRepository.findAvgByUserIdByallTimebyTimeBetween(userId, startDate, endDate);
 		return ResponseEntity.ok(result);
 	}
-	// Average measurements for a user over each month within a time interval
-		@GetMapping("/api/v1/patient/{userId}/getData/average/allTime/{time}")
+	// Average measurements for a user grouped by time, over last 24 hours from time
+		@GetMapping("/api/v1/patient/{userId}/getData/average/ForDay/{time}")
 					  
-		public ResponseEntity<List<Measurement>> findAvgByUserIdByTime(@PathVariable long userId, @PathVariable String time) {
-			List<Measurement> result =MeasurementRepository.findAvgByUserIdByTime(userId, time);
+		public ResponseEntity<List<Measurement>> findAvgByUserIdForDay(@PathVariable long userId, @PathVariable String time) {
+			List<Measurement> result =MeasurementRepository.findAvgByUserIdForDay(userId, time);
 			return ResponseEntity.ok(result);
 		}
-	
+		// Average measurements for a user grouped by hour, over last 7 days from time
+		@GetMapping("/api/v1/patient/{userId}/getData/average/ForWeek/{time}")
+		public ResponseEntity<List<Measurement>> findAvgByUserIdForWeek(@PathVariable long userId, @PathVariable String time) {
+			System.out.println(time);
+			List<Measurement> result =MeasurementRepository.findAvgByUserIdForWeek(userId, time);
+			
+			return ResponseEntity.ok(result);
+		}
+		
+
 	
 	
 }

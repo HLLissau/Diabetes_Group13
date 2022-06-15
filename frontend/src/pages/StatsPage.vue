@@ -57,10 +57,10 @@ export default {
           var data
           switch (choice) {
           case "Day": 
-                      data =this.$backend.getUrlAveragesByHour(after)
+                      data =this.$backend.getUrlAverageForDay(after)
                       break
           case "Week": 
-                                            data =this.$backend.getUrlAveragesByHour(after)
+                      data =this.$backend.getUrlAverageForWeek(after)
 
                       break
           case "Month": 

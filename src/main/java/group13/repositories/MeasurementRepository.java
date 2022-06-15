@@ -84,8 +84,18 @@ public interface MeasurementRepository extends CrudRepository<Measurement,Long> 
 			+ " group by time(time)"
 			
 			,nativeQuery=true)
-	List<Measurement> findAvgByUserIdByTime(Long userId, String endDate);
+	List<Measurement> findAvgByUserIdForDay(Long userId, String endDate);
 	
+	
+	@Query(value ="call getAvgByWeek(?1,?2)"
+					,nativeQuery=true)
+	List<Measurement> findAvgByUserIdForWeek(Long userId, String endDate);
+	
+    
+    
+    
+    
+    
 	
 }
 
