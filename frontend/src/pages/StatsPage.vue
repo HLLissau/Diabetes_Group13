@@ -12,7 +12,7 @@
     <h1 id = "statpageHeading">Stats page</h1>
 
      <!-- <canvas id="myChart"></canvas> -->
-     <div id=chart>
+     <div id="chart-statspage">
            <PatientChart :propLabel = "label" :propData = "backendData" :propAverageData = "backendAverage" :propAverage = "average" :key = "componentKey" />
      </div>
   </div>
@@ -20,6 +20,7 @@
 
 
 <script>
+import '../Styling/StatsPageStyling.css'
 import moment from 'moment'
 import navigationBar from '../components/NavigationBar.vue'
 import PatientChart from '../components/PatientChart.vue'
@@ -216,7 +217,7 @@ export default {
 </script>
 
 
-
+<!--
 <style>
 /* .links .routerlink {
   color:orange;
@@ -253,4 +254,4 @@ div#chart {
   top:20vh;
 }
 
-</style>
+</style>-->

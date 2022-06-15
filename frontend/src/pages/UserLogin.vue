@@ -96,13 +96,3 @@ data(){
 
 }
 </script>
-
-
-
-<style>
-
-header {
-  background-color: #222;
-  padding: 15px;
-}
-</style>
