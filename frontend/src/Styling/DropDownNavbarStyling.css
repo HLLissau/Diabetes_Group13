@@ -1,0 +1,28 @@
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height:5vh;
+}
+
+nav .menu-item {
+    color: #FFF;
+    padding: 0.5vh 1vh;
+    position: relative;
+    text-align: center;
+    border-bottom: 3px solid transparent;
+    display: flex;
+    transition: 0.4s;
+  }
+
+nav .menu-item.active,
+nav .menu-item:hover {
+  background-color: #444;
+  border-bottom-color: #FF5858;
+  cursor: pointer;
+}
+
+nav .menu-item a {
+  color: inherit;
+  text-decoration: none;
+}

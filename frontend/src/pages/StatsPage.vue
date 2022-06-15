@@ -1,18 +1,20 @@
 <template>
-  
+  <link rel="stylesheet" href="../Styling/NavbarStyling.css">
   <div class="wrap"> 
     <div id="menubar">
        <MenuBar/>
     </div>
     
-    <header>
+    <div class="header">
       <navigationBar v-on:child-choice="updateChoice"   />
-    </header>
+    </div>
     <router-view :key="$route.path"></router-view>
-    <h1>Stats page</h1>
+    <h1 id = "statpageHeading">Stats page</h1>
 
-     <canvas id="myChart"></canvas>
-    <PatientChart :propLabel = "label" :propData = "backendData" :propAverageData = "backendAverage" :propAverage = "average" :key = "componentKey" />
+     <!-- <canvas id="myChart"></canvas> -->
+     <div id=chart>
+           <PatientChart :propLabel = "label" :propData = "backendData" :propAverageData = "backendAverage" :propAverage = "average" :key = "componentKey" />
+     </div>
   </div>
 </template>
 
@@ -254,7 +256,7 @@ export default {
 
 
 <style>
-.links .routerlink {
+/* .links .routerlink {
   color:orange;
   background-color: yellow;
   text-decoration: none;
@@ -263,18 +265,30 @@ export default {
   border-top: 3px solid transparent;
   padding: 10px 20px;
 
+} */
+
+/* div#menubar {
+  position: fixed;
+} */
+h1#statpageHeading {
+  position: absolute;
+  top: 7vh;
+}
+.header {
+  width: 100%;
+  height: 5vh;
+  background-color: #222;
+  padding: 0;
+  position: fixed;
+  z-index: 9999;
+  top: 4vh;
 }
 
-* {
-  font-family: sans-serif;
+div#chart {
+  width: 80vw;
+  height: 80vh;
+  position:absolute;
+  top:20vh;
 }
-.wrap {
-  width: 50vw;
-  padding: 15px;
-  background-color: aqua;
-}
-header {
-  background-color: #222;
-  padding: 15px;
-}
+
 </style>

@@ -100,14 +100,7 @@ data(){
 
 
 <style>
-* {
-  font-family: sans-serif;
-}
-.wrap {
-  width: 50vw;
-  padding: 15px;
-  background-color: aqua;
-}
+
 header {
   background-color: #222;
   padding: 15px;

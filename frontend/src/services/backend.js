@@ -70,6 +70,32 @@ export default class Backend {
     var link = this.url + "/patient/" + this.UserId + "/getData/average/ForWeek/" + date
     return link
     
+  getUrlAveragesByHour(startDate, endDate) {
+    console.log("url",this.url + "patient/" + this.UserId + "/getData/average/byHour/"+ startDate + "/" + endDate)
+    return this.url + "/patient/" + this.UserId + "/getData/average/byHour/"+ startDate + "/" + endDate
+  }
+
+  getUrlRecentBasal(){
+    return this.url + '/patient/' + this.UserId + '/getData/recent/basal'
+  }
+
+  getUrlRecentBolus(){
+    return this.url + '/patient/' + this.UserId + '/getData/recent/bolus'
+  }
+
+  getUrlRecentMeasurement(){
+    return this.url + '/patient/' + this.UserId + '/getData/recent/measurement'
+  }
+
+  
+  getUrlRecentMeals(){
+    return this.url + '/patient/' + this.UserId + '/getData/recent/meals'
+  }
+
+    
+  getUrlRecentExercise(){
+    return this.url + '/patient/' + this.UserId + '/getData/recent/exercise'
+
   }
 
 }
