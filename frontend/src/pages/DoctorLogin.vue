@@ -21,7 +21,7 @@
            minlength="4" required>
 </div>
 
-<input type="submit"  @click="tryLogIn(UserId,password)" value="Sign in">
+<input type="submit"  @click="tryLogIn(doctorId,password)" value="Sign in">
 
     </ul>
     <h2 v-if="loginerror "> Invalid DoctorId or password </h2>
@@ -33,12 +33,12 @@
 export default {
 data(){
     return {
-        UserId: "test",
+        doctorId: "test",
         loginerror: false
      }
     
 },
-  name: 'UserLogin',
+  name: 'DoctorLogin',
   components: {
     
   },
@@ -51,9 +51,9 @@ data(){
 
     tryLogIn(id,password){
       
-      this.$backend.setUserId(id)  
-      this.$backend.setUserpassword(password)
-      var link =this.$backend.getUrlLoginUser()
+      this.$backend.setdoctorId(id)  
+      this.$backend.setdoctorpassword(password)
+      var link =this.$backend.getUrlLoginDoctor()
       this.loginerror=true
       
       console.log("exists?" ,this.value);
@@ -61,8 +61,8 @@ data(){
       //console.log("exists?" ,this.$backend.returnerror);
       
      const user = {
-          id : this.$backend.getUserId(),
-          password : this.$backend.getUserpassword()
+          id : this.$backend.getDoctorId(),
+          password : this.$backend.getDoctorPassword()
         }
       console.log("password: ",user)
 

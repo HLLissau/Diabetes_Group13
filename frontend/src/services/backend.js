@@ -4,6 +4,7 @@ export default class Backend {
     this.url = "http://localhost:8080/api/v1"
     this.UserId = 0
     this.password = ""
+    this.doctorId = 0
 
   }
 
@@ -23,7 +24,18 @@ export default class Backend {
   setUserpassword(password) {
      this.password = password
   }
-
+  getDoctorId() {
+    return this.doctorId
+  }
+  setdoctorId(doctorId) {
+     this.doctorId = doctorId
+  }
+  getDoctorPassword() {
+    return this.password
+  }
+  setDoctorPassword(password) {
+     this.password = password
+  }
   getUrlUsers() {
     return this.url + "/login/get/users"
   }
@@ -58,6 +70,10 @@ export default class Backend {
   }
   getUrlLoginUser(){
     var link = this.url + "/login/loginUser"
+    return link
+  }
+  getUrlLoginDoctor(){
+    var link = this.url + "/login/loginDoctor"
     return link
   }
 
