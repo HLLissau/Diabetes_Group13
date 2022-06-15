@@ -1,0 +1,27 @@
+div.login-button button {
+    width: 70%;
+    border: none;
+    border-radius: 5px;
+    background: #5057a7;
+    color: #ffffff;
+    cursor: pointer;
+    font-size: x-large;
+    font-weight: bold;
+    display: block;
+    margin:auto;
+    height:25vh;
+}
+
+div.login-button button:hover {
+    background: #6469a3;
+}
+
+div.login-button {
+    height: 30vh;
+}
+
+h1.h1menu {
+    text-align: center;
+    margin: auto;
+    clear: both;
+}

@@ -1,7 +1,7 @@
 <template>
-  <div class="wrap">
+  <div class="wrap-login">
     <h1 v-if="!$route.meta.hideFrontPage">User Login</h1>
-     <ul>
+
        <!--
         <router-view :key="$route.path"></router-view>
         <input v-model="UserId" placeholder="User ID"  />
@@ -9,31 +9,29 @@
         <input type="password" id="password" placeholder="Password"  />
         <button @click="tryLogIn(UserId,password)">Login</button>
         <button @click="$router.go(-1)">Go Back</button>
-     -->
-     
-        <div>
-        <input v-model="UserId" id="username" name="username" placeholder="user id" >
-</div>
-
-<div>
-    
-    <input type="password" v-model="password" placeholder = "password (minimum 4 characters)"
+     --><label>User ID</label>
+       <input class="login-field" v-model="UserId" id="username" name="username" placeholder="user id" >
+      <label>Password</label>
+      <input class="login-field" type="password" v-model="password" placeholder = "password (minimum 4 characters)"
            minlength="4" required>
-</div>
+        
 
-<input type="submit"  @click="tryLogIn(UserId,password)" value="Sign in">
+     <input class="login-button" type="submit"  @click="tryLogIn(UserId,password)" value="Sign In">
+     <input class="goback-button" type="submit"  @click="$router.push('/pages/MenuPage')" value="Go Back">
 
-    </ul>
+    
     <h2 v-if="loginerror "> Invalid userId or password </h2>
   </div>
 </template>
 
 
 <script>
+import '../Styling/UserLoginStyling.css'
 export default {
 data(){
     return {
-        UserId: "test",
+        UserId: "1",
+        password: "password1",
         loginerror: false
      }
     

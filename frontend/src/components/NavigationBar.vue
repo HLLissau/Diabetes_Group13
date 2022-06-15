@@ -4,7 +4,7 @@
         <dropDown title="Variable" :items="variabels" @child-choice="updateChoice"/>
         <dropDown title="Interval" :items="interval" @child-choice="updateChoice"/>
         <div class="menu-item" v-on:click="Average()" ><a> Average</a></div>
-        <div class="menu-item"><a >Settings</a></div>
+        <div class="menu-item" id="settings"><img class="settings-icon" src="../assets/settings-icon.png" alt="Settings"></div>
     </nav>
 </template>
 

@@ -4,12 +4,12 @@ h1#statpageHeading {
   }
   .header {
     width: 100%;
-    height: 5vh;
+    height: 10vh;
     background-color: #222;
     padding: 0;
     position: fixed;
     z-index: 9999;
-    top: 4vh;
+    top: 10vh;
   }
   
   div#chart-statspage {
@@ -21,3 +21,8 @@ h1#statpageHeading {
     left:0;
     right:0;
   }
+
+div#average-button {
+    position: absolute;
+    top: 20vh;
+}

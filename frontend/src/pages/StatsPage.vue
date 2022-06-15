@@ -1,5 +1,4 @@
 <template>
-  <link rel="stylesheet" href="../Styling/NavbarStyling.css">
   <div class="wrap"> 
     <div id="menubar">
        <MenuBar/>
@@ -10,7 +9,6 @@
     </div>
     <router-view :key="$route.path"></router-view>
     <h1 id = "statpageHeading">Stats page</h1>
-
      <!-- <canvas id="myChart"></canvas> -->
      <div id="chart-statspage">
            <PatientChart :propLabel = "label" :propData = "backendData" :propAverageData = "backendAverage" :propAverage = "average" :key = "componentKey" />
@@ -212,46 +210,5 @@ export default {
     this.componentKey += 1;
         
   },
-  
 }
 </script>
-
-
-<!--
-<style>
-/* .links .routerlink {
-  color:orange;
-  background-color: yellow;
-  text-decoration: none;
-
-  border-bottom: 3px solid transparent;
-  border-top: 3px solid transparent;
-  padding: 10px 20px;
-
-} */
-
-/* div#menubar {
-  position: fixed;
-} */
-h1#statpageHeading {
-  position: absolute;
-  top: 7vh;
-}
-.header {
-  width: 100%;
-  height: 5vh;
-  background-color: #222;
-  padding: 0;
-  position: fixed;
-  z-index: 9999;
-  top: 4vh;
-}
-
-div#chart {
-  width: 80vw;
-  height: 80vh;
-  position:absolute;
-  top:20vh;
-}
-
-</style>-->
