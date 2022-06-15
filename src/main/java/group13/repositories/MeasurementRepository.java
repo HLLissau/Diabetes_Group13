@@ -69,6 +69,40 @@ public interface MeasurementRepository extends CrudRepository<Measurement,Long> 
 		     + " And time BETWEEN ?2 AND ?3",
 		nativeQuery=true)
 	List<Measurement> findAvgByUserIdByallTimebyTimeBetween(Long userId, String startDate, String endDate);
+	
+	
+	@Query(value = "(select bolus,time from measurement where user_id = ?1"
+			+ "   AND time = (select max(time) as time from measurement"
+			+ " where user_id =?1 AND Bolus!=0))"
+            ,nativeQuery=true)
+    Object findLatestBolus(Long userId);
+	
+	@Query(value = "(select basal,time from measurement where user_id = ?1"
+			+ "   AND time = (select max(time) as time from measurement"
+			+ " where user_id =?1 AND basal!=0))"
+            ,nativeQuery=true)
+    Object findLatestBasal(Long userId);
+	
+	@Query(value = "(select measurement,time from measurement where user_id = ?1"
+			+ "   AND time = (select max(time) as time from measurement"
+			+ " where user_id =?1 AND measurement!=0))"
+            ,nativeQuery=true)
+    Object findLatestMeasurement(Long userId);
+	
+	@Query(value = "(select meals,time from measurement where user_id = ?1"
+			+ "   AND time = (select max(time) as time from measurement"
+			+ " where user_id =?1 AND meals!=0))"
+            ,nativeQuery=true)
+    Object findLatestMeals(Long userId);
+	
+	@Query(value = "(select exercise,time from measurement where user_id = ?1"
+			+ "   AND time = (select max(time) as time from measurement"
+			+ " where user_id =?1 AND exercise!=0))"
+            ,nativeQuery=true)
+    Object findLatestExercise(Long userId);
+	
+	
+	
 }
 
 
