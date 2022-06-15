@@ -41,12 +41,12 @@ export default {
         {
             label: 'Very low',
             data: [26],
-            backgroundColor: 'rgb(0, 15, 180)'
+            backgroundColor:'rgb(235, 23, 0)'
         },
         {
             label: 'Low',
             data: [26],
-            backgroundColor: 'rgb(0, 200, 200)'
+            backgroundColor: 'rgb(255, 239, 0)'
         },
         {
             label: 'Target',
