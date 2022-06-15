@@ -71,6 +71,29 @@ public interface MeasurementRepository extends CrudRepository<Measurement,Long> 
 	List<Measurement> findAvgByUserIdByallTimebyTimeBetween(Long userId, String startDate, String endDate);
 	
 	
+
+	@Query(value ="Select concat(subdate(date(?2),1),concat(\" \" , time(time))) as time,user_id,avg(basal) as basal,avg(bolus) as bolus,device_id,avg(exercise) exercise,avg(meals) as meals,avg(measurement) as measurement"
+			+ " from measurement "
+			+ "	where user_id=?1"
+			+ "	AND time(time) > time(?2)"
+			+ "	group by time(time) "
+			+ "	Union"
+			+ "	Select concat(date(?2),concat(\" \" , time(time))) as time,user_id,avg(basal) as basal,avg(bolus) as bolus,device_id,avg(exercise) exercise,avg(meals) as meals,avg(measurement) as measurement "
+			+ " from measurement"
+			+ " where user_id=?1"
+			+ " AND time(time) < time(?2)"
+			+ " group by time(time)"
+			
+			,nativeQuery=true)
+	List<Measurement> findAvgByUserIdForDay(Long userId, String endDate);
+	
+	
+	@Query(value ="call getAvgByWeek(?1,?2)"
+					,nativeQuery=true)
+	List<Measurement> findAvgByUserIdForWeek(Long userId, String endDate);
+	
+    
+
 	@Query(value = "(select bolus,time from measurement where user_id = ?1"
 			+ "   AND time = (select max(time) as time from measurement"
 			+ " where user_id =?1 AND Bolus!=0))"
@@ -100,8 +123,7 @@ public interface MeasurementRepository extends CrudRepository<Measurement,Long> 
 			+ " where user_id =?1 AND exercise!=0))"
             ,nativeQuery=true)
     Object findLatestExercise(Long userId);
-	
-	
+
 	
 }
 

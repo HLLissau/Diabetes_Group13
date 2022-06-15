@@ -74,7 +74,9 @@ public class MeasurementController {
 		return ResponseEntity.ok(result);
 	}
 
+
 	// Average measurements for a user over each month within a time interval
+
 	@GetMapping("/api/v1/patient/{userId}/getData/average/byYear/{startDate}/{endDate}")
 	public ResponseEntity<List<Measurement>> averageByYear(@PathVariable long userId, @PathVariable String startDate,
 			@PathVariable String endDate) {
@@ -115,6 +117,22 @@ public class MeasurementController {
 		Object result = MeasurementRepository.findLatestMeasurement(userId);
 		return ResponseEntity.ok(result);
 	}
+
+	// Average measurements for a user grouped by time, over last 24 hours from time
+		@GetMapping("/api/v1/patient/{userId}/getData/average/ForDay/{time}")
+					  
+		public ResponseEntity<List<Measurement>> findAvgByUserIdForDay(@PathVariable long userId, @PathVariable String time) {
+			List<Measurement> result =MeasurementRepository.findAvgByUserIdForDay(userId, time);
+			return ResponseEntity.ok(result);
+		}
+		// Average measurements for a user grouped by hour, over last 7 days from time
+		@GetMapping("/api/v1/patient/{userId}/getData/average/ForWeek/{time}")
+		public ResponseEntity<List<Measurement>> findAvgByUserIdForWeek(@PathVariable long userId, @PathVariable String time) {
+			System.out.println(time);
+			List<Measurement> result =MeasurementRepository.findAvgByUserIdForWeek(userId, time);
+			
+			return ResponseEntity.ok(result);
+		}
 	
 	// Most recent meals measurement and its time
 	@GetMapping("/api/v1/patient/{userId}/getData/recent/meals")
@@ -129,5 +147,6 @@ public class MeasurementController {
 		Object result = MeasurementRepository.findLatestExercise(userId);
 		return ResponseEntity.ok(result);
 	}
+
 
 }

@@ -61,6 +61,15 @@ export default class Backend {
     return link
   }
 
+  getUrlAverageForDay(date) {
+    var link = this.url + "/patient/" + this.UserId + "/getData/average/ForDay/" + date
+    return link
+    
+  }
+  getUrlAverageForWeek(date) {
+    var link = this.url + "/patient/" + this.UserId + "/getData/average/ForWeek/" + date
+    return link
+    
   getUrlAveragesByHour(startDate, endDate) {
     console.log("url",this.url + "patient/" + this.UserId + "/getData/average/byHour/"+ startDate + "/" + endDate)
     return this.url + "/patient/" + this.UserId + "/getData/average/byHour/"+ startDate + "/" + endDate
@@ -86,6 +95,7 @@ export default class Backend {
     
   getUrlRecentExercise(){
     return this.url + '/patient/' + this.UserId + '/getData/recent/exercise'
+
   }
 
 }
