@@ -1,0 +1,22 @@
+div .menu-item svg {
+  width: 100%;
+  /* margin-left: 5px; */
+}
+div .menu-item .sub-menu {
+  position: absolute;
+  background-color: rgb(116, 113, 113);
+  top: 4vh;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  border-radius: 0px 0px 16px 16px;
+  word-break: break-all;
+}
+.fade-enter-active,
+.fade-leave-active {
+  transition: all .5s ease-out;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}

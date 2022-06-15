@@ -10,8 +10,3 @@ export default {
   props: [UserId, Username, email]
 }
 </script>
-
-
-<style>
-
-</style>

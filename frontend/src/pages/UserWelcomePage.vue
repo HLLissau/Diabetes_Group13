@@ -41,7 +41,7 @@ export default {
 </script>
 
 <style>
-.links .routerlink {
+/* .links .routerlink {
   color:orange;
   background-color: yellow;
   text-decoration: none;
@@ -50,7 +50,7 @@ export default {
   border-top: 3px solid transparent;
   padding: 10px 20px;
 
-}
+} */
 .chart {
   justify-content: flex-start;
   float: left;
@@ -58,10 +58,7 @@ export default {
   padding: 15px;
   background-color: rgb(128, 0, 255);
 }
-.welcome-wrap{
-  overflow: hidden;
-  widows: 50vw;
-}
+
 header {
   background-color: #222;
   padding: 15px;
