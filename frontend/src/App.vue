@@ -1,10 +1,11 @@
 <template>
   <div>
     <FrontPage/>
-</div>
+  </div>
 </template>
 
 <script>
+import './Styling/Global.css'
 //import WelcomePage from './pages/WelcomePage.vue'
 import FrontPage from './pages/FrontPage.vue'
 //import StatsPage from './pages/StatsPage.vue'
@@ -25,10 +26,3 @@ export default {
   }
 }
 </script>
-
-<style>
-#app {
-  font-family: sans-serif;
-  color: #2c3e50;
-}
-</style>

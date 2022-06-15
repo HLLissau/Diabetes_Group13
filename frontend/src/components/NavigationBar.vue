@@ -9,6 +9,7 @@
 </template>
 
 <script>
+import '../Styling/DropDownNavbarStyling.css'
 import dropDown from './DropDownMenu'
 export default {
     name: 'navigationBar',
@@ -81,7 +82,7 @@ export default {
     }
 }
 </script>
-
+<!--
 <style>
 nav {
   display: flex;
@@ -106,4 +107,4 @@ nav .menu-item a {
   color: inherit;
   text-decoration: none;
 }
-</style>
+</style>-->
