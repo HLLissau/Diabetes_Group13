@@ -7,16 +7,19 @@ nav.nav-menubar {
     position: fixed;
     z-index: 9999;
     width: 100%;
-    height: 4vh;
+    height: 10vh;
     top:0;
 }
 
 nav.nav-menubar .routerlink {
     float: left;
-    display: block;
+    display: flex;
     color: #ffffff;
     text-decoration: none;
-    padding: 0.5vh;
+    height: inherit;
+    padding: 0 2vw;
+    align-items: center;
+    font-size: xx-large;
 }
 
 nav.nav-menubar .routerlink:hover {

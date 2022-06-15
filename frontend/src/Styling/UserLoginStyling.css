@@ -1,0 +1,53 @@
+input.login-field {
+    height: 5vh;
+    width: 40vw;
+    border: 1px lightgray solid;
+    border-radius: 3px;
+    margin-bottom: 20px;
+    float: left;
+    font-size: xx-large;
+}
+
+div.wrap-login {
+    height: 90vh;
+   display: flex;
+   justify-content: center;
+   align-items:center;
+   flex-direction: column;
+   vertical-align: middle;
+   top:50%;
+   position: relative;
+}
+
+input.login-button, input.goback-button {
+    width: 40vw;
+    height: 10vh;
+    margin-bottom: 15px;
+    border: none;
+    border-radius: 3px;
+    color: #ffffff;
+    cursor: pointer;
+    font-size: xx-large;
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+}
+
+input.login-button {
+    background: #099e6d;
+}
+
+input.goback-button {
+    background: #940000;
+}
+
+input.goback-button:hover {
+    background: #c24a4a;
+}
+
+input.login-button:hover {
+    background: #0e963793;
+}
+
+label {
+    font-size: xx-large;
+}

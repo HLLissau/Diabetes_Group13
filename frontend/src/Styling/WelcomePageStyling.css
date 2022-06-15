@@ -1,0 +1,9 @@
+div#chart-welcomepage {
+    width: 80vw;
+    height: 80vh;
+    position:absolute;
+    top:10vh;
+    margin:0px auto;
+    left:0;
+    right:0;
+  }
