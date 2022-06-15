@@ -67,7 +67,25 @@ export default class Backend {
   }
 
   getUrlRecentBasal(){
-    return this.url + '/patient/' + 2 + '/getData/recent/basal'
+    return this.url + '/patient/' + this.UserId + '/getData/recent/basal'
+  }
+
+  getUrlRecentBolus(){
+    return this.url + '/patient/' + this.UserId + '/getData/recent/bolus'
+  }
+
+  getUrlRecentMeasurement(){
+    return this.url + '/patient/' + this.UserId + '/getData/recent/measurement'
+  }
+
+  
+  getUrlRecentMeals(){
+    return this.url + '/patient/' + this.UserId + '/getData/recent/meals'
+  }
+
+    
+  getUrlRecentExercise(){
+    return this.url + '/patient/' + this.UserId + '/getData/recent/exercise'
   }
 
 }

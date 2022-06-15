@@ -1,9 +1,8 @@
 <template>
-<div>
+<div class = "display">
     <div id="name"> {{this.observation[0]}}: </div>
     <span id="data"> {{this.observation[1]}} </span>
     <span id="time"> {{this.observation[2]}} </span>
-    <div> øhhhh </div>
 </div>
 </template>
 
@@ -11,10 +10,16 @@
 <script>
 export default {
   name: 'CurrentData',
-  props: 'observation',
+  props: ['observation'],
   data(){
+    return {
+
+    }
   },
   methods:{
+  },
+  created(){
+    console.log("created",this.observation)
   }
 }
 </script>
@@ -29,7 +34,7 @@ div#name {
 span#data {
     background-color: whitesmoke;
     padding: 2px;
-    width: 2vw;
+    width: 10vw;
 }
 span#time{
     color: red;
