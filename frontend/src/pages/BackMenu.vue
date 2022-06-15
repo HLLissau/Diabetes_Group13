@@ -22,15 +22,11 @@ export default {
   }
 }
 </script>
-
+<!--
 <style>
 .test {
   position: absolute;
   left: 100px;
 }
-.wrap {
-  width: 50vw;
-  padding: 15px;
-  background-color: aqua;
-}
-</style>
+
+</style>-->

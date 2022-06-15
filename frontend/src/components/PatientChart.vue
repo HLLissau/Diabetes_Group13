@@ -1,7 +1,5 @@
 <template>
-  <div>
     <canvas id="patient-chart"></canvas>
-  </div>
 </template>
 
 <script>
@@ -52,7 +50,7 @@ export default {
                 }
             }
           },
-          maintainAspectRatio: true,
+          maintainAspectRatio: false,
           elements: {
             point:{
               radius: 2,
@@ -80,6 +78,8 @@ export default {
                         labelString: 'value'
                     }
                 }],
+            height: 3000,
+            responsive: true
           }
         }
       }
@@ -199,3 +199,12 @@ export default {
 
 }
 </script>
+
+<style>
+
+#patient-chart {
+  min-height: 20vh;
+  max-height: 100vh;
+}
+
+</style>
