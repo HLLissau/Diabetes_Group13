@@ -88,6 +88,7 @@ public class MeasurementController {
 	}
 	// Average measurements for a user over each month within a time interval
 		@GetMapping("/api/v1/patient/{userId}/getData/average/allTime/{time}")
+					  
 		public ResponseEntity<List<Measurement>> findAvgByUserIdByTime(@PathVariable long userId, @PathVariable String time) {
 			List<Measurement> result =MeasurementRepository.findAvgByUserIdByTime(userId, time);
 			return ResponseEntity.ok(result);

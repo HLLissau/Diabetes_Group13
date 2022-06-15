@@ -71,9 +71,19 @@ public interface MeasurementRepository extends CrudRepository<Measurement,Long> 
 	List<Measurement> findAvgByUserIdByallTimebyTimeBetween(Long userId, String startDate, String endDate);
 	
 	
-	@Query(value ="SELECT concat(date(?2),concat(\" \" , time(time))) as time,user_id,avg(basal) as basal,avg(bolus) as bolus,device_id,avg(exercise) exercise,avg(meals) as meals,avg(measurement) as measurement "
-			+ " from measurement where user_id=?1  group by time(time)",
-		nativeQuery=true)
+	@Query(value ="Select concat(subdate(date(?2),1),concat(\" \" , time(time))) as time,user_id,avg(basal) as basal,avg(bolus) as bolus,device_id,avg(exercise) exercise,avg(meals) as meals,avg(measurement) as measurement"
+			+ " from measurement "
+			+ "	where user_id=?1"
+			+ "	AND time(time) > time(?2)"
+			+ "	group by time(time) "
+			+ "	Union"
+			+ "	Select concat(date(?2),concat(\" \" , time(time))) as time,user_id,avg(basal) as basal,avg(bolus) as bolus,device_id,avg(exercise) exercise,avg(meals) as meals,avg(measurement) as measurement "
+			+ " from measurement"
+			+ " where user_id=?1"
+			+ " AND time(time) < time(?2)"
+			+ " group by time(time)"
+			
+			,nativeQuery=true)
 	List<Measurement> findAvgByUserIdByTime(Long userId, String endDate);
 	
 	

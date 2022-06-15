@@ -57,10 +57,11 @@ export default {
           var data
           switch (choice) {
           case "Day": 
-                      data =this.$backend.getUrlAveragesByHour(before,after)
+                      data =this.$backend.getUrlAveragesByHour(after)
                       break
           case "Week": 
-                      data =this.$backend.getUrlByUserIdbyHourBetween(before,after)
+                                            data =this.$backend.getUrlAveragesByHour(after)
+
                       break
           case "Month": 
                       data =this.$backend.getUrlByUserIdbyDayBetween(before,after)
@@ -96,12 +97,12 @@ export default {
               bolus:data.bolus,
               basal:data.basal
             } 
-            console.log("payload time before:", payload.t) 
+            //console.log("payload time before:", payload.t) 
             var temptime = new Date(new Date(payload.t).setDate(29)) 
-            console.log("payload time middle:", temptime) 
+            //console.log("payload time middle:", temptime) 
             payload.t=temptime
-            console.log("payload time after:", payload.t) 
-            console.log("complete payload:", payload) 
+            //console.log("payload time after:", payload.t) 
+            //console.log("complete payload:", payload) 
             arr.push(payload) 
           });
         })
@@ -138,7 +139,7 @@ export default {
         var  myCurrentDate= new Date()
         if (this.testfunctions){
            myCurrentDate.setMonth(0)
-           myCurrentDate.setDate(29)
+           myCurrentDate.setDate(28)
            console.log("testdate:", myCurrentDate)
         }
 
@@ -173,6 +174,8 @@ export default {
             myCurrentDate =moment(String(myCurrentDate)).format('YYYY-MM-DD hh:mm:ss')
             myPastDate =moment(String(myPastDate)).format('YYYY-MM-DD hh:mm:ss')
             
+            console.log("Currentdate set to: ",myCurrentDate)
+            console.log("Pastdate set to: ",myPastDate)
           return [myPastDate,myCurrentDate]
     },
 
