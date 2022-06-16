@@ -16,7 +16,6 @@ nav .menu-item {
     transition: 0.4s;
     font-size: xx-large;
     height: inherit;
-    max-width: 20vw;
     align-items: center;
   }
 
@@ -33,7 +32,7 @@ nav .menu-item a {
 }
 
 img.settings-icon {
-  max-height: 80%;
+  max-height: 50%;
   max-width: 100%;
   object-fit: contain;
 }
