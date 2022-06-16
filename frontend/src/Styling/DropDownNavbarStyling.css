@@ -2,17 +2,22 @@ nav {
     display: flex;
     align-items: center;
     justify-content: center;
-    height:5vh;
+    height: inherit;
+    top: inherit;
 }
 
 nav .menu-item {
     color: #FFF;
-    padding: 0.5vh 1vh;
+    padding: 0 1vw;
     position: relative;
     text-align: center;
     border-bottom: 3px solid transparent;
     display: flex;
     transition: 0.4s;
+    font-size: xx-large;
+    height: inherit;
+    max-width: 20vw;
+    align-items: center;
   }
 
 nav .menu-item.active,
@@ -25,4 +30,10 @@ nav .menu-item:hover {
 nav .menu-item a {
   color: inherit;
   text-decoration: none;
+}
+
+img.settings-icon {
+  max-height: 80%;
+  max-width: 100%;
+  object-fit: contain;
 }

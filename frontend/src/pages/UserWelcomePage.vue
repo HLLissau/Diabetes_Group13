@@ -97,7 +97,7 @@ export default {
       
       //chart data
       this.axios
-        .get(this.$backend.getUrlRecentExercise())
+        .get(this.$backend.getUrlCriticalLevels())
         .then(res => {
           this.veryhigh = res.data[0]
           this.high = res.data[1]

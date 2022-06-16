@@ -199,12 +199,3 @@ export default {
 
 }
 </script>
-
-<style>
-
-#patient-chart {
-  min-height: 20vh;
-  max-height: 100vh;
-}
-
-</style>

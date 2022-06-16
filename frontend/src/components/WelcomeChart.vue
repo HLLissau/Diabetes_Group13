@@ -1,7 +1,5 @@
 <template>
-  <div>
     <canvas id="welcome-chart"></canvas>
-  </div>
 </template>
 
 <script>
@@ -76,6 +74,7 @@ export default {
                 },
             },
             responsive: true,
+            maintainAspectRatio: false,
             scales: {
                 xAxes: [{
                     stacked: true,

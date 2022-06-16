@@ -18,19 +18,3 @@ export default {
 
 
 </script>
-<!--
-<style>
-
-.chart {
-  justify-content: flex-start;
-  float: left;
-  width: 30vw;
-  padding: 15px;
-  background-color: rgb(128, 0, 255);
-}
-
-header {
-  background-color: #222;
-  padding: 15px;
-}
-</style>-->

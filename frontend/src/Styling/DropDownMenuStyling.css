@@ -4,8 +4,11 @@ div .menu-item svg {
 }
 div .menu-item .sub-menu {
   position: absolute;
+  display: flex;
+  justify-content:flex-start; 
+  flex-direction: column; 
   background-color: rgb(116, 113, 113);
-  top: 4vh;
+  top: 10vh;
   left: 50%;
   transform: translateX(-50%);
   width: 100%;

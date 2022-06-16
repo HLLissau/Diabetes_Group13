@@ -1,12 +1,15 @@
 <template>
    <div class="wrap">
 
-    <h1 v-if="!$route.meta.hideFrontPage">Welcome to group 13's project.</h1>
-     <div class="links">
+    <h1 class="h1menu" v-if="!$route.meta.hideFrontPage">
+      Welcome to the Diabetes App
+    </h1>
+
+     <div>
               <router-view :key="$route.path"></router-view>
-              <button v-if="!$route.meta.hideFrontPage" @click="$router.push('/pages/UserLogin')">Login as user</button>
-              <button v-if="!$route.meta.hideFrontPage" @click="$router.push('/pages/DoctorLogin')">Login as doctor</button>
-              <button v-if="!$route.meta.hideFrontPage" @click="$router.push('/pages/CreateNewAccount')">Create new account</button>
+              <div v-if="!$route.meta.hideFrontPage" class="login-button"><button @click="$router.push('/pages/UserLogin')"><h1>User Login</h1></button></div>
+              <div v-if="!$route.meta.hideFrontPage" class="login-button"><button @click="$router.push('/pages/DoctorLogin')"><h1>Doctor Login</h1></button> </div>
+              <div v-if="!$route.meta.hideFrontPage" class="login-button"><button @click="$router.push('/pages/CreateNewAccount')"><h1>Create New Account</h1></button> </div>
       
       
     </div>
@@ -15,6 +18,7 @@
 
 
 <script>
+import '../Styling/MenuPageStyling.css'
 export default {
   name: 'MenuPage',
   components: {
