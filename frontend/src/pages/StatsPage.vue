@@ -187,7 +187,7 @@ export default {
                       break
           
           case "Year": 
-                      data =this.$backend.getUrlByUserIdbyDayBetween(before,after)
+                      data =this.$backend.getUrlByUserIdbyWeekBetween(before,after)
                       break
           case "All time": 
                       data =this.$backend.getUrlByUserIdbyDayBetween(before,after)

@@ -1,5 +1,7 @@
+import moment from 'moment'
+  
 export default class Backend {
-
+  
   constructor() {
     this.url = "http://localhost:8080/api/v1"
     this.UserId = 0
@@ -56,6 +58,10 @@ export default class Backend {
     var link =this.url + "/patient/" + this.UserId + "/getData/average/byDay/" + after + "/" + before
     return link
   }
+  getUrlByUserIdbyWeekBetween(after,before) {
+    var link =this.url + "/patient/" + this.UserId + "/getData/average/byWeek/" + after + "/" + before
+    return link
+  }
   getUrlLoginUser(){
     var link = this.url + "/login/loginUser"
     return link
@@ -110,8 +116,54 @@ export default class Backend {
 
   }
 
-  getUrlCriticalLevels(after,before){
-    return this.url + '/patient/' + this.UserId + '/getData/criticalLevels/' + after + '/' + before
+  getUrlCriticalLevels(date){
+    return this.url + '/patient/' + this.UserId + '/getData/criticalLevels/' + date
   }
+
+
+  
+  getDatesFromChoice(choice_from_child){
+    var  myCurrentDate= new Date()
+    if (this.testfunctions){
+       myCurrentDate.setMonth(0)
+       myCurrentDate.setDate(28)
+       console.log("testdate:", myCurrentDate)
+    }
+
+
+    var myPastDate=new Date(myCurrentDate);
+      switch (choice_from_child) {
+        case "Day": 
+                  myPastDate.setDate(myPastDate.getDate() - 1)  //myPastDate is now 8 days in the past
+                   break
+        case "Week":
+                 myPastDate.setDate(myPastDate.getDate() - 7)  //myPastDate is now 8 days in the past
+                   break
+        case "Month":
+                  if (this.testfunctions) console.log("getMonth")   
+                 myPastDate.setMonth(myPastDate.getMonth() - 1)  //myPastDate is now 8 days in the past
+                   break
+        case "Year":      
+                  
+                 if (this.testfunctions) console.log("getyear")  
+                      
+                 myPastDate.setFullYear(myPastDate.getFullYear() - 1)  //myPastDate is now 8 days in the past
+                   break
+        case "All time":
+                 myPastDate.setDate(myPastDate.getDate() - 2000)  //myPastDate is now 8 days in the past
+                   break
+                   
+          
+      }
+       
+     
+      
+        myCurrentDate =moment(String(myCurrentDate)).format('YYYY-MM-DD hh:mm:ss')
+        myPastDate =moment(String(myPastDate)).format('YYYY-MM-DD hh:mm:ss')
+        
+        console.log("Currentdate set to: ",myCurrentDate)
+        console.log("Pastdate set to: ",myPastDate)
+      return [myPastDate,myCurrentDate]
+}
 
 }

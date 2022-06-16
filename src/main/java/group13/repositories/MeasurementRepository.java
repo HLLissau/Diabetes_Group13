@@ -88,38 +88,59 @@ public interface MeasurementRepository extends CrudRepository<Measurement,Long> 
 	List<Measurement> findAvgByUserIdForDay(Long userId, String endDate);
 	
 	
-	@Query(value ="call getAvgByWeek(?1,?2)"
+	@Query(value =
+			"call getAvgByWeek(?1,?2)"
+			
 					,nativeQuery=true)
 	List<Measurement> findAvgByUserIdForWeek(Long userId, String endDate);
 	
 	
 	
 	
-	@Query(value ="call getAvgByMonth(?1,?2)"
-			//" select  CASE"
-//			+ "			WHEN  time > ?2"
-//			+ "	        THEN inner1.time  - INTERVAL 1 Month"
-//			+ "	        ELSE inner1.time"
-//			+ "		END  as time,"
-//			+ "		inner1.user_id,inner1.basal,inner1.bolus,inner1.device_id,inner1.exercise,inner1.meals,inner1.measurement from ("
-//			+ "		-- get all averages grouped by weekday and time. moved forward in time"
-//			+ "			SELECT subdate(time,("
-//			+ "				 SELECT datediff(time,?2) from measurement"
-//			+ "				 WHERE user_id=?1"
-//			+ "				 AND day(time)=day(?2)"
-//			+ "				 GROUP BY day(time)"
-//			+ "	        )) as time "
-//			+ "			,user_id,avg(basal) as basal,avg(bolus) as bolus,device_id,avg(exercise) exercise,avg(meals) as meals,avg(measurement) as measurement "
-//			+ "			FROM measurement"
-//			+ "			WHERE user_id=?1"
-//			+ "			GROUP BY day(time) "
-//			+ "			) inner1"
-//			+ "		ORDER BY time"
+	@Query(value =//"call getAvgByMonth(?1,?2)"
+			  " select  CASE "
+			+ "			WHEN  time > ?2 "
+			+ "	        THEN inner1.time  - INTERVAL 1 Month"
+			+ "	        ELSE inner1.time"
+			+ "		END  as time,"
+			+ "		inner1.user_id,inner1.basal,inner1.bolus,inner1.device_id,inner1.exercise,inner1.meals,inner1.measurement from ("
+			+ "			SELECT subdate(time,("
+			+ "				 SELECT datediff(time, ?2 ) from measurement"
+			+ "				 WHERE user_id= ?1 "
+			+ "				 AND day(time)=day( ?2 )"
+			+ "				 GROUP BY day(time)"
+			+ "	        )) as time "
+			+ "			,user_id,avg(basal) as basal,avg(bolus) as bolus,device_id,avg(exercise) exercise,avg(meals) as meals,avg(measurement) as measurement "
+			+ "			FROM measurement"
+			+ "			WHERE user_id= ?1 "
+			+ "			GROUP BY day(time) "
+			+ "			) inner1"
+			+ "		ORDER BY time"
 			,nativeQuery=true)
 	
-	List<Measurement> findAvgByUserIdForMonth(Long userId, String endDate);
+	List<Measurement> findAvgByUserIdForMonth(Long userId,String Date);
 
-	@Query(value ="call getAvgByYear(?1,?2)"
+	@Query(value = //"call getAvgByYear(?1,?2)"
+			  " select  CASE"
+			+ "			WHEN  time > ?2"
+			+ "	        THEN (inner1.time  - INTERVAL 1 Year - interval weekday( ?2 ) day)"
+			+ "	        ELSE (inner1.time- INTERVAL weekday( ?2 ) day)"
+			+ "		END  as time,"
+			+ "		inner1.user_id,inner1.basal,inner1.bolus,inner1.device_id,inner1.exercise,inner1.meals,inner1.measurement from ("
+			+ "			select time - INTERVAL"
+			+ "				 (select datediff(time,?2) from measurement"
+			+ "				 where user_id=?1"
+			+ "	             AND Month(time)= MONTH(?2)"
+			+ "				 And WEEK(time)=WEEK(?2)"
+			+ "				 group by WEEK(time) "
+			+ "	        ) DAY  as time "
+			+ "	,user_id,avg(basal) as basal,avg(bolus) as bolus,device_id,avg(exercise) exercise,avg(meals) as meals,avg(measurement) as measurement"
+			+ " from measurement"
+			+ "	where user_id=?1"
+			+ "			group by WEEK(time) "
+			+ "			) inner1"
+			+  "	order By time "
+	   	
 			,nativeQuery=true)
 	List<Measurement> findAvgByUserIdForYear(Long userId, String endDate);
 

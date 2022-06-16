@@ -12,7 +12,7 @@
     </div>
 
     <div id="chart">
-      <WelcomeChart :veryhigh = "this.veryhigh" :high = "this.high" :target = "this.target" :low = "this.low" :verylow = "this.verylow"/>
+      <!-- <WelcomeChart :veryhigh = "this.veryhigh" :high = "this.high" :target = "this.target" :low = "this.low" :verylow = "this.verylow"/> -->
       <CurrentData :observation = "this.basal"/>
       <CurrentData :observation = "this.bolus"/>
       <CurrentData :observation = "this.measurement"/>
@@ -96,8 +96,13 @@ export default {
         })
       
       //chart data
+        var  myCurrentDate= new Date()
+        
+           myCurrentDate.setMonth(0)
+           myCurrentDate.setDate(28)
+
       this.axios
-        .get(this.$backend.getUrlCriticalLevels())
+        .get(this.$backend.getUrlCriticalLevels(myCurrentDate))
         .then(res => {
           this.veryhigh = res.data[0]
           this.high = res.data[1]
@@ -105,6 +110,7 @@ export default {
           this.low = res.data[3]
           this.verylow = res.data[4]
         })
+
     }
   },
   created(){
