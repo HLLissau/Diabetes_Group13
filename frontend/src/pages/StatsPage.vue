@@ -65,7 +65,7 @@ export default {
 
                       break
           case "Month": 
-                      data =this.$backend.getUrlByUserIdbyDayBetween(before,after)
+                      data =this.$backend.getUrlAverageForMonth(after)
                       break
           
           case "Year": 
