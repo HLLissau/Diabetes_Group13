@@ -92,6 +92,19 @@ public class MeasurementController {
 				endDate);
 		return ResponseEntity.ok(result);
 	}
+	
+	/*****************************************************************
+	 * GETTING VERY HIGH / HIGH / TARGET / LOW / VERY LOW PERCENTAGES*
+	 *****************************************************************/
+	
+	@GetMapping("/api/v1/patient/{userId}/getData/criticalLevels/{startDate}/{endDate}")
+	public ResponseEntity<Object> getPercentages(@PathVariable long userId, @PathVariable String startDate,
+			@PathVariable String endDate) {
+		Object result = MeasurementRepository.getPercentageQuery(userId, startDate,
+				endDate);
+		return ResponseEntity.ok(result);
+	}
+	
 
 	/********************
 	 * GETTING RECENTS *
