@@ -9,6 +9,7 @@ import Chart from 'chart.js'
 
 export default {
     name: 'WelcomeChart',
+    props: ['veryhigh','high','target','low','verylow'],
     data() { 
     return {
     current: {
@@ -40,27 +41,27 @@ export default {
         datasets: [
         {
             label: 'Very low',
-            data: [26],
+            data: [this.verylow],
             backgroundColor:'rgb(235, 23, 0)'
         },
         {
             label: 'Low',
-            data: [26],
+            data: [this.low],
             backgroundColor: 'rgb(255, 239, 0)'
         },
         {
             label: 'Target',
-            data: [85],
+            data: [this.target],
             backgroundColor: 'rgb(0, 182, 55)'
         },
         {
             label: 'High',
-            data: [60],
+            data: [this.high],
             backgroundColor: 'rgb(255, 239, 0)'
         },
         {
             label: 'Very high',
-            data: [26],
+            data: [this.veryhigh],
             backgroundColor:'rgb(235, 23, 0)'
         }
         ]},

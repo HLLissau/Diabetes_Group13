@@ -98,4 +98,8 @@ export default class Backend {
 
   }
 
+  getUrlCriticalLevels(after,before){
+    return this.url + '/patient/' + this.UserId + '/getData/criticalLevels/' + after + '/' + before
+  }
+
 }

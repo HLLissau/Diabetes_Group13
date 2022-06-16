@@ -12,7 +12,7 @@
     </div>
 
     <div id="chart">
-      <WelcomeChart/>
+      <WelcomeChart :veryhigh = "this.veryhigh" :high = "this.high" :target = "this.target" :low = "this.low" :verylow = "this.verylow"/>
       <CurrentData :observation = "this.basal"/>
       <CurrentData :observation = "this.bolus"/>
       <CurrentData :observation = "this.measurement"/>
@@ -44,7 +44,12 @@ export default {
         bolus: ['bolus'],
         measurement: ['measurement'],
         meals: ['meals'],
-        exercise: ['exercise']
+        exercise: ['exercise'],
+        veryhigh: '',
+        high: '',
+        target: '',
+        low: '',
+        verylow: ''
 
     }
   },
@@ -88,6 +93,17 @@ export default {
         .then(res => {
           this.exercise.push(res.data[0])
           this.exercise.push(res.data[1])
+        })
+      
+      //chart data
+      this.axios
+        .get(this.$backend.getUrlRecentExercise())
+        .then(res => {
+          this.veryhigh = res.data[0]
+          this.high = res.data[1]
+          this.target = res.data[2]
+          this.low = res.data[3]
+          this.verylow = res.data[4]
         })
     }
   },
