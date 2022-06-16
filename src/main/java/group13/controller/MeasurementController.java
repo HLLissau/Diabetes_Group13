@@ -93,18 +93,6 @@ public class MeasurementController {
 		return ResponseEntity.ok(result);
 	}
 	
-	/*****************************************************************
-	 * GETTING VERY HIGH / HIGH / TARGET / LOW / VERY LOW PERCENTAGES*
-	 *****************************************************************/
-	
-	@GetMapping("/api/v1/patient/{userId}/getData/criticalLevels/{startDate}/{endDate}")
-	public ResponseEntity<Object> getPercentages(@PathVariable long userId, @PathVariable String startDate,
-			@PathVariable String endDate) {
-		Object result = MeasurementRepository.getPercentageQuery(userId, startDate,
-				endDate);
-		return ResponseEntity.ok(result);
-	}
-	
 
 	/********************
 	 * GETTING RECENTS *
@@ -160,6 +148,20 @@ public class MeasurementController {
 		Object result = MeasurementRepository.findLatestExercise(userId);
 		return ResponseEntity.ok(result);
 	}
+	
+	/*****************************************************************
+	 * GETTING VERY HIGH / HIGH / TARGET / LOW / VERY LOW PERCENTAGES*
+	 *****************************************************************/
+	
+	// Critical values
+	@GetMapping("/api/v1/patient/{userId}/getData/criticalLevels/{date}")
+	public ResponseEntity<Object> criticalLevels(@PathVariable long userId, @PathVariable String date) {
+		Object result = MeasurementRepository.getPercentageQuery(userId, date);
+		return ResponseEntity.ok(result);
+	}
+
+	
+	
 
 
 }
