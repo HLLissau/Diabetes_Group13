@@ -92,8 +92,44 @@ public interface MeasurementRepository extends CrudRepository<Measurement,Long> 
 					,nativeQuery=true)
 	List<Measurement> findAvgByUserIdForWeek(Long userId, String endDate);
 	
-    
+	
+	
+	
+	@Query(value ="call getAvgByMonth(?1,?2)"
+			//" select  CASE"
+//			+ "			WHEN  time > ?2"
+//			+ "	        THEN inner1.time  - INTERVAL 1 Month"
+//			+ "	        ELSE inner1.time"
+//			+ "		END  as time,"
+//			+ "		inner1.user_id,inner1.basal,inner1.bolus,inner1.device_id,inner1.exercise,inner1.meals,inner1.measurement from ("
+//			+ "		-- get all averages grouped by weekday and time. moved forward in time"
+//			+ "			SELECT subdate(time,("
+//			+ "				 SELECT datediff(time,?2) from measurement"
+//			+ "				 WHERE user_id=?1"
+//			+ "				 AND day(time)=day(?2)"
+//			+ "				 GROUP BY day(time)"
+//			+ "	        )) as time "
+//			+ "			,user_id,avg(basal) as basal,avg(bolus) as bolus,device_id,avg(exercise) exercise,avg(meals) as meals,avg(measurement) as measurement "
+//			+ "			FROM measurement"
+//			+ "			WHERE user_id=?1"
+//			+ "			GROUP BY day(time) "
+//			+ "			) inner1"
+//			+ "		ORDER BY time"
+			,nativeQuery=true)
+	
+	List<Measurement> findAvgByUserIdForMonth(Long userId, String endDate);
 
+	@Query(value ="call getAvgByYear(?1,?2)"
+			,nativeQuery=true)
+	List<Measurement> findAvgByUserIdForYear(Long userId, String endDate);
+
+
+	@Query(value ="call getAvgByAllTime(?1,?2)"
+			,nativeQuery=true)
+	List<Measurement> findAvgByUserIdForAllTime(Long userId, String endDate);
+
+	
+	// get latest measurements for user. 
 	@Query(value = "(select bolus,time from measurement where user_id = ?1"
 			+ "   AND time = (select max(time) as time from measurement"
 			+ " where user_id =?1 AND Bolus!=0))"
