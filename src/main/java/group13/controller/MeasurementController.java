@@ -118,6 +118,10 @@ public class MeasurementController {
 		return ResponseEntity.ok(result);
 	}
 
+	/* 
+	 * The following Api's are used to generate averages used in statspage
+	 */
+	
 	// Average measurements for a user grouped by time, over last 24 hours from time
 		@GetMapping("/api/v1/patient/{userId}/getData/average/ForDay/{time}")
 					  
@@ -131,18 +135,29 @@ public class MeasurementController {
 		public ResponseEntity<List<Measurement>> findAvgByUserIdForWeek(@PathVariable long userId, @PathVariable String time) {
 			System.out.println(time);
 			List<Measurement> result =MeasurementRepository.findAvgByUserIdForWeek(userId, time);
-			
 			return ResponseEntity.ok(result);
 		}
-		// Average measurements for a user grouped by hour, over last 7 days from time
+		// Average measurements for a user grouped by Day, over last  month from time
 				@GetMapping("/api/v1/patient/{userId}/getData/average/ForMonth/{time}")
 				public ResponseEntity<List<Measurement>> findAvgByUserIdForMonth(@PathVariable long userId, @PathVariable String time) {
-					System.out.println("ids"+ time+" ,userid"+userId);
 					List<Measurement> result =MeasurementRepository.findAvgByUserIdForMonth(userId, time);
-					
 					return ResponseEntity.ok(result);
-				}
+		}
+				// Average measurements for a user grouped by Week, over last  Year from time
+				@GetMapping("/api/v1/patient/{userId}/getData/average/ForYear/{time}")
+				public ResponseEntity<List<Measurement>> findAvgByUserIdForYear(@PathVariable long userId, @PathVariable String time) {
+					List<Measurement> result =MeasurementRepository.findAvgByUserIdForYear(userId, time);
+					return ResponseEntity.ok(result);
+		}
+				// Average measurements for a user grouped by Month, over All Time from time
+				@GetMapping("/api/v1/patient/{userId}/getData/average/ForAllTime/{time}")
+				public ResponseEntity<List<Measurement>> findAvgByUserIdForAllTime(@PathVariable long userId, @PathVariable String time) {
+					List<Measurement> result =MeasurementRepository.findAvgByUserIdForAllTime(userId, time);
+					return ResponseEntity.ok(result);
+		}
 	
+				
+				
 	// Most recent meals measurement and its time
 	@GetMapping("/api/v1/patient/{userId}/getData/recent/meals")
 	public ResponseEntity<Object> recentMeals(@PathVariable long userId) {

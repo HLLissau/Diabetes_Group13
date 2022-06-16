@@ -75,8 +75,10 @@ export default {
             this.updateChoice(this.average)
             console.log("button average",this.average)
         },
-        created(){
+        mounted(){
             this.average = false
+            this.interval = 'Day'
+        
         }
 
     }

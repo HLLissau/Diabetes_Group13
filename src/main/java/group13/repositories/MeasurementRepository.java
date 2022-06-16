@@ -119,8 +119,15 @@ public interface MeasurementRepository extends CrudRepository<Measurement,Long> 
 	
 	List<Measurement> findAvgByUserIdForMonth(Long userId, String endDate);
 
-	
-	
+	@Query(value ="call getAvgByYear(?1,?2)"
+			,nativeQuery=true)
+	List<Measurement> findAvgByUserIdForYear(Long userId, String endDate);
+
+
+	@Query(value ="call getAvgByAllTime(?1,?2)"
+			,nativeQuery=true)
+	List<Measurement> findAvgByUserIdForAllTime(Long userId, String endDate);
+
 	
 	// get latest measurements for user. 
 	@Query(value = "(select bolus,time from measurement where user_id = ?1"

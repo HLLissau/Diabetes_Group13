@@ -44,17 +44,9 @@ export default {
     }
   },
   methods: {
-    testfunctions: true,
-    refresh() {
-      this.axios
-        .get(this.$backend.getUrlUsers())
-        .then(res => {
-          this.hospitals = res.data
-          //router.push({ name: 'ListHospitals' })
-        })
-    },
+   
 
-    pullAverage(before,after,choice){
+    pullAverage(after,choice){
           var data
           switch (choice) {
           case "Day": 
@@ -69,10 +61,10 @@ export default {
                       break
           
           case "Year": 
-                      data =this.$backend.getUrlByUserIdbyDayBetween(before,after)
+                      data =this.$backend.getUrlAverageForYear(after)
                       break
           case "All time": 
-                      data =this.$backend.getUrlByUserIdbyDayBetween(before,after)
+                      data =this.$backend.getUrlAverageForAllTime(after)
                       break
           
           
@@ -99,9 +91,9 @@ export default {
               basal:data.basal
             } 
             //console.log("payload time before:", payload.t) 
-            var temptime = new Date(new Date(payload.t).setDate(29)) 
+            //var temptime = new Date(new Date(payload.t).setDate(29)) 
             //console.log("payload time middle:", temptime) 
-            payload.t=temptime
+            //payload.t=temptime
             //console.log("payload time after:", payload.t) 
             //console.log("complete payload:", payload) 
             arr.push(payload) 
@@ -110,7 +102,7 @@ export default {
         this.backendAverage = arr
 
         console.log("pullaverage",this.backendAverage)
-        this.backendAverage
+        //this.backendAverage
     },
     
     updateChoice(choice_from_child){
@@ -122,7 +114,7 @@ export default {
         //console.log("updateChoice", choice_from_child)
         }
 
-        if (interval.includes(choice_from_child)) { 
+        else if (interval.includes(choice_from_child)) { 
           var dates =this.getDatesFromChoice(choice_from_child)
           
           this.pullChartData(dates[0],dates[1],choice_from_child)
@@ -182,7 +174,7 @@ export default {
 
     pullChartData(before,after,choice){
     var data = []
-    //var average = []
+    console.log("chart date choice", choice)
     switch (choice) {
           case "Day": 
                       data =this.$backend.getUrlByInterval(before,after) 
@@ -221,10 +213,9 @@ export default {
             arr.push(payload) 
           });
         })
-        this.pullAverage(before,after,choice)
-
-        this.backendData = arr
-
+    this.backendData = arr
+    this.pullAverage(after,choice)
+    
         
         
   }
@@ -234,18 +225,20 @@ export default {
   },
   mounted() {
     if (this.testfunctions){ console.log("parentmount")}
-    this.refresh()
+    var dates = this.getDatesFromChoice("Day")
+    this.pullChartData(dates[0],dates[1],"Day")
+
     
   },
   created(){
     this.testfunctions = true
-
-    this.pullChartData("2020-01-08 00:00:00","2022-01-08 00:00:00","Day")
-
-    this.pullAverage("2020-01-08 00:00:00","2022-01-08 00:00:00","Day")
     this.updateChoice("measurement")
 
-    this.componentKey += 1;
+
+    
+    //this.pullAverage("2020-01-08 00:00:00","2022-01-08 00:00:00","Day")
+    
+    //this.componentKey += 1;
         
   },
 }

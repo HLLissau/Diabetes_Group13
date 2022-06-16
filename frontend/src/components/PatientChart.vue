@@ -154,6 +154,7 @@ export default {
 
           console.log("chartAverage",this.propAverage)
           this.planetChartData.data.datasets[1].hidden = !this.propAverage
+          
           if (this.propAverage){
             this.legend = ""
           }
