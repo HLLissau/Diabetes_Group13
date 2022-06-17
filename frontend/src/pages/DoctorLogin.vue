@@ -12,7 +12,7 @@
      -->
      
         <div>
-        <input v-model="UserId" id="username" name="username" placeholder="doctor id" >
+        <input v-model="doctorId" id="doctorusername" name="doctorusername" placeholder="doctor id" >
 </div>
 
 <div>

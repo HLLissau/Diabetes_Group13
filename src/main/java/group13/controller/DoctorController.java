@@ -1,6 +1,7 @@
 package group13.controller;
 
 import java.util.List;
+
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,7 +47,21 @@ public class DoctorController {
 			return ResponseEntity.notFound().build();
 		}
 		return ResponseEntity.ok(d.get());
+		
 	}
+	//login doctor
+		@GetMapping("/api/v1/login/loginDoctor/{id}/{password}")
+		public ResponseEntity<Doctor> loginDoctor(@PathVariable Long id,@PathVariable String password){
+			
+			//System.out.println("userid: "+ userId + ". password: " + password);
+					
+			Optional<Doctor> p = doctorRepository.loginDoctor(id,password);
+			if (!p.isPresent()) {
+				return ResponseEntity.notFound().build();
+			}
+			return ResponseEntity.ok(p.get());
+			
+		}
 //
 //	// delete doctor
 //	@DeleteMapping("/api/v1/login/delete/{patientId}")
