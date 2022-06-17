@@ -12,4 +12,4 @@ app.use(router)
 app.config.globalProperties.axios = axios
 app.config.globalProperties.$backend = new Backend()
 app.mount('#app')
-app.router.push('/')
+router.push('/')

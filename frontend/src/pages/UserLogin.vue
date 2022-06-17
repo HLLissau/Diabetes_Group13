@@ -45,15 +45,11 @@ data(){
    methods: {
      
     
-
-  
-
-
     tryLogIn(id,password){
       
       this.$backend.setUserId(id)  
       this.$backend.setUserpassword(password)
-      var link =this.$backend.getUrlLoginUser()
+      var link =this.$backend.getUrlCreateNewUserAccount()
       this.loginerror=true
       
       console.log("exists?" ,this.value);

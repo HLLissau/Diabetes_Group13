@@ -25,9 +25,8 @@ public class UserController {
 
 	@Autowired
 	private UserRepository repository;
-	
 	// create user
-	@PostMapping("/api/v1/login/create/user")
+	@PostMapping("/api/v1/patient/create")
 	public ResponseEntity<Users> create(@RequestBody Users user) {
 		return ResponseEntity.ok(repository.save(user));
 	}

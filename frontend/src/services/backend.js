@@ -4,8 +4,12 @@ export default class Backend {
   
   constructor() {
     this.url = "http://localhost:8080/api/v1"
+    
     this.UserId = 0
+    this.userName = ""
     this.password = ""
+    this.email = ""
+
 
   }
 
@@ -18,6 +22,18 @@ export default class Backend {
   }
   setUserId(UserId) {
      this.UserId = UserId
+  }
+  getUserName() {
+    return this.UserName
+  }
+  setUserName(UserName) {
+     this.UserName = UserName
+  }
+  getUserEmail() {
+    return this.email
+  }
+  setUserEmail(email) {
+     this.email = email
   }
   getUserpassword() {
     return this.password
@@ -64,6 +80,10 @@ export default class Backend {
   }
   getUrlLoginUser(){
     var link = this.url + "/login/loginUser"
+    return link
+  }
+  getUrlCreateUserAccount(){
+    var link = this.url + "/patient/create"
     return link
   }
 
