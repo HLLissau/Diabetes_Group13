@@ -10,13 +10,13 @@
         <button @click="tryLogIn(UserId,password)">Login</button>
         <button @click="$router.go(-1)">Go Back</button>
      --><label>User ID</label>
-       <input class="login-field" v-model="UserId" id="username" name="username" placeholder="user id" >
+       <input class="login-field" v-model="UserId" id="username" name="username"  placeholder="user id"  v-on:keyup.enter="tryLogIn(UserId,password)" >
       <label>Password</label>
-      <input class="login-field" type="password" v-model="password" placeholder = "password (minimum 4 characters)"
+      <input class="login-field" type="password" v-model="password"  v-on:keyup.enter="tryLogIn(UserId,password)" placeholder = "password (minimum 4 characters)"
            minlength="4" required>
         
 
-     <input class="login-button" type="submit"  @click="tryLogIn(UserId,password)" value="Sign In">
+     <input class="login-button" type="submit"  @click="tryLogIn(UserId,password)" value="Sign In"  >
      <input class="goback-button" type="submit"  @click="$router.push('/pages/MenuPage')" value="Go Back">
 
     
@@ -27,7 +27,9 @@
 
 <script>
 import '../Styling/UserLoginStyling.css'
+
 export default {
+  
 data(){
     return {
         UserId: "1",
@@ -41,7 +43,7 @@ data(){
     
   },
    methods: {
-    
+     
     
 
   

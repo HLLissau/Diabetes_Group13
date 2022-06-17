@@ -181,11 +181,11 @@ public interface MeasurementRepository extends CrudRepository<Measurement,Long> 
             ,nativeQuery=true)
     Object findLatestExercise(Long userId);
 
-    @Query(value = "select 100*(SUM(IF(measurement>13.88, 1, 0))/COUNT(measurement)) as VeryHigh,"
-    		+ " 100*(SUM(IF(10<measurement and measurement<13.88, 1, 0))/COUNT(measurement)) as High,"
-    		+ " 100*(SUM(IF(3.88<measurement and measurement<10, 1, 0))/COUNT(measurement)) as Target,"
-    		+ " 100*(SUM(IF(3<measurement and measurement<3.88, 1, 0))/COUNT(measurement)) as Low,"
-    		+ " 100*(SUM(IF(measurement<3, 1, 0))/COUNT(measurement)) as VeryLow "
+    @Query(value = "select 100*(count(measurement>13.88)/COUNT(measurement)) as VeryHigh,"
+    		+ " 100*(count(10<measurement and measurement<13.88)/COUNT(measurement)) as High,"
+    		+ " 100*(count(3.88<measurement and measurement<10)/COUNT(measurement)) as Target,"
+    		+ " 100*(count(3<measurement and measurement<3.88)/COUNT(measurement)) as Low,"
+    		+ " 100*(count(measurement<3)/COUNT(measurement)) as VeryLow "
     		+ " from measurement where user_Id= ?1 "
     		+ " And time BETWEEN ?2 -interval 1 day AND ?2 "
 	, nativeQuery=true)
