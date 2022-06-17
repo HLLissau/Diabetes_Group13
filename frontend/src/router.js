@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
 import StatsPage from './pages/StatsPage.vue'
+import MenuPage from './pages/MenuPage.vue'
 import TestPage from './pages/TestPage.vue'
 import UserLogin from './pages/UserLogin.vue'
 import DoctorLogin from './pages/DoctorLogin.vue'
@@ -36,12 +37,31 @@ const routes = [
   path: '/pages/CreateNewAccount',
   component: CreateNewAccount,
   name: 'CreateNewAccount',
+  meta: {showCreateMenu:true, hideFrontPage: true }
+},
+{
+  path: '/pages/CreateNewUserAccount',
+  component: CreateNewAccount,
+  name: 'CreateNewUserAccount',
+  meta: { hideFrontPage: true }
+},
+{
+  path: '/pages/CreateNewDoctorAccount',
+  component: CreateNewAccount,
+  name: 'CreateNewDoctorAccount',
   meta: { hideFrontPage: true }
 },
 {
   path: '/pages/FrontPage',
   component: FrontPage,
   name: 'FrontPage',
+  meta: { hideFrontPage: false }
+},
+{
+  path: '/pages/MenuPage',
+  component: MenuPage,
+  name: 'MenuPage',
+  meta: { hideFrontPage: true }
 },
 {
   path: '/pages/UserWelcomePage',
