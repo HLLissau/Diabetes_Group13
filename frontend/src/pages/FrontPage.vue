@@ -1,6 +1,5 @@
 <template>
    <div class="wrap">
-  
       <MenuPage/>
     
   </div>
