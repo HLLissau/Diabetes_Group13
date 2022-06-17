@@ -1,6 +1,5 @@
 <template>
    <div class="wrap">
-  <router-view :key="$route.path"></router-view>
       <MenuPage/>
     
   </div>

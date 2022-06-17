@@ -4,7 +4,6 @@
     <div class="links">
       
     </div>
-    <router-view :key="$route.path"></router-view>
   
 
     <div id="menubar">
