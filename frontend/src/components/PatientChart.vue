@@ -24,14 +24,6 @@ export default {
         data: {
           datasets: [
             {
-              label: '',
-              data: [],
-              backgroundColor: 'rgba(12,15,166,0.4)',
-              borderColor: 'rgb(78,67,190,1)',
-              showLine: true
-              
-            },
-            {
               label: 'average',
               data: [],
               backgroundColor: 'rgba(12,15,166,0)',
@@ -39,7 +31,15 @@ export default {
               showLine: true,
               hidden: true
               
-            }
+            },
+            {
+              label: '',
+              data: [],
+              backgroundColor: 'rgba(12,15,166,0.4)',
+              borderColor: 'rgb(78,67,190,1)',
+              showLine: true
+              
+            },
           ]
         },
         options: {
@@ -93,7 +93,7 @@ export default {
     },
      
     updateTable(choice){
-    this.planetChartData.data.datasets[0].label=choice
+    this.planetChartData.data.datasets[1].label=choice
     //console.log("PatientChart-updateTable",this.propData)
     //console.log("PatientChart-updateTable2",this.planetChartData.data.datasets[0].label)
     var overTime = []
@@ -146,14 +146,14 @@ export default {
       
           
           //this.chosenData = overTime
-          this.planetChartData.data.datasets[0].data=overTime
-          this.planetChartData.data.datasets[1].data=averageSpan
+          this.planetChartData.data.datasets[1].data=overTime
+          this.planetChartData.data.datasets[0].data=averageSpan
 
           //console.log("updateTable(done)",this.planetChartData.data.datasets[0].data)
           this.planetChartData
 
           console.log("chartAverage",this.propAverage)
-          this.planetChartData.data.datasets[1].hidden = !this.propAverage
+          this.planetChartData.data.datasets[0].hidden = !this.propAverage
           
           if (this.propAverage){
             this.legend = ""
