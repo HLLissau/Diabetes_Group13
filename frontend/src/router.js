@@ -43,25 +43,31 @@ const routes = [
   path: '/pages/CreateNewUserAccount',
   component: CreateNewAccount,
   name: 'CreateNewUserAccount',
-  meta: { hideFrontPage: true }
+  meta: { }
 },
 {
   path: '/pages/CreateNewDoctorAccount',
   component: CreateNewAccount,
   name: 'CreateNewDoctorAccount',
-  meta: { hideFrontPage: true }
+  meta: { }
 },
 {
   path: '/pages/FrontPage',
   component: FrontPage,
   name: 'FrontPage',
-  meta: { hideFrontPage: false }
+  meta: { }
 },
 {
   path: '/pages/MenuPage',
   component: MenuPage,
   name: 'MenuPage',
-  meta: { hideFrontPage: true }
+  meta: { showFrontPage: true }
+},
+{
+  path: '/',
+  component: MenuPage,
+  name: '/',
+  meta: { showFrontPage: true }
 },
 {
   path: '/pages/UserWelcomePage',

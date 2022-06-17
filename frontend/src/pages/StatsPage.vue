@@ -7,7 +7,6 @@
     <div class="header">
       <navigationBar v-on:child-choice="updateChoice"   />
     </div>
-    <router-view :key="$route.path"></router-view>
     <h1 id = "statpageHeading">Stats page</h1>
      <!-- <canvas id="myChart"></canvas> -->
      <div id="chart-statspage">
