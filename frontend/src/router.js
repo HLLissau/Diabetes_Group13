@@ -6,6 +6,7 @@ import TestPage from './pages/TestPage.vue'
 import UserLogin from './pages/UserLogin.vue'
 import DoctorLogin from './pages/DoctorLogin.vue'
 import CreateNewAccount from './pages/CreateNewAccount.vue'
+import CreateNewUserAccount from './pages/CreateNewUserAccount.vue'
 import FrontPage from './pages/FrontPage.vue'
 import UserWelcomePage from './pages/UserWelcomePage.vue'
 const routes = [
@@ -41,7 +42,7 @@ const routes = [
 },
 {
   path: '/pages/CreateNewUserAccount',
-  component: CreateNewAccount,
+  component: CreateNewUserAccount,
   name: 'CreateNewUserAccount',
   meta: { }
 },
