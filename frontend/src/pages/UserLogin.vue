@@ -17,7 +17,7 @@
         
 
      <input class="login-button" type="submit"  @click="tryLogIn(UserId,password)" value="Sign In"  >
-     <input class="goback-button" type="submit"  @click="$router.push('/pages/MenuPage')" value="Go Back">
+     <input class="goback-button" type="submit"  @click="$router.go(-1)" value="Go Back">
 
     
     <h2 v-if="loginerror "> Invalid userId or password </h2>

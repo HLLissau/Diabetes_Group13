@@ -1,8 +1,6 @@
 <template>
    <div id="nav">
-    <router-view :key="$route.path"></router-view>
-
-
+ 
     <div id="chart">
       <WelcomeChart/>
     </div>
