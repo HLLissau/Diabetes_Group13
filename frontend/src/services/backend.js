@@ -10,6 +10,11 @@ export default class Backend {
     this.password = ""
     this.email = ""
 
+    this.doctorId = 0
+    this.doctorName = ""
+    this.doctoremail = ""
+
+
 
   }
 
@@ -35,6 +40,33 @@ export default class Backend {
   setUserEmail(email) {
      this.email = email
   }
+  
+  getDoctorId() {
+    return this.doctorId
+  }
+  setDoctorId(doctorId) {
+     this.doctorId = doctorId
+  }
+  getDoctorName() {
+    return this.doctorName
+  }
+  setDoctorName(doctorName) {
+     this.doctorName = doctorName
+  }
+  getDoctorEmail() {
+    return this.email
+  }
+  setDoctorEmail(email) {
+     this.email = email
+  }
+
+  getDoctorpassword() {
+    return this.password
+  }
+  setDoctorpassword(password) {
+     this.password = password
+  }
+
   getUserpassword() {
     return this.password
   }
@@ -50,9 +82,15 @@ export default class Backend {
     return this.url + "/hospitals/" + this.UserId + "/patients"
   }
 
-  getUrlCreateUser() {
-    return this.url + "/login/create/user"
+  getUrlCreateUserAccount(){
+    var link = this.url + "/patient/create"
+    return link
   }
+  getUrlCreateDoctorAccount(){
+    var link = this.url + "/doctor/create"
+    return link
+  }
+
 
   getUrlPostPatient() {
     return this.url + "/hospitals/" + this.UserId + "/patients"
@@ -82,10 +120,7 @@ export default class Backend {
     var link = this.url + "/login/loginUser"
     return link
   }
-  getUrlCreateUserAccount(){
-    var link = this.url + "/patient/create"
-    return link
-  }
+
 
   getUrlAverageForDay(date) {
     var link = this.url + "/patient/" + this.UserId + "/getData/average/ForDay/" + date

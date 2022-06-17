@@ -7,6 +7,7 @@ import UserLogin from './pages/UserLogin.vue'
 import DoctorLogin from './pages/DoctorLogin.vue'
 import CreateNewAccount from './pages/CreateNewAccount.vue'
 import CreateNewUserAccount from './pages/CreateNewUserAccount.vue'
+import CreateNewDoctorAccount from './pages/CreateNewDoctorAccount.vue'
 import FrontPage from './pages/FrontPage.vue'
 import UserWelcomePage from './pages/UserWelcomePage.vue'
 const routes = [
@@ -14,13 +15,13 @@ const routes = [
     path: '/pages/StatsPage',
     component: StatsPage,
     name: 'StatsPage',
-    meta: { hideWelcomeChart: true, hideFrontPage: true}
+    meta: { hideWelcomeChart: true, }
   },
  {
   path: '/pages/TestPage',
   component: TestPage,
   name: 'TestPage',
-  meta: { hideWelcomeChart: true, hideFrontPage: true,hideRouterLinks: false}
+  meta: { hideWelcomeChart: true, hideRouterLinks: false}
  },
  {
   path: '/pages/UserLogin',
@@ -32,13 +33,13 @@ const routes = [
   path: '/pages/DoctorLogin',
   component: DoctorLogin,
   name: 'DoctorLogin',
-  meta: { hideFrontPage: true }
+  meta: {  }
 },
 {
   path: '/pages/CreateNewAccount',
   component: CreateNewAccount,
   name: 'CreateNewAccount',
-  meta: {showCreateMenu:true, hideFrontPage: true }
+  meta: {showCreateMenu:true,  }
 },
 {
   path: '/pages/CreateNewUserAccount',
@@ -48,7 +49,7 @@ const routes = [
 },
 {
   path: '/pages/CreateNewDoctorAccount',
-  component: CreateNewAccount,
+  component: CreateNewDoctorAccount,
   name: 'CreateNewDoctorAccount',
   meta: { }
 },
@@ -75,7 +76,7 @@ const routes = [
   component: UserWelcomePage,
   name: 'UserWelcomePage',
   props: true,
-  meta: { hideFrontPage: true }
+  meta: {  }
 },
 
 ]

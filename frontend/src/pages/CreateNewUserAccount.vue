@@ -1,6 +1,6 @@
 <template>
   <div class="wrap">
-    <h1>Create new User account </h1>
+    <h1>Create new User </h1>
     
     
     <Div>
@@ -123,6 +123,7 @@ export default {
      this.axios.post(
         link, {
           "id" : 0,
+          "createdAt": new Date,
           "name" : document.getElementById('username').value,
           "password" : document.getElementById('password').value ,
           "email" :document.getElementById('Email').value 

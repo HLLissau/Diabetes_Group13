@@ -29,10 +29,12 @@ public class DoctorController {
 	private DoctorRepository doctorRepository;
 
 	// create doctor
-	@PostMapping("/api/v1/login/create/doctor")
+	@PostMapping("/api/v1/doctor/create")
 	public ResponseEntity<Doctor> create(@RequestBody Doctor doctor) {
 		return ResponseEntity.ok(doctorRepository.save(doctor));
 	}
+	
+	
 	@GetMapping("/api/v1/login/getAllDoctor")
 	public ResponseEntity<List<Doctor>> getDoctors() {
 		return ResponseEntity.ok(doctorRepository.findAll());
