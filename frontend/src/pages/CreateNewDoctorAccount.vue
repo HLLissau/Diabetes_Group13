@@ -1,62 +1,44 @@
 <template>
   <div class="wrap">
     <h1>Create new Doctor  </h1>
-    
-    
-    <Div>
-    <div>
-    <div>
-      <label>Doctor Name</label>
-    </div>
-    
+    <li>
+
+<label>Doctor Name:
+   
     <input class="login-field" v-model="username" id="username" name="username"  placeholder="Full name"  v-on:focusout="checkName()">
-    
-    </div>
-    <div>
-      <div>
+     </label>
+   
            <label>Password</label>
-      </div>
-   
-   
-     
+      
     <input class="login-field" type="password" v-model="password" id='password' placeholder = "password (minimum 4 characters)"
            minlength="4" required>
      
-    </div>
-    <div>
-      <div>
+   
            <label>Re-enter Password</label>
-      </div>
+      
    
    
      
     <input class="login-field" type="password" v-model="password2" id='password2' placeholder = "password (minimum 4 characters)" v-on:focusout="checkpassword()"
            minlength="4" required>
      
-    </div>
-
-    <DIV>
-      <div>
+  
                 <label>Email</label>
-          </div>
-
+      
           
           <input class="login-field" v-model="Email" id="Email" name="Email"  placeholder="Group13@AreGreat.dk"  v-on:focusout="checkEmail()" >
           
 
-    </DIV>
+    
     
     <input class="login-button" type="submit"  @click="tryCreateAccount()" value="Create Account"  >
     <input class="goback-button" type="submit"  @click="$router.go(-1)" value="Go Back">
 
-    </Div>
-   
-    
 
-    
+
+
+    </li>
       
-  
-
   </div>
 </template>
 

@@ -9,8 +9,8 @@
         <input type="password" id="password" placeholder="Password"  />
         <button @click="tryLogIn(UserId,password)">Login</button>
         <button @click="$router.go(-1)">Go Back</button>
-     --><label>User ID</label>
-       <input class="login-field" v-model="UserId" id="username" name="username"  placeholder="user id"  v-on:keyup.enter="tryLogIn(UserId,password)" >
+     --><label>E-mail</label>
+       <input class="login-field" v-model="UserId" id="username" name="username"  placeholder="Email"  v-on:keyup.enter="tryLogIn(UserId,password)" >
       <label>Password</label>
       <input class="login-field" type="password" v-model="password"  v-on:keyup.enter="tryLogIn(UserId,password)" placeholder = "password (minimum 4 characters)"
            minlength="4" required>
@@ -32,9 +32,9 @@ export default {
   
 data(){
     return {
-        UserId: "1",
+        Email: "1",
         password: "password1",
-        loginerror: false
+        
      }
     
 },
@@ -47,20 +47,10 @@ data(){
     
     tryLogIn(id,password){
       
-      this.$backend.setUserId(id)  
-      this.$backend.setUserpassword(password)
+      
       var link =this.$backend.getUrlLoginUser()
       this.loginerror=true
       
-      console.log("exists?" ,this.value);
-      
-      //console.log("exists?" ,this.$backend.returnerror);
-      
-     const user = {
-          id : this.$backend.getUserId(),
-          password : this.$backend.getUserpassword()
-        }
-      console.log("password: ",user)
 
      this.axios.get(
         link + "/" + id + "/" + password 
@@ -68,15 +58,19 @@ data(){
       ).then(
 
         res => {
-          console.log("res:", res)
+          console.log(res)
+          console.log(res.data.id)
+          this.$backend.setUserId(res.data.id)  
+
+          this.$backend.setUserEmail(res.data.Email)
+          this.$backend.setUserpassword(res.data.password)
+          
           this.$router.push('/pages/UserWelcomePage')
 
         }
       ) .catch(function (error) {
     if (error.response) {
-      console.log(error.response.data);
-      console.log(error.response.status);
-      console.log(error.response.headers);
+      this.loginerror=true
      }
       }
       )

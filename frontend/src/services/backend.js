@@ -120,6 +120,10 @@ export default class Backend {
     var link = this.url + "/login/loginUser"
     return link
   }
+  getUrlLoginDoctor(){
+    var link = this.url + "/login/loginDoctor"
+    return link
+  }
 
 
   getUrlAverageForDay(date) {
