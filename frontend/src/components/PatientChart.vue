@@ -11,14 +11,13 @@ export default {
   
   props: ['propData','propLabel','propAverageData','propAverage'],
   watch: {
-    propLabel: function (newValue) {
+   /* propLabel: function (newValue) {
       this.updateTable(newValue)
-    }
+    }*/
   },
   data() {
     return {
       legend: "average",
-      componentKey: 0,
       planetChartData: {
         type: "scatter",
         data: {
@@ -189,13 +188,15 @@ export default {
   }, */
 
   mounted() {
-
+      
+     
       const ctx = document.getElementById('patient-chart');
       new Chart(ctx, this.planetChartData);
+
       
   },
   created(){
-      this.updateTable(this.propLabel)
+  this.updateTable(this.propLabel)
   }
 
 }

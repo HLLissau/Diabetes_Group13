@@ -38,7 +38,7 @@ export default {
       backendData: [],
       backendAverage: [],
       average: false,
-      label: 'measurement',
+      //label: 'measurement',
       loaded: [],
     }
   },
@@ -80,7 +80,9 @@ export default {
         .get(data)
         .then(res => {
           this.backendAverage = res.data
+          console.log("res: ", res)
           this.backendAverage.forEach(data => {
+            
             var payload = {
               t:new Date(data.time),
               measurement:data.measurement,
@@ -99,9 +101,9 @@ export default {
           });
         })
         this.backendAverage = arr
-
-        console.log("pullaverage",this.backendAverage)
         //this.backendAverage
+        
+        this.componentKey += 1;
     },
     
     updateChoice(choice_from_child){
@@ -123,7 +125,7 @@ export default {
           this.average = choice_from_child
         }
         console.log("Average registered as",this.average)
-        this.componentKey += 1;
+        
         
     },
     
@@ -194,6 +196,7 @@ export default {
           
           
           }
+   
     console.log("data:",data)
     var arr = []
     this.axios
@@ -213,7 +216,7 @@ export default {
           });
         })
     this.backendData = arr
-    this.pullAverage(after,choice)
+     this.pullAverage(after,choice)
     
         
         
@@ -230,6 +233,8 @@ export default {
     
   },
   created(){
+
+
     this.testfunctions = true
     this.updateChoice("measurement")
 
