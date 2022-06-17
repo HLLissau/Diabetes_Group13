@@ -116,6 +116,10 @@ export default class Backend {
     var link =this.url + "/patient/" + this.UserId + "/getData/average/byWeek/" + after + "/" + before
     return link
   }
+  getUrlByUserIdbyAllTimeBetween(before,after) {
+    var link =this.url + "/patient/" + this.UserId + "/getData/average/allTime/" + before + "/" + after
+    return link
+  }
   getUrlLoginUser(){
     var link = this.url + "/login/loginUser"
     return link
