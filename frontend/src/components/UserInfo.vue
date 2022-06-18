@@ -1,9 +1,9 @@
 <template>
 <div id="userinfo">
 <div id="titles"> 
-  <div class="titel"><a> Name </a></div>
+  <div class="titel"><a> Full Name </a></div>
   <div class="titel"><a> UserId </a></div>
-  <div class="titel"><a> email-adress </a></div>
+  <div class="titel"><a> email-address </a></div>
   <div class="titel"><a> Assigned doctor </a></div>
 </div>
 <div id="props"> 
