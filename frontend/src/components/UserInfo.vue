@@ -7,7 +7,7 @@
   <div class="titel"><a> Assigned doctor </a></div>
 </div>
 <div id="props"> 
-  <div class="info"><a> Average  </a></div>
+  <div class="info"><a> Average </a></div>
   <div class="info"><a> Average </a></div>
   <div class="info"><a> Average </a></div>
   <div class="info"><a> Average </a></div>
@@ -20,10 +20,10 @@
 </div>
 
 <div id="inputs"> 
-<div :class="[changeName?'visibel':'invisibel']"> <input type="text" >  <input class="button" type="submit"  @click="changeNamee()" value="Change"  > </div>
+<div :class="[changeName?'visibel':'invisibel']"> <input type="text" id="changedname">  <input class="button" type="submit"  @click="changeNamee()" value="Change"  > </div>
 <div class="invisibel"> d <input type="text" > </div>
-<div :class="[changeEmail?'visibel':'invisibel']"> <input type="text" > <button>change</button> </div>
-<div :class="[changeDoctor?'visibel':'invisibel']"> <input type="text" > <button>change</button> </div>
+<div :class="[changeEmail?'visibel':'invisibel']"> <input type="text" id="changedemail">   <input class="button" type="submit"  @click="changeNamee()" value="Change"  > </div>
+<div :class="[changeDoctor?'visibel':'invisibel']"> <input type="text" id="changeddoctor" >  <input class="button" type="submit"  @click="changeNamee()" value="Change"  > </div>
 </div>
 
 </div>
@@ -38,16 +38,29 @@ export default {
     return {   
         changeName: false,
         changeEmail: false,
-        changeDoctor: false
+        changeDoctor: false,
+        
     }
   },
   methods: {
     changeNamee(){
-      this.changeName= false
-      this.changeEmail= false
-      this.changeDoctor= false
-      console.log("pressed")
+      if (this.changeName){
+        console.log("pressed name:", document.getElementById("changedname").value )
+        console.log (this.$regex.checkName(document.getElementById("changedname").value ))
+        this.changeName= false
+      }
 
+      if (this.changeEmail){
+         console.log("pressed email:", document.getElementById("changedemail").value )
+        console.log (this.$regex.checkEmail(document.getElementById("changedemail").value ))
+         this.changeEmail= false
+      } 
+
+      if (this.changeDoctor){
+         console.log("pressed Doctor:", document.getElementById("changedemail").value )
+        this.changeDoctor= false
+        
+      } 
     }
   }
 }
