@@ -189,14 +189,14 @@ export default {
 
   mounted() {
       
-     
+     this.updateTable(this.propLabel)
       const ctx = document.getElementById('patient-chart');
       new Chart(ctx, this.planetChartData);
 
       
   },
   created(){
-  this.updateTable(this.propLabel)
+  
   }
 
 }

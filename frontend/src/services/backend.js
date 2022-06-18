@@ -1,32 +1,48 @@
 import moment from 'moment'
   
 export default class Backend {
-  
+    access() {
+    
+     let user = new user({
+      id : 0,
+      fullName : "",
+      createdAt: "",
+      password : "",
+      email : ""
+    })
+    
+
+    let doctor = new doctor({
+      id : 0,
+      fullName : "",
+      password : "",
+      createdAt: "",
+      email : ""
+    })
+    
+
+
+
+    }
   constructor() {
     this.url = "http://localhost:8080/api/v1"
     
-    this.UserId = 0
-    this.userName = ""
-    this.password = ""
-    this.email = ""
-
-    this.doctorId = 0
-    this.doctorName = ""
-    this.doctoremail = ""
-
-
+    
+   
+    
+    
 
   }
 
   getAllData() {
-    return this.url + "/patient/" + this.UserId + "/getData/average/byDay"
+    return this.url + "/patient/" + this.user.id + "/getData/average/byDay"
   }
-
+/*
   getUserId() {
     return this.UserId
   }
   setUserId(UserId) {
-     this.UserId = UserId
+     this.user.UserId = UserId
   }
   getUserName() {
     return this.UserName
@@ -73,13 +89,14 @@ export default class Backend {
   setUserpassword(password) {
      this.password = password
   }
+  */
 
   getUrlUsers() {
     return this.url + "/login/get/users"
   }
 
   getUrlHospitalPatients() {
-    return this.url + "/hospitals/" + this.UserId + "/patients"
+    return this.url + "/hospitals/" + this.user.id + "/patients"
   }
 
   getUrlCreateUserAccount(){
@@ -93,31 +110,31 @@ export default class Backend {
 
 
   getUrlPostPatient() {
-    return this.url + "/hospitals/" + this.UserId + "/patients"
+    return this.url + "/hospitals/" + this.user.id + "/patients"
   }
 
   getUrlDeleteHospital() {
-    return this.url + "/hospitals/" + this.UserId
+    return this.url + "/hospitals/" + this.user.id
   }
   getUrlByInterval(after,before) {
-    var link = this.url + "/patient/" + this.UserId + "/getData/" + after + "/" + before
+    var link = this.url + "/patient/" + this.user.id + "/getData/" + after + "/" + before
     return link
   }
   getUrlByUserIdbyHourBetween(after,before) {
-    var link =this.url + "/patient/" + this.UserId + "/getData/average/byHour/" + after + "/" + before
+    var link =this.url + "/patient/" + this.user.id + "/getData/average/byHour/" + after + "/" + before
     return link
   }
   
   getUrlByUserIdbyDayBetween(after,before) {
-    var link =this.url + "/patient/" + this.UserId + "/getData/average/byDay/" + after + "/" + before
+    var link =this.url + "/patient/" + this.user.id + "/getData/average/byDay/" + after + "/" + before
     return link
   }
   getUrlByUserIdbyWeekBetween(after,before) {
-    var link =this.url + "/patient/" + this.UserId + "/getData/average/byWeek/" + after + "/" + before
+    var link =this.url + "/patient/" + this.user.id + "/getData/average/byWeek/" + after + "/" + before
     return link
   }
   getUrlByUserIdbyAllTimeBetween(before,after) {
-    var link =this.url + "/patient/" + this.UserId + "/getData/average/allTime/" + before + "/" + after
+    var link =this.url + "/patient/" + this.user.id + "/getData/average/allTime/" + before + "/" + after
     return link
   }
   getUrlLoginUser(){
@@ -131,56 +148,57 @@ export default class Backend {
 
 
   getUrlAverageForDay(date) {
-    var link = this.url + "/patient/" + this.UserId + "/getData/average/ForDay/" + date
+    var link = this.url + "/patient/" + this.user.id + "/getData/average/ForDay/" + date
     return link
     
   }
   getUrlAverageForWeek(date) {
-    var link = this.url + "/patient/" + this.UserId + "/getData/average/ForWeek/" + date
+    var link = this.url + "/patient/" + this.user.id + "/getData/average/ForWeek/" + date
     return link
   }
   getUrlAverageForMonth(date) {
-    var link = this.url + "/patient/" + this.UserId + "/getData/average/ForMonth/" + date
+    var link = this.url + "/patient/" + this.user.id + "/getData/average/ForMonth/" + date
     return link
   }
   getUrlAverageForYear(date) {
-    var link = this.url + "/patient/" + this.UserId + "/getData/average/ForYear/" + date
+    var link = this.url + "/patient/" + this.user.id + "/getData/average/ForYear/" + date
     return link
   }
   getUrlAverageForAllTime(date) {
-    var link = this.url + "/patient/" + this.UserId + "/getData/average/ForAllTime/" + date
+    var link = this.url + "/patient/" + this.user.id + "/getData/average/ForAllTime/" + date
     return link
   }
   getUrlAveragesByHour(startDate, endDate) {
-    console.log("url",this.url + "patient/" + this.UserId + "/getData/average/byHour/"+ startDate + "/" + endDate)
-    return this.url + "/patient/" + this.UserId + "/getData/average/byHour/"+ startDate + "/" + endDate
+    var link = this.url + "/patient/" + this.user.id + "/getData/average/byHour/"+ startDate + "/" + endDate
+    return link
   }
 
   getUrlRecentBasal(){
-    return this.url + '/patient/' + this.UserId + '/getData/recent/basal'
+    return this.url + '/patient/' + this.user.id + '/getData/recent/basal'
   }
 
   getUrlRecentBolus(){
-    return this.url + '/patient/' + this.UserId + '/getData/recent/bolus'
+    return this.url + '/patient/' + this.user.id + '/getData/recent/bolus'
   }
 
   getUrlRecentMeasurement(){
-    return this.url + '/patient/' + this.UserId + '/getData/recent/measurement'
+    return this.url + '/patient/' + this.user.id + '/getData/recent/measurement'
   }
 
   
   getUrlRecentMeals(){
-    return this.url + '/patient/' + this.UserId + '/getData/recent/meals'
+    return this.url + '/patient/' + this.user.id + '/getData/recent/meals'
   }
 
     
   getUrlRecentExercise(){
-    return this.url + '/patient/' + this.UserId + '/getData/recent/exercise'
+    return this.url + '/patient/' + this.user.id + '/getData/recent/exercise'
 
   }
 
   getUrlCriticalLevels(date){
-    return this.url + '/patient/' + this.UserId + '/getData/criticalLevels/' + date
+    console.log("crit level user: " ,this.user.id)
+    return this.url + '/patient/' + this.user.id + '/getData/criticalLevels/' + date
   }
 
 

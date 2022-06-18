@@ -15,15 +15,16 @@
      --><label>Email</label>
        <input class="login-field" v-model="form.Email" id="email" name="email"  placeholder="Email"  >
       <label>Password</label>
-      <input class="login-field" type="password" v-model="form.password"  placeholder = "password (minimum 4 characters)"
-           minlength="4" required>
+      <input class="login-field" type="password" v-model="form.password"  placeholder = "password"
+           >
         
 
-     <input class="login-button" type="submit"  @click="submitForm(UserId,password)" value="Sign In"  >
-     <input class="goback-button" type="submit"  @click="$router.go(-1)" value="Go Back">
+     <input class="login-button" type="submit"   value="Sign In"  >
+     <input class="goback-button" type="back"  @click="$router.go(-1)" value="Go Back">
     </div>
     </form>
     
+     
   </div>
 </template>
 
@@ -44,8 +45,6 @@ export default {
   methods: {
     submitForm(){
       
-      this.$backend.setDoctorEmail(this.form.Email)  
-      this.$backend.setUserpassword(this.form.password)
       var link =this.$backend.getUrlLoginDoctor()
 
       
@@ -55,7 +54,8 @@ export default {
       ).then(
 
         res => {
-          console.log("res:", res)
+          this.$backend.doctor = res.data
+          console.log("doctor", this.$backend.doctor)
           this.$router.push('/pages/DoctorWelcomePage')
 
         }

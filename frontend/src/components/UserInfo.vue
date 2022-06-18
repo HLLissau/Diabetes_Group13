@@ -7,7 +7,7 @@
   <div class="titel"><a> Assigned doctor </a></div>
 </div>
 <div id="props"> 
-  <div class="info"><a> Average </a></div>
+  <div class="info"><a> Average  </a></div>
   <div class="info"><a> Average </a></div>
   <div class="info"><a> Average </a></div>
   <div class="info"><a> Average </a></div>
@@ -20,7 +20,7 @@
 </div>
 
 <div id="inputs"> 
-<div :class="[changeName?'visibel':'invisibel']"> <input type="text" > <button>change</button> </div>
+<div :class="[changeName?'visibel':'invisibel']"> <input type="text" >  <input class="button" type="submit"  @click="changeNamee()" value="Change"  > </div>
 <div class="invisibel"> d <input type="text" > </div>
 <div :class="[changeEmail?'visibel':'invisibel']"> <input type="text" > <button>change</button> </div>
 <div :class="[changeDoctor?'visibel':'invisibel']"> <input type="text" > <button>change</button> </div>
@@ -35,7 +35,7 @@ export default {
   name: 'UserInfo',
   //props: [UserId, Username, email]
   data() {
-    return {
+    return {   
         changeName: false,
         changeEmail: false,
         changeDoctor: false
@@ -43,7 +43,11 @@ export default {
   },
   methods: {
     changeNamee(){
+      this.changeName= false
+      this.changeEmail= false
+      this.changeDoctor= false
       console.log("pressed")
+
     }
   }
 }

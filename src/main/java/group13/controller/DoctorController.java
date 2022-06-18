@@ -35,7 +35,7 @@ public class DoctorController {
 	
 	//login Doctor
 		@GetMapping("/api/v1/login/loginDoctor/{Email}/{password}")
-		public ResponseEntity<Doctor> loginDoctor(@PathVariable Long Email,@PathVariable String password){
+		public ResponseEntity<Doctor> loginDoctor(@PathVariable String Email,@PathVariable String password){
 			
 			//System.out.println("userid: "+ userId + ". password: " + password);
 					

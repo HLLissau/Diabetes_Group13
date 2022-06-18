@@ -1,11 +1,9 @@
 <template>
   <div class="wrap">
     <h1>Create new Doctor  </h1>
-    <li>
-
-<label>Doctor Name:
-   
-    <input class="login-field" v-model="username" id="username" name="username"  placeholder="Full name"  v-on:focusout="checkName()">
+    
+    <label>Doctor Name:
+       <input class="login-field" v-model="username" id="username" name="username"  placeholder="Full name"  >
      </label>
    
            <label>Password</label>
@@ -19,14 +17,13 @@
    
    
      
-    <input class="login-field" type="password" v-model="password2" id='password2' placeholder = "password (minimum 4 characters)" v-on:focusout="checkpassword()"
-           minlength="4" required>
+    <input class="login-field" type="password" v-model="password2" id='password2' placeholder = "password (minimum 4 characters)"  minlength="4" required>
      
   
                 <label>Email</label>
       
           
-          <input class="login-field" v-model="Email" id="Email" name="Email"  placeholder="Group13@AreGreat.dk"  v-on:focusout="checkEmail()" >
+          <input class="login-field" v-model="Email" id="Email" name="Email"  placeholder="Group13@AreGreat.dk"  >
           
 
     
@@ -36,8 +33,6 @@
 
 
 
-
-    </li>
       
   </div>
 </template>
@@ -95,9 +90,6 @@ export default {
 
       
 
-      this.$backend.setDoctorName(document.getElementById('username').value  )
-      this.$backend.setDoctorpassword(document.getElementById('password').value )
-      this.$backend.setDoctorEmail(document.getElementById('Email').value )
 
       var link =this.$backend.getUrlCreateDoctorAccount()
       console.log("name:",  document.getElementById('username').value)
@@ -115,7 +107,9 @@ export default {
       ).then(
 
         res => {
-          console.log("res:", res)
+          this.$backend.doctor = res.data
+          console.log("res:", this.$backend.doctor)
+          
           alert('Account created successfully')
           this.$router.push('/pages/DoctorWelcomePage')
 

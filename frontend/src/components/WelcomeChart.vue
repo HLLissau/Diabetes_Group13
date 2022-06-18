@@ -89,12 +89,15 @@ export default {
         }
 }   }},
     mounted() {
-      console.log('welcomeChartMounted')
       const ctx = document.getElementById('welcome-chart');
       new Chart(ctx,this.current2);
 
-    console.log("high",this.high)
-    console.log("target",this.target)
+    },
+    created(){
+    //console.log('welcomeChartMounted')
+    //console.log("high",this.high)
+    //console.log("target",this.target)
+
     }
 
 

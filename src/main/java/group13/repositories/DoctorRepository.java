@@ -19,7 +19,7 @@ public interface DoctorRepository extends CrudRepository<Doctor,Long> {
 		     + "WHERE email= ?1 "  
 		     + "And password = ?2",
 		nativeQuery=true)
-	Optional<Doctor> loginDoctor(Long email, String password);
+	Optional<Doctor> loginDoctor(String email, String password);
 	
 }
 

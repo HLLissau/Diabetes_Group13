@@ -10,13 +10,13 @@
         <button @click="tryLogIn(UserId,password)">Login</button>
         <button @click="$router.go(-1)">Go Back</button>
      --><label>E-mail</label>
-       <input class="login-field" v-model="UserId" id="username" name="username"  placeholder="Email"  v-on:keyup.enter="tryLogIn(UserId,password)" >
+       <input class="login-field" v-model="Email" id="username" name="username"  placeholder="Email"  v-on:keyup.enter="tryLogIn(Email,password)" >
       <label>Password</label>
       <input class="login-field" type="password" v-model="password"  v-on:keyup.enter="tryLogIn(UserId,password)" placeholder = "password (minimum 4 characters)"
            minlength="4" required>
         
 
-     <input class="login-button" type="submit"  @click="tryLogIn(UserId,password)" value="Sign In"  >
+     <input class="login-button" type="submit"  @click="tryLogIn(Email,password)" value="Sign In"  >
      <input class="goback-button" type="submit"  @click="$router.go(-1)" value="Go Back">
 
     
@@ -45,7 +45,7 @@ data(){
    methods: {
      
     
-    tryLogIn(id,password){
+    tryLogIn(Email,password){
       
       
       var link =this.$backend.getUrlLoginUser()
@@ -53,18 +53,13 @@ data(){
       
 
      this.axios.get(
-        link + "/" + id + "/" + password 
+        link + "/" + Email + "/" + password 
         
       ).then(
 
         res => {
-          console.log(res)
-          console.log(res.data.id)
-          this.$backend.setUserId(res.data.id)  
-
-          this.$backend.setUserEmail(res.data.Email)
-          this.$backend.setUserpassword(res.data.password)
-          
+          this.$backend.user = res.data
+          console.log("user: ", this.$backend.user )
           this.$router.push('/pages/UserWelcomePage')
 
         }
