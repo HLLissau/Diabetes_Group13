@@ -18,5 +18,8 @@ public class Treats {
 	@Id
 	@Column
 	private Long doctorId;
+	private void test() {
+		
 
+	}
 }
