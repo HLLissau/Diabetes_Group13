@@ -12,17 +12,28 @@ nav.nav-menubar {
 }
 
 nav.nav-menubar .routerlink {
-    float: left;
+    /* float: left; */
     display: flex;
     color: #ffffff;
     text-decoration: none;
     height: inherit;
     padding: 0 2vw;
+    width: 30em;
+    font-size: 4vw;
+    flex-direction: column;
     align-items: center;
-    font-size: xx-large;
+    justify-content: center;
 }
 
 nav.nav-menubar .routerlink:hover {
     background-color: #446190;
     color: #f4f4f4;
 }
+
+/* a.title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  } */
