@@ -5,7 +5,7 @@ div .menu-item svg {
 div .menu-item .sub-menu {
   position: absolute;
   display: flex;
-  justify-content:flex-start; 
+  justify-content:center; 
   flex-direction: column; 
   background-color: rgb(116, 113, 113);
   top: 10vh;
@@ -13,13 +13,19 @@ div .menu-item .sub-menu {
   transform: translateX(-50%);
   width: 100%;
   border-radius: 0px 0px 16px 16px;
-  word-break: break-all;
+  /* word-break: break-all; */
+  font-size: 4vw;
+  align-items: center;
 }
 .fade-enter-active,
 .fade-leave-active {
   transition: all .5s ease-out;
-}
+} 
 .fade-enter,
 .fade-leave-to {
   opacity: 0;
+}
+
+.sub-menu-item {
+  border-bottom: 3px solid transparent;
 }
