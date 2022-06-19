@@ -7,7 +7,6 @@
     <div class="header">
       <navigationBar v-on:child-choice="updateChoice"   />
     </div>
-    <router-view :key="$route.path"></router-view>
     <h1 id = "statpageHeading">Stats page</h1>
      <!-- <canvas id="myChart"></canvas> -->
      <div id="chart-statspage">
@@ -39,7 +38,7 @@ export default {
       backendData: [],
       backendAverage: [],
       average: false,
-      label: 'measurement',
+      //label: 'measurement',
       loaded: [],
     }
   },
@@ -81,7 +80,9 @@ export default {
         .get(data)
         .then(res => {
           this.backendAverage = res.data
+          console.log("res: ", res)
           this.backendAverage.forEach(data => {
+            
             var payload = {
               t:new Date(data.time),
               measurement:data.measurement,
@@ -100,9 +101,9 @@ export default {
           });
         })
         this.backendAverage = arr
-
-        console.log("pullaverage",this.backendAverage)
         //this.backendAverage
+        
+        this.componentKey += 1;
     },
     
     updateChoice(choice_from_child){
@@ -124,7 +125,7 @@ export default {
           this.average = choice_from_child
         }
         console.log("Average registered as",this.average)
-        this.componentKey += 1;
+        
         
     },
     
@@ -190,11 +191,12 @@ export default {
                       data =this.$backend.getUrlByUserIdbyWeekBetween(before,after)
                       break
           case "All time": 
-                      data =this.$backend.getUrlByUserIdbyDayBetween(before,after)
+                      data =this.$backend.getUrlByUserIdbyAllTimeBetween(before,after)
                       break
           
           
           }
+   
     console.log("data:",data)
     var arr = []
     this.axios
@@ -214,7 +216,7 @@ export default {
           });
         })
     this.backendData = arr
-    this.pullAverage(after,choice)
+     this.pullAverage(after,choice)
     
         
         
@@ -231,6 +233,8 @@ export default {
     
   },
   created(){
+
+
     this.testfunctions = true
     this.updateChoice("measurement")
 

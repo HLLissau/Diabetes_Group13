@@ -5,6 +5,7 @@
 <script>
 import Chart from 'chart.js'
 
+
 export default {
     name: 'WelcomeChart',
     props: ['veryhigh','high','target','low','verylow'],
@@ -87,11 +88,16 @@ export default {
             }
         }
 }   }},
-
     mounted() {
-      console.log('welcomeChartMounted')
       const ctx = document.getElementById('welcome-chart');
       new Chart(ctx,this.current2);
+
+    },
+    created(){
+    //console.log('welcomeChartMounted')
+    //console.log("high",this.high)
+    //console.log("target",this.target)
+
     }
 
 

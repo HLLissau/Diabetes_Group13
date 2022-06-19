@@ -1,4 +1,4 @@
-div.login-button button {
+div.login-button button ,    div.back-button button {
     width: 70%;
     border: none;
     border-radius: 5px;
@@ -12,7 +12,7 @@ div.login-button button {
     height:25vh;
 }
 
-div.login-button button:hover {
+div.login-button button:hover,div.back-button button:hover {
     background: #6469a3;
 }
 

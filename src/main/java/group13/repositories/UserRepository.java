@@ -15,10 +15,10 @@ public interface UserRepository extends CrudRepository<Users,Long> {
 	List<Users> findAll();
 
 	@Query(value = "SELECT *  FROM users "
-		     + "WHERE id= ?1 "  
+		     + "WHERE email= ?1 "  
 		     + "And password = ?2",
 		nativeQuery=true)
-	Optional<Users> loginUser(Long user,String password);
+	Optional<Users> loginUser(String email,String password);
 	
 	
 		

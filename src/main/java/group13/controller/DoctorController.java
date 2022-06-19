@@ -24,19 +24,29 @@ import group13.repositories.UserRepository;
 public class DoctorController {
 
 	@Autowired
-	private UserRepository repository;
-	@Autowired
 	private DoctorRepository doctorRepository;
 
 	// create doctor
-	@PostMapping("/api/v1/login/create/doctor")
+	@PostMapping("/api/v1/doctor/create")
 	public ResponseEntity<Doctor> create(@RequestBody Doctor doctor) {
 		return ResponseEntity.ok(doctorRepository.save(doctor));
 	}
-	@GetMapping("/api/v1/login/getAllDoctor")
-	public ResponseEntity<List<Doctor>> getDoctors() {
-		return ResponseEntity.ok(doctorRepository.findAll());
-	}
+	
+	
+	//login Doctor
+		@GetMapping("/api/v1/login/loginDoctor/{Email}/{password}")
+		public ResponseEntity<Doctor> loginDoctor(@PathVariable String Email,@PathVariable String password){
+			
+			//System.out.println("userid: "+ userId + ". password: " + password);
+					
+			Optional<Doctor> p = doctorRepository.loginDoctor(Email,password);
+			if (!p.isPresent()) {
+				return ResponseEntity.notFound().build();
+			}
+			return ResponseEntity.ok(p.get());
+			
+		}
+
 
 	// get doctor
 	@GetMapping("/api/v1/login/get/{doctorId}")

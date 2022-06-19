@@ -22,40 +22,82 @@ public class Users {
 
 	@Column
 	private Timestamp createdAt;
+	@Column
+	private String email;
 	
-	public Users() {
-		this.createdAt = new Timestamp(System.currentTimeMillis());
-	}
 	
-	public Users(String fullName) {
-		this.fullName = fullName;
-	}
-
+	
+	
 	public Long getId() {
 		return id;
 	}
-	
-	public void setId(long id) {
+
+
+
+
+	public void setId(Long id) {
 		this.id = id;
 	}
-	
-	public void setName(String fullName) {
+
+
+
+
+	public String getFullName() {
+		return fullName;
+	}
+
+
+
+
+	public void setFullName(String fullName) {
 		this.fullName = fullName;
 	}
-	
-	public String getName() {
-		return this.fullName;
-	}
+
+
+
 
 	public String getPassword() {
 		return password;
 	}
 
+
+
+
 	public void setPassword(String password) {
 		this.password = password;
 	}
 
-	
+
+
+
+	public Timestamp getCreatedAt() {
+		return createdAt;
+	}
+
+
+
+
+	public void setCreatedAt(Timestamp createdAt) {
+		this.createdAt = createdAt;
+	}
+
+
+
+
+	public String getEmail() {
+		return email;
+	}
+
+
+
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+
+
+
 	@Override
 	public boolean equals(Object obj) {
 		if (obj instanceof Users) {

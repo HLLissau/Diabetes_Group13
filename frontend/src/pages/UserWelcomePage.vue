@@ -4,20 +4,23 @@
     <div class="links">
       
     </div>
-    
-     <router-view :key="$route.path"></router-view>  
+  
 
     <div id="menubar">
        <MenuBar/>
     </div>
 
     <div id="chart">
-      <!-- <WelcomeChart :veryhigh = "this.veryhigh" :high = "this.high" :target = "this.target" :low = "this.low" :verylow = "this.verylow"/> -->
+      <div id="welcome">
+      <WelcomeChart :veryhigh = "this.veryhigh" :high = "this.high" :target = "this.target" :low = "this.low" :verylow = "this.verylow" :key = "this.key"/>
+      </div>
+      <div id="current">
       <CurrentData :observation = "this.basal"/>
       <CurrentData :observation = "this.bolus"/>
       <CurrentData :observation = "this.measurement"/>
       <CurrentData :observation = "this.meals"/>
       <CurrentData :observation = "this.exercise"/>
+      </div>
     </div>
 
 
@@ -29,6 +32,7 @@
 import WelcomeChart from '../components/WelcomeChart.vue'
 import MenuBar from '../components/MenuBar.vue'
 import CurrentData from '../components/CurrentData.vue'
+import moment from 'moment'
 
 export default {
   name: 'UserWelcomePage',
@@ -45,11 +49,12 @@ export default {
         measurement: ['measurement'],
         meals: ['meals'],
         exercise: ['exercise'],
-        veryhigh: '',
-        high: '',
-        target: '',
-        low: '',
-        verylow: ''
+        veryhigh: 0,
+        high: 0,
+        target: 0,
+        low: 0,
+        verylow: 0,
+        key: 0
 
     }
   },
@@ -57,7 +62,34 @@ export default {
     printname(){
       console.log("name", this.$backend.getUserId())
     },
-    pullData(){
+    async pullData(){
+
+      var  date= new Date()
+      date.setMonth(0)
+      date.setDate(28)
+      date = moment(String(date)).format('YYYY-MM-DD hh:mm:ss')
+
+      await this.axios
+      .get(this.$backend.getUrlCriticalLevels(date,))
+      .then(res => {
+        console.log("chartRes",res.data)
+        this.veryhigh = res.data[0]
+        this.high = res.data[1]
+        this.target = res.data[2]
+        this.low = res.data[3]
+        this.verylow = res.data[4]
+        console.log("high",this.high)
+        console.log("target",this.target)
+        this.key++;
+
+      })
+
+        console.log("highOut",this.high)
+        console.log("targetOut",this.target)
+
+
+
+
       //basal
         this.axios
         .get(this.$backend.getUrlRecentBasal())
@@ -94,28 +126,15 @@ export default {
           this.exercise.push(res.data[0])
           this.exercise.push(res.data[1])
         })
-      
-      //chart data
-        var  myCurrentDate= new Date()
-        
-           myCurrentDate.setMonth(0)
-           myCurrentDate.setDate(28)
-
-      this.axios
-        .get(this.$backend.getUrlCriticalLevels(myCurrentDate))
-        .then(res => {
-          this.veryhigh = res.data[0]
-          this.high = res.data[1]
-          this.target = res.data[2]
-          this.low = res.data[3]
-          this.verylow = res.data[4]
-        })
 
     }
   },
-  created(){
-    this.pullData()
-  }
+      created(){
+    },
+    mounted(){
+        this.pullData()
+        console.log("data pulled")
+    }
 
 }
 
@@ -133,13 +152,26 @@ export default {
   padding: 10px 20px;
 
 } */
-.chart {
+
+div#chart {
   justify-content: flex-start;
   float: left;
   width: 30vw;
-  padding: 15px;
-  background-color: rgb(128, 0, 255);
+  padding-top: 15px;
+
 }
+div#current {
+  position: absolute;
+  padding-left: 120px;
+  top: 15vh;
+}
+
+div#welcome {
+    width: 10vw;
+    height: 50vh;
+    position:absolute;
+    top:15vh;
+  }
 
 header {
   background-color: #222;

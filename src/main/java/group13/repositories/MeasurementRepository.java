@@ -63,11 +63,12 @@ public interface MeasurementRepository extends CrudRepository<Measurement,Long> 
 		nativeQuery=true)
 	List<Measurement> findAvgByUserIdByYearbyTimeBetween(Long userId, String startDate, String endDate);
 	
-	@Query(value = "SELECT DATE(time) as time,user_id,avg(basal) as basal,avg(bolus) as bolus,device_id,avg(exercise) exercise,avg(meals) as meals,avg(measurement) as measurement"
+	@Query(value = "SELECT time,user_id,avg(basal) as basal,avg(bolus) as bolus,device_id,avg(exercise) exercise,avg(meals) as meals,avg(measurement) as measurement"
 		     + " FROM measurement"
 		     + " WHERE user_id= ?1"
-		     + " And time BETWEEN ?2 AND ?3",
-		nativeQuery=true)
+		     + " And time BETWEEN ?2 AND ?3"
+		     + " GROUP BY Year(time),Week(time)" 
+		,nativeQuery=true)
 	List<Measurement> findAvgByUserIdByallTimebyTimeBetween(Long userId, String startDate, String endDate);
 	
 	
@@ -120,27 +121,27 @@ public interface MeasurementRepository extends CrudRepository<Measurement,Long> 
 	
 	List<Measurement> findAvgByUserIdForMonth(Long userId,String Date);
 
-	@Query(value = //"call getAvgByYear(?1,?2)"
-			  " select  CASE"
-			+ "			WHEN  time > ?2"
-			+ "	        THEN (inner1.time  - INTERVAL 1 Year - interval weekday( ?2 ) day)"
-			+ "	        ELSE (inner1.time- INTERVAL weekday( ?2 ) day)"
-			+ "		END  as time,"
-			+ "		inner1.user_id,inner1.basal,inner1.bolus,inner1.device_id,inner1.exercise,inner1.meals,inner1.measurement from ("
-			+ "			select time - INTERVAL"
-			+ "				 (select datediff(time,?2) from measurement"
-			+ "				 where user_id=?1"
-			+ "	             AND Month(time)= MONTH(?2)"
-			+ "				 And WEEK(time)=WEEK(?2)"
-			+ "				 group by WEEK(time) "
-			+ "	        ) DAY  as time "
-			+ "	,user_id,avg(basal) as basal,avg(bolus) as bolus,device_id,avg(exercise) exercise,avg(meals) as meals,avg(measurement) as measurement"
-			+ " from measurement"
-			+ "	where user_id=?1"
-			+ "			group by WEEK(time) "
-			+ "			) inner1"
-			+  "	order By time "
-	   	
+	@Query(value = "call getAvgByYear(?1,?2)"
+//			  " select  CASE"
+//			+ "			WHEN inner1.time > ?2"
+//			+ "	        THEN (inner1.time  - INTERVAL 1 Year)"
+//			+ "	        ELSE (inner1.time)"
+//			+ "		END  as time,"
+//			+ "		inner1.user_id,inner1.basal,inner1.bolus,inner1.device_id,inner1.exercise,inner1.meals,inner1.measurement from ("
+//			+ "			select time - INTERVAL"
+//			+ "				 (select datediff(time,?2) from measurement"
+//			+ "				 where user_id=?1"
+//			+ "	             AND Month(time)= MONTH(?2)"
+//			+ "				 And WEEK(time)=WEEK(?2)"
+//			+ "				 group by WEEK(time) "
+//			+ "	        ) DAY  as time "
+//			+ "	,user_id,avg(basal) as basal,avg(bolus) as bolus,device_id,avg(exercise) exercise,avg(meals) as meals,avg(measurement) as measurement"
+//			+ " from measurement"
+//			+ "	where user_id=?1"
+//			+ "			group by WEEK(time) "
+//			+ "			) inner1"
+//			+  "	order By time "
+//	   	
 			,nativeQuery=true)
 	List<Measurement> findAvgByUserIdForYear(Long userId, String endDate);
 
@@ -181,15 +182,15 @@ public interface MeasurementRepository extends CrudRepository<Measurement,Long> 
             ,nativeQuery=true)
     Object findLatestExercise(Long userId);
 
-    @Query(value = "select 100*(SUM(IF(measurement>13.88, 1, 0))/COUNT(measurement)) as VeryHigh,"
-    		+ " 100*(SUM(IF(10<measurement and measurement<13.88, 1, 0))/COUNT(measurement)) as High,"
-    		+ " 100*(SUM(IF(3.88<measurement and measurement<10, 1, 0))/COUNT(measurement)) as Target,"
-    		+ " 100*(SUM(IF(3<measurement and measurement<3.88, 1, 0))/COUNT(measurement)) as Low,"
-    		+ " 100*(SUM(IF(measurement<3, 1, 0))/COUNT(measurement)) as VeryLow "
-    		+ " from measurement where user_Id= ?1 "
-    		+ " And time BETWEEN ?2 -interval 1 day AND ?2 "
-	, nativeQuery=true)
-	Object getPercentageQuery(Long userId, String date);
+	@Query(value = "select 100*(SUM(IF(measurement>13.88, 1, 0))/COUNT(measurement)) as VeryHigh,"
+            + " 100*(SUM(IF(10<measurement and measurement<13.88, 1, 0))/COUNT(measurement)) as High,"
+            + " 100*(SUM(IF(3.88<measurement and measurement<10, 1, 0))/COUNT(measurement)) as Target,"
+            + " 100*(SUM(IF(3<measurement and measurement<3.88, 1, 0))/COUNT(measurement)) as Low,"
+            + " 100*(SUM(IF(measurement<3, 1, 0))/COUNT(measurement)) as VeryLow "
+            + " from measurement where user_Id= ?1 "
+            + " And time BETWEEN ?2 -interval 1 day AND ?2 "
+    , nativeQuery=true)
+    Object getPercentageQuery(Long userId, String date);
 }
 
 

@@ -19,7 +19,7 @@ export default {
   methods:{
   },
   created(){
-    console.log("created",this.observation)
+    //console.log("created",this.observation)
   }
 }
 </script>
