@@ -20,6 +20,11 @@ public interface UserRepository extends CrudRepository<Users,Long> {
 		nativeQuery=true)
 	Optional<Users> loginUser(String email,String password);
 	
+	@Query(value = "call updateUser(?1, ?2, ?3, ?4)",
+		nativeQuery=true)
+	Optional<Users> updateUser(Long id, String name, String email, String password);
+	
+	
 	
 		
 }

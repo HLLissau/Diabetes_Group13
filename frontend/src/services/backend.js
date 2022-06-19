@@ -37,6 +37,19 @@ export default class Backend {
   getAllData() {
     return this.url + "/patient/" + this.user.id + "/getData/average/byDay"
   }
+
+  getUser() {
+    return this.user
+  }
+
+  getDoctorOfUser(){
+    return this.url + "/patient/getDoctor/" + this.user.id
+  }
+
+  getUrlUpdateUser(id, name, email, password){
+    return this.url + "/user/update/" + id + "/" + name + "/" + email + "/" + password
+  }
+
 /*
   getUserId() {
     return this.UserId

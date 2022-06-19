@@ -4,7 +4,7 @@
        <MenuBar/>
     </div>
     <div id="info">
-      <UserInfo/>
+      <UserInfo :user = "this.user" :doctor = "this.doctor"/>
     </div>
   </div>
 </template>
@@ -19,6 +19,26 @@ export default {
   components: {
     MenuBar,
     UserInfo
+  },
+  data() {
+    return {
+      user: '',
+      doctor: ''
+    }
+  },
+  methods: {
+    async pullData(){
+      this.user = this.$backend.getUser()
+      await this.axios
+        .get(this.$backend.getDoctorOfUser())
+        .then(res => {
+          this.doctor = res.data
+          console.log("inDoctor",this.doctor)
+          });
+    },
+  },
+  async created(){
+      await this.pullData()
   }
 }
 </script>
