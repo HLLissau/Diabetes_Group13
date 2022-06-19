@@ -4,7 +4,7 @@
   <div class="titel"><a> User ID </a></div>
   <div class="titel"><a> Full Name </a></div>
   <div class="titel"><a> email-address </a></div>
-  <div class="titel"><a> Doctor ID </a></div>
+  <div class="titel"><a> Doctor Name </a></div>
 </div>
 <div id="props"> 
   <div class="info"><a> {{this.user.id}} </a></div>
