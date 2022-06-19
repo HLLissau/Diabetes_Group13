@@ -49,10 +49,10 @@ public class DoctorController {
 
 
 	// get doctor
-	@GetMapping("/api/v1/login/get/{doctorId}")
+	@GetMapping("/api/v1/doctor/getByID/{doctorId}")
 	public ResponseEntity<Doctor> getDoctor(@PathVariable Long doctorId) {
 		Optional<Doctor> d = doctorRepository.findById(doctorId);
-		if (d.isEmpty()) {
+		if (!d.isPresent()) {
 			return ResponseEntity.notFound().build();
 		}
 		return ResponseEntity.ok(d.get());

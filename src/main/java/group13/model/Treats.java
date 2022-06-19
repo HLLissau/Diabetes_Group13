@@ -18,8 +18,17 @@ public class Treats {
 	@Id
 	@Column
 	private Long doctorId;
-	private void test() {
-		
-
+	public Long getUserId() {
+		return userId;
 	}
+	public void setUserId(Long userId) {
+		this.userId = userId;
+	}
+	public Long getDoctorId() {
+		return doctorId;
+	}
+	public void setDoctorId(Long doctorId) {
+		this.doctorId = doctorId;
+	}
+	
 }

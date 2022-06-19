@@ -10,7 +10,7 @@
   <div class="info"><a> {{this.user.id}} </a></div>
   <div class="info"><a> {{this.user.fullName}} </a></div>
   <div class="info"><a> {{this.user.email}} </a></div>
-  <div class="info"><a> {{this.doctor}} </a></div>
+  <div class="info"><a> {{this.doctor.fullName}} </a></div>
 </div>
 <div id="alter"> 
   <div class="invisibel"> invisibel </div>

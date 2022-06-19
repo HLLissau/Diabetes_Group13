@@ -60,6 +60,11 @@ export default {
     }
   },
   methods: {
+    getDoctor() {
+      var doctorlink = this.$backend.getUrlDoctorOfUser()
+      this.$backend.doctor = doctorlink
+    },
+
     printname(){
       console.log("name", this.$backend.getUserId())
     },
@@ -131,6 +136,11 @@ export default {
     }
   },
     mounted(){
+        this.getDoctor()
+        
+
+
+
         this.pullData()
         console.log("data pulled")
     }

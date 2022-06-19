@@ -15,11 +15,14 @@ public interface DoctorRepository extends CrudRepository<Doctor,Long> {
 	List<Doctor> findAll();
 	
 	
+	Optional<Doctor> findById(Long id);
+	
 	@Query(value = "SELECT *  FROM doctor "
 		     + "WHERE email= ?1 "  
 		     + "And password = ?2",
 		nativeQuery=true)
 	Optional<Doctor> loginDoctor(String email, String password);
+	
 	
 }
 

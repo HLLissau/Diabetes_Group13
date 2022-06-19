@@ -1,7 +1,6 @@
 package group13.model;
 
 import java.sql.Timestamp;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,16 +12,23 @@ import javax.persistence.Id;
 public class Doctor  {
 	@Id
 	@Column
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	//@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	@Column
+	
 	private String fullName;
+	
+	@Column
+	private String password;
+	
 	@Column
 	private Timestamp createdAt;
 	@Column
-	private String password;
-	@Column
 	private String email;
+	
+	
+	
+	
 	public Long getId() {
 		return id;
 	}
@@ -53,7 +59,13 @@ public class Doctor  {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
+	@Override
+	public boolean equals(Object obj) {
+		if (obj instanceof Users) {
+			return ((Doctor) obj).id.equals(this.id);
+		}
+		return false;
+	}
 		
 	
 	

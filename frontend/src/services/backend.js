@@ -42,10 +42,12 @@ export default class Backend {
     return this.user
   }
 
-  getDoctorOfUser(){
+  getUrlDoctorOfUser(){
     return this.url + "/patient/getDoctor/" + this.user.id
   }
-
+  getUrlDoctorById(){
+    return this.url + "/doctor/getByID/" + this.doctor.id
+  }
   getUrlUpdateUser(id, name, email, password){
     return this.url + "/user/update/" + id + "/" + name + "/" + email + "/" + password
   }

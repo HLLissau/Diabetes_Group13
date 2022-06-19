@@ -18,7 +18,8 @@ export default {
   name: 'TestPage',
   components: {
     MenuBar,
-    UserInfo
+    UserInfo,
+    id : 0
   },
   data() {
     return {
@@ -30,11 +31,23 @@ export default {
     async pullData(){
       this.user = this.$backend.getUser()
       await this.axios
-        .get(this.$backend.getDoctorOfUser())
+        .get(this.$backend.getUrlDoctorOfUser())
+        .then(res => {
+          var obje = res.data
+          this.$backend.doctor = {"id" : obje.doctorId}
+
+          console.log("inDoctorId: ", this.$backend.doctor.id)
+          }),
+      
+      this.axios
+        .get(this.$backend.getUrlDoctorById())
         .then(res => {
           this.doctor = res.data
-          console.log("inDoctor",this.doctor)
+          console.log("inDoctor: ",this.doctor)
           });
+
+
+
     },
   },
   async created(){
