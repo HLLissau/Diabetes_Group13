@@ -1,9 +1,54 @@
-div#chart-welcomepage {
-    width: 80vw;
-    height: 80vh;
-    position:absolute;
-    top:10vh;
-    margin:0px auto;
-    left:0;
-    right:0;
-  }
+#heading {
+  font-weight: bolder;
+}
+
+div#welcome-wrap {
+  width: 100vw;
+  height: 100vh;
+}
+
+div#data-view {
+  width:100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+div#chart {
+  position: absolute;
+  width: 15vw;
+  height: 80vh;
+  top: 15vh;
+  float: left;
+}
+
+table#current {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  /* font-size: 2.5vw; */
+}
+
+td#heading {
+  font-weight: bolder;
+}
+
+header {
+  background-color: #222;
+  padding: 15px;
+}
+
+th, td {
+  width: 20vw;
+  padding: 20px 0;
+  font-size: 2.5vw;
+  transform: scale(1, 2);
+  -webkit-transform: scale(1, 2); /* Safari and Chrome */
+  -moz-transform: scale(1, 2); /* Firefox */
+  -ms-transform: scale(1, 2); /* IE 9+ */
+  -o-transform: scale(1, 2); /* Opera */
+}
