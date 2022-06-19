@@ -39,26 +39,43 @@ export default {
         changeName: false,
         changeEmail: false,
         changeDoctor: false,
+        userOut: {}
     }
   },
   methods: {
-    changeNamee(){
+    change(){
+      console.log("kørt")
+      this.userOut = this.user
       if (this.changeName){
         console.log("pressed name:", document.getElementById("changedname").value )
         //console.log (this.$regex.checkName(document.getElementById("changedname").value ))
+        this.userOut.fullName = document.getElementById("changedname").value
         this.changeName= false
 
       if (this.changeEmail){
          console.log("pressed email:", document.getElementById("changedemail").value )
         //console.log (this.$regex.checkEmail(document.getElementById("changedemail").value ))
-         this.changeEmail= false
+        this.userOut.email = document.getElementById("changedemail").value
+        console.log("userOut email pressed",this.userOut)
+        this.changeEmail= false
       } 
 
       if (this.changeDoctor){
          console.log("pressed Doctor:", document.getElementById("changedemail").value )
         this.changeDoctor= false
         
-      } 
+      }
+
+      console.log("url",this.$backend.getUrlUpdateUser(this.userOut.id,this.userOut.fullName,this.userOut.email,this.userOut.password))
+            this.axios
+        .get(this.$backend.getUrlUpdateUser(this.userOut.id,this.userOut.fullName,this.userOut.email,this.userOut.password))
+        .then(res => {
+          console.log("updated",res)
+          })
+
+
+      }
+       
     }
   },
       created(){
