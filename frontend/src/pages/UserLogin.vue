@@ -32,7 +32,7 @@ export default {
   
 data(){
     return {
-        Email: "1",
+        Email: "email1@group13.rocks",
         password: "password1",
         
      }

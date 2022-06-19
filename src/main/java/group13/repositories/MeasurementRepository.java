@@ -188,7 +188,7 @@ public interface MeasurementRepository extends CrudRepository<Measurement,Long> 
             + " 100*(SUM(IF(3<measurement and measurement<3.88, 1, 0))/COUNT(measurement)) as Low,"
             + " 100*(SUM(IF(measurement<3, 1, 0))/COUNT(measurement)) as VeryLow "
             + " from measurement where user_Id= ?1 "
-            + " And time BETWEEN ?2 -interval 1 day AND ?2 "
+            + " And time <= ?2"
     , nativeQuery=true)
     Object getPercentageQuery(Long userId, String date);
 }

@@ -1,29 +1,30 @@
 <template>
-   <div class="welcome-wrap">
-
-    <div class="links">
-      
-    </div>
-    
+   <div id="welcome-wrap">
+    <MenuBar/>
+  
      <router-view :key="$route.path"></router-view>  
 
-    <div id="menubar">
-       <MenuBar/>
-    </div>
-
+  <div id="data-view">
     <div id="chart">
-      <div id="welcome">
       <WelcomeChart :veryhigh = "this.veryhigh" :high = "this.high" :target = "this.target" :low = "this.low" :verylow = "this.verylow" :key = "this.key"/>
-      </div>
-      <div id="current">
-      <CurrentData :observation = "this.basal"/>
-      <CurrentData :observation = "this.bolus"/>
-      <CurrentData :observation = "this.measurement"/>
-      <CurrentData :observation = "this.meals"/>
-      <CurrentData :observation = "this.exercise"/>
-      </div>
     </div>
-
+    <table id="current">
+      <!-- <CurrentData id="heading" :observation = "this.heading"/> -->
+      <tbody>
+        <tr>
+          <td id="heading">Data Measured</td>
+          <td id="heading">Value</td>
+          <td id="heading">Time</td>
+        </tr>
+        <CurrentData :observation = "this.basal"/>
+        <CurrentData :observation = "this.bolus"/>
+        <CurrentData :observation = "this.measurement"/>
+        <CurrentData :observation = "this.meals"/>
+        <CurrentData :observation = "this.exercise"/>
+      </tbody>
+      
+    </table>
+  </div>
 
 
   </div>
@@ -34,6 +35,7 @@ import WelcomeChart from '../components/WelcomeChart.vue'
 import MenuBar from '../components/MenuBar.vue'
 import CurrentData from '../components/CurrentData.vue'
 import moment from 'moment'
+import '../Styling/WelcomePageStyling.css'
 
 export default {
   name: 'UserWelcomePage',
@@ -45,11 +47,12 @@ export default {
   },
   data(){
     return{
-        basal: ['basal'],
-        bolus: ['bolus'],
-        measurement: ['measurement'],
-        meals: ['meals'],
-        exercise: ['exercise'],
+        heading: ['Data Measured', 'Value', 'Time'],
+        basal: ['Basal'],
+        bolus: ['Bolus'],
+        measurement: ['Measurement'],
+        meals: ['Meals'],
+        exercise: ['Exercise'],
         veryhigh: 0,
         high: 0,
         target: 0,
@@ -63,13 +66,19 @@ export default {
     printname(){
       console.log("name", this.$backend.getUserId())
     },
+    // push measurement and date (in correct format)
+    pushMeasurementAndDate(measurementVariable, measurementValue, dateString) { // assuming date arrives as string
+        measurementVariable.push(measurementValue)
+        measurementVariable.push(moment(new Date(dateString)).format('HH:MM:SS, MMMM Do YYYY'))
+    },
+
     async pullData(){
 
       var  date= new Date()
-      date.setMonth(0)
-      date.setDate(28)
+      // date.setMonth(0)
+      // date.setDate(28)
       date = moment(String(date)).format('YYYY-MM-DD hh:mm:ss')
-
+      console.log("date", date);
       await this.axios
       .get(this.$backend.getUrlCriticalLevels(date))
       .then(res => {
@@ -89,43 +98,39 @@ export default {
         console.log("targetOut",this.target)
 
 
+      
 
 
       //basal
         this.axios
         .get(this.$backend.getUrlRecentBasal())
         .then(res => {
-          this.basal.push(res.data[0])
-          this.basal.push(res.data[1])
+          this.pushMeasurementAndDate(this.basal, res.data[0], res.data[1])
         })
         
       //bolus
       this.axios
         .get(this.$backend.getUrlRecentBolus())
         .then(res => {
-          this.bolus.push(res.data[0])
-          this.bolus.push(res.data[1])
+          this.pushMeasurementAndDate(this.bolus, res.data[0], res.data[1])
         })
       //measurement
       this.axios
         .get(this.$backend.getUrlRecentMeasurement())
         .then(res => {
-          this.measurement.push(res.data[0])
-          this.measurement.push(res.data[1])
+          this.pushMeasurementAndDate(this.measurement, res.data[0], res.data[1])
         })
       //meals
       this.axios
         .get(this.$backend.getUrlRecentMeals())
         .then(res => {
-          this.meals.push(res.data[0])
-          this.meals.push(res.data[1])
+          this.pushMeasurementAndDate(this.meals, res.data[0], res.data[1])
         })
       //exercise
       this.axios
         .get(this.$backend.getUrlRecentExercise())
         .then(res => {
-          this.exercise.push(res.data[0])
-          this.exercise.push(res.data[1])
+          this.pushMeasurementAndDate(this.exercise, res.data[0], res.data[1])
         })
 
     }
@@ -140,40 +145,4 @@ export default {
 
 </script>
 
-<style>
-/* .links .routerlink {
-  color:orange;
-  background-color: yellow;
-  text-decoration: none;
 
-  border-bottom: 3px solid transparent;
-  border-top: 3px solid transparent;
-  padding: 10px 20px;
-
-} */
-
-div#chart {
-  justify-content: flex-start;
-  float: left;
-  width: 30vw;
-  padding-top: 15px;
-
-}
-div#current {
-  position: absolute;
-  padding-left: 120px;
-  top: 15vh;
-}
-
-div#welcome {
-    width: 10vw;
-    height: 50vh;
-    position:absolute;
-    top:15vh;
-  }
-
-header {
-  background-color: #222;
-  padding: 15px;
-}
-</style>
