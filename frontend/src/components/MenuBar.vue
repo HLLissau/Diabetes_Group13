@@ -1,8 +1,8 @@
 <template>
 <nav class = "nav-menubar">
-      <router-link class="routerlink" :to="'/pages/StatsPage'">Detailed Data</router-link>
-      <router-link class="routerlink" :to="'/pages/TestPage'">Test</router-link>
-      <router-link class="routerlink" :to="'/pages/UserWelcomePage'" >Overview</router-link>
+      <router-link class="routerlink" :to="'/pages/StatsPage'"><a>Detailed Data</a></router-link>
+      <router-link class="routerlink" :to="'/pages/TestPage'"><a>Test</a></router-link>
+      <router-link class="routerlink" :to="'/pages/UserWelcomePage'" ><a class="title">Overview</a></router-link>
 </nav>
 </template>
 

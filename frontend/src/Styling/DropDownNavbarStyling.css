@@ -6,7 +6,7 @@ nav {
     top: inherit;
 }
 
-nav .menu-item {
+nav div.menu-item {
     color: #FFF;
     padding: 0 1vw;
     position: relative;
@@ -14,16 +14,22 @@ nav .menu-item {
     border-bottom: 3px solid transparent;
     display: flex;
     transition: 0.4s;
-    font-size: xx-large;
+    font-size: 3.5vw;
     height: inherit;
     align-items: center;
+    width: 100%;
+    flex-direction: row;
+    margin:auto;
   }
 
 nav .menu-item.active,
-nav .menu-item:hover {
+nav .menu-item:hover,
+.sub-menu-item:hover,
+.sub-menu-item:active {
   background-color: #444;
   border-bottom-color: #FF5858;
   cursor: pointer;
+  width: 100%;
 }
 
 nav .menu-item a {
@@ -35,4 +41,13 @@ img.settings-icon {
   max-height: 50%;
   max-width: 100%;
   object-fit: contain;
+}
+
+a.title {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  width: 100%;
+  height: 1em;
 }

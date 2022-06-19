@@ -1,6 +1,6 @@
 <template>
     <div class="menu-item" @click="isOpen = !isOpen">
-      <a >
+      <a class="title">
           {{ title }}
       </a>
       <div class="svg-scale">
@@ -11,7 +11,7 @@
       
     <transition name="fade" appear>  
         <div class="sub-menu" v-if="isOpen">
-            <div v-for="(item,i) in items" :key="i" class="menu-item">
+            <div v-for="(item,i) in items" :key="i" class="sub-menu-item">
               <a @click=choice(item)>{{ item.title }}</a> 
             </div>
         </div>
