@@ -21,9 +21,9 @@
 
 <div id="inputs"> 
   <div class="invisibel"> d <input type="text" > </div>
-  <div :class="[changeName?'visibel':'invisibel']"> <input type="text" id="changedname">  <input class="button" type="submit"  @click="changeNamee()" value="Change"  > </div>
-  <div :class="[changeEmail?'visibel':'invisibel']"> <input type="text" id="changedemail">   <input class="button" type="submit"  @click="changeNamee()" value="Change"  > </div>
-  <div :class="[changeDoctor?'visibel':'invisibel']"> <input type="text" id="changeddoctor" >  <input class="button" type="submit"  @click="changeNamee()" value="Change"  > </div>
+  <div :class="[changeName?'visibel':'invisibel']"> <input type="text" id="changedname">  <input class="button" type="submit"  @click="change()" value="Change"  > </div>
+  <div :class="[changeEmail?'visibel':'invisibel']"> <input type="text" id="changedemail">   <input class="button" type="submit"  @click="change()" value="Change"  > </div>
+  <div :class="[changeDoctor?'visibel':'invisibel']"> <input type="text" id="changeddoctor" >  <input class="button" type="submit"  @click="change()" value="Change"  > </div>
 </div>
 
 </div>
@@ -45,13 +45,12 @@ export default {
     changeNamee(){
       if (this.changeName){
         console.log("pressed name:", document.getElementById("changedname").value )
-        console.log (this.$regex.checkName(document.getElementById("changedname").value ))
+        //console.log (this.$regex.checkName(document.getElementById("changedname").value ))
         this.changeName= false
-      }
 
       if (this.changeEmail){
          console.log("pressed email:", document.getElementById("changedemail").value )
-        console.log (this.$regex.checkEmail(document.getElementById("changedemail").value ))
+        //console.log (this.$regex.checkEmail(document.getElementById("changedemail").value ))
          this.changeEmail= false
       } 
 

@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import group13.model.Doctor;
@@ -70,5 +70,22 @@ public class UserController {
 		return ResponseEntity.ok(p.get());
 		
 	}
+	
+	//change name
+		@GetMapping("/api/v1/user/update/{userId}/{name}/{email}/{password}")
+		public ResponseEntity<Users> changeName(@PathVariable Long userId,
+				@PathVariable String name,
+				@PathVariable String email,
+				@PathVariable String password){
+			
+			//System.out.println("userid: "+ userId + ". password: " + password);
+					
+			Optional<Users> p = repository.updateUser(userId,name,email,password);
+			if (!p.isPresent()) {
+				return ResponseEntity.notFound().build();
+			}
+			return ResponseEntity.ok(p.get());
+			
+		}
 
 }
