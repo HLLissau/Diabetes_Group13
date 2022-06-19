@@ -4,7 +4,8 @@
     <div class="links">
       
     </div>
-  
+    
+     <router-view :key="$route.path"></router-view>  
 
     <div id="menubar">
        <MenuBar/>
@@ -70,7 +71,7 @@ export default {
       date = moment(String(date)).format('YYYY-MM-DD hh:mm:ss')
 
       await this.axios
-      .get(this.$backend.getUrlCriticalLevels(date,))
+      .get(this.$backend.getUrlCriticalLevels(date))
       .then(res => {
         console.log("chartRes",res.data)
         this.veryhigh = res.data[0]
@@ -129,8 +130,6 @@ export default {
 
     }
   },
-      created(){
-    },
     mounted(){
         this.pullData()
         console.log("data pulled")
