@@ -1,9 +1,9 @@
 <template>
-<div class = "display">
-    <div id="name"> {{this.observation[0]}}: </div>
-    <span id="data"> {{this.observation[1]}} </span>
-    <span id="time"> {{this.observation[2]}} </span>
-</div>
+<tr>
+    <td id="name"> {{this.observation[0]}} </td>
+    <td id="data"> {{this.observation[1]}} </td>
+    <td id="time"> {{this.observation[2]}} </td>
+</tr>
 </template>
 
 
@@ -27,19 +27,25 @@ export default {
 
 <style>
 
-div#name {
+/* td#name {
     float: left;
-    width: 10vw;
+    width: 10em;
 }
-span#data {
-    background-color: whitesmoke;
-    padding: 2px;
+td#data {
     width: 10vw;
+    float:left;
+    padding-right: 5vw;
 }
-span#time{
+td#time{
     color: red;
     font-size: 0.7em;
-    padding-left: 10px;
+    float:left;
+    /* padding-left: 4em;
+    width: 30vw;
+} */
+
+td#time {
+  width: 32vw;
 }
 
 </style>
