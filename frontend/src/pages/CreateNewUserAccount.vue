@@ -1,55 +1,25 @@
 <template>
-  <div class="wrap">
+  <div class="wrap-login">
     <h1>Create new User </h1>
     
-    
-    <Div>
-    <div>
-    <div>
       <label>User Name</label>
-    </div>
-    
-    <input class="login-field" v-model="username" id="username" name="username"  placeholder="Full name"  v-on:focusout="checkName()">
-    
-    </div>
-    <div>
-      <div>
-           <label>Password</label>
-      </div>
-   
-   
-     
-    <input class="login-field" type="password" v-model="password" id='password' placeholder = "password (minimum 4 characters)"
+      <input class="login-field" v-model="username" id="username" name="username"  placeholder="Full name"  v-on:focusout="checkName()">
+      <label>Password</label>
+      <input class="login-field" type="password" v-model="password" id='password' placeholder = "password (minimum 4 characters)"
            minlength="4" required>
-     
-    </div>
-    <div>
-      <div>
-           <label>Re-enter Password</label>
-      </div>
-   
-   
-     
-    <input class="login-field" type="password" v-model="password2" id='password2' placeholder = "password (minimum 4 characters)" v-on:focusout="checkpassword()"
+      <label>Re-enter Password</label>
+      <input class="login-field" type="password" v-model="password2" id='password2' placeholder = "password (minimum 4 characters)" v-on:focusout="checkpassword()"
            minlength="4" required>
-     
-    </div>
+      <label>Email</label>
+      <input class="login-field" v-model="Email" id="Email" name="Email"  placeholder="Group13@AreGreat.dk"  v-on:focusout="checkEmail()" >
 
-    <DIV>
-      <div>
-                <label>Email</label>
-          </div>
 
-          
-          <input class="login-field" v-model="Email" id="Email" name="Email"  placeholder="Group13@AreGreat.dk"  v-on:focusout="checkEmail()" >
-          
+                
 
-    </DIV>
+
     
     <input class="login-button" type="submit"  @click="tryCreateAccount()" value="Create Account"  >
     <input class="goback-button" type="submit"  @click="$router.go(-1)" value="Go Back">
-
-    </Div>
    
     
 
