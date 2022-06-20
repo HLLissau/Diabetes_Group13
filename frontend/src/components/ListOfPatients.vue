@@ -1,12 +1,10 @@
 <template>
 <div>
     <h2> List of Current Patients</h2>
-    <ul>
-        <dropdown
-  title="Simple Filter"
-  text="Click to filter"
-  :items="ListPatients.fullName">
-</dropdown>
+       
+    
+
+ <ul>
         <li
         v-bind:key="p.id"
         v-for="p in ListPatients"   
@@ -15,6 +13,7 @@
       
 
     </ul>
+   
 </div>
 </template>
 

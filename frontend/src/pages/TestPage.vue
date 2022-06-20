@@ -6,6 +6,8 @@
     <div id="info">
       <UserInfo :user = "this.user" :doctor = "this.doctor"/>
     </div>
+     <input class="goback-button" type="submit"  @click="this.deleteUser()" value="Delete User">
+
   </div>
 </template>
 
@@ -28,7 +30,9 @@ export default {
     }
   },
   methods: {
-    
+    deleteUser(){
+      console.log("Boom")
+    }
   },
   
 }

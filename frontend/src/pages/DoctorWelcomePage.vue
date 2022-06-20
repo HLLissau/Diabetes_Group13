@@ -50,7 +50,7 @@ export default {
   padding: 10px 20px;
 
 } */
-
+/*
 div#chart {
   justify-content: flex-start;
   float: left;
@@ -75,4 +75,5 @@ header {
   background-color: #222;
   padding: 15px;
 }
+*/
 </style>
