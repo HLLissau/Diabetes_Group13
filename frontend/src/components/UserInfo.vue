@@ -16,10 +16,10 @@
 </div>
 <div id="alter"> 
   <div class="invisibel"> invisibel </div>
-  <div class="change" v-on:click = "this.changeName = !this.changeName, wrongPassword = false, this.changePassword = false, this.changeEmail = false, this.changeDoctor = false" > <img class="edit" src="../assets/editing.png" alt="Fejl"> </div>
-  <div class="change" v-on:click = "this.changeDoctor = !this.changeDoctor, wrongPassword = false, this.changePassword = false, this.changeEmail = false, this.changeName = false" > <img class="edit" src="../assets/editing.png" alt="Fejl"> </div>
-  <div class="change" v-on:click = "this.changeEmail = !this.changeEmail, wrongPassword = false, this.changePassword = false, this.changeName = false, this.changeDoctor = false" > <img class="edit" src="../assets/editing.png" alt="Fejl"> </div>
-  <div class="change" v-on:click = "this.changePassword = !this.changePassword, wrongPassword = false, this.changeEmail = false, this.changeName = false, this.changeDoctor = false" > <img class="edit" src="../assets/editing.png" alt="Fejl"> </div>
+  <div class="change" v-on:click = "this.changeName = !this.changeName, this.changePassword = false, this.changeEmail = false, this.changeDoctor = false" > <img class="edit" src="../assets/editing.png" alt="Fejl"> </div>
+  <div class="change" v-on:click = "this.changeDoctor = !this.changeDoctor, this.changePassword = false, this.changeEmail = false, this.changeName = false" > <img class="edit" src="../assets/editing.png" alt="Fejl"> </div>
+  <div class="change" v-on:click = "this.changeEmail = !this.changeEmail, this.changePassword = false, this.changeName = false, this.changeDoctor = false" > <img class="edit" src="../assets/editing.png" alt="Fejl"> </div>
+  <div class="change" v-on:click = "this.changePassword = !this.changePassword, this.changeEmail = false, this.changeName = false, this.changeDoctor = false" > <img class="edit" src="../assets/editing.png" alt="Fejl"> </div>
 </div>
 
 <div id="inputs"> 
@@ -27,8 +27,7 @@
   <div :class="[changeName?'visibel':'invisibel']"> <input type="text" id="changedname" placeholder="new name">  <input class="button" type="submit"  @click="change()" value="Change"  > </div>
   <div :class="[changeDoctor?'visibel':'invisibel']"> <input type="text" id="changeddoctor" >  <input class="button" type="submit"  @click="change()" value="Change"  > </div>
   <div :class="[changeEmail?'visibel':'invisibel']"> <input type="text" id="changedemail" placeholder="new email">   <input class="button" type="submit"  @click="change()" value="Change"  > </div>
-  <div v-if="!wrongPassword" :class="[changePassword?'visibel':'invisibel']"> <input type="text" id="oldpassword" placeholder="old password"> <input type="text" id="newpassword" placeholder="new password"> <input class="button" type="submit"  @click="change()" value="Change"> </div>
-  <div id="wrong" v-if="wrongPassword"> wrong password </div>
+  <div :class="[changePassword?'visibel':'invisibel']"> <input type="text" id="oldpassword" placeholder="old password"> <input type="text" id="newpassword" placeholder="new password"> <input class="button" type="submit"  @click="change()" value="Change"> </div>
   
 </div>
 
@@ -45,49 +44,37 @@ export default {
         changeName: false,
         changeEmail: false,
         changeDoctor: false,
-        changePassword: false,
-        wrongPassword: false
+        changePassword: false
     }
   },
   methods: {
     change(){
       console.log("kørt")
       if (this.changeName){
-        console.log("pressed name:", document.getElementById("changedname").value )
-        console.log ("regex", this.$regex.checkName(document.getElementById("changedname").value ))
+        this.$regex.checkName(document.getElementById("changedname").value )
         this.$backend.user.fullName = document.getElementById("changedname").value
-        console.log("new name set to:" ,this.$backend.user.fullName)
         this.changeName= false
       }
       if (this.changeEmail){
-         console.log("pressed email:", document.getElementById("changedemail").value )
-        console.log (this.$regex.checkEmail(document.getElementById("changedemail").value ))
+        this.$regex.checkEmail(document.getElementById("changedemail").value)
         this.$backend.user.email = document.getElementById("changedemail").value
-        console.log("userOut email pressed",this.userOut)
         this.changeEmail= false
       } 
       if (this.changePassword){
-        if(this.$backend.user.password == document.getElementById("oldpassword").value) {
-          this.$backend.user.password = document.getElementById("newpassword").value
-        }
-        else {
-          this.wrongPassword = true
-          console.log("wrong password")
-        }
+        this.$regex.checkpassword(document.getElementById("oldpassword").value, this.$backend.user.password)
+        this.$backend.user.password = document.getElementById("newpassword").value
+        this.changePassword = false
       }
-
       if (this.changeDoctor){
          console.log("pressed Doctor:", document.getElementById("changedemail").value )
          this.changeDoctor= false
-        
       }
-
       console.log("url",this.$backend.getUrlUpdateUser())
             this.axios
         .get(this.$backend.getUrlUpdateUser())
         .then(res => {
           console.log("updated",res)
-          })
+        })
              
     }
   },
@@ -137,11 +124,6 @@ img.editOff{
 .invisibel{
   height: 2vw;
   visibility: hidden;
-}
-div#wrong{
-  color: red;
-  font-weight: bold;
-  height: 2vw;
 }
 
 

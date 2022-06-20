@@ -24,9 +24,9 @@ checkEmail(email) {
     }
   }
  checkpassword(pass1,pass2) {
-    if (pass1.value !=pass2.value) {
+    if (pass1 !=pass2) {
       alert('passwords do not match');
-      pass2.focus;
+      //pass2.focus;
       return false;
     }
 }
