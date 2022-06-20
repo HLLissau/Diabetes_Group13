@@ -70,6 +70,15 @@ public class UserController {
 		return ResponseEntity.ok(p.get());
 		
 	}
+	// get all patients of a doctor
+	@GetMapping("/api/v1/Doctor/{doctorId}/getPatients")
+	public ResponseEntity<Object> getPatients(@PathVariable Long doctorId) {
+	     List<Users> p = repository.getPatients(doctorId);
+		if (p.isEmpty()) {
+			return ResponseEntity.notFound().build();
+		}
+		return ResponseEntity.ok(p);	
+		}
 	
 	//change name
 		@GetMapping("/api/v1/user/update/{userId}/{name}/{email}/{password}")
@@ -87,5 +96,7 @@ public class UserController {
 			return ResponseEntity.ok(p.get());
 			
 		}
+		
+		
 
 }

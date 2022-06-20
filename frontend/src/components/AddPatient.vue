@@ -8,12 +8,14 @@
         <button>Submit</button>
     </form>
   </div>
+  
 </template>
 
 
 <script>
 export default {
-  name: 'AddHospital',
+  components: {  },
+  name: 'AddPatient',
   data() {
     return {
       form: {
@@ -24,10 +26,10 @@ export default {
   
   methods: {
     submitForm() {
-      this.axios.post(this.$backend.getUrlCreateUser(), this.form)
+      this.axios.post(this.$backend.getUrlAddUserToDoctor(), this.form)
         .then(() => {
           this.form.name = ""
-          this.$emit('new-hospital')
+          this.$emit('new-patient')
         })
     }
   }

@@ -109,10 +109,16 @@ export default class Backend {
   getUrlUsers() {
     return this.url + "/login/get/users"
   }
-
+  /*
   getUrlHospitalPatients() {
     return this.url + "/hospitals/" + this.user.id + "/patients"
   }
+  */
+
+  geturlPatientList() {
+    return this.url + "/Doctor/" + this.doctor.id + "/getPatients"
+  }
+  
 
   getUrlCreateUserAccount(){
     var link = this.url + "/patient/create"

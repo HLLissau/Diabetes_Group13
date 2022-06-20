@@ -10,6 +10,7 @@ import CreateNewUserAccount from './pages/CreateNewUserAccount.vue'
 import CreateNewDoctorAccount from './pages/CreateNewDoctorAccount.vue'
 import FrontPage from './pages/FrontPage.vue'
 import UserWelcomePage from './pages/UserWelcomePage.vue'
+import DoctorWelcomePage from './pages/DoctorWelcomePage.vue'
 const routes = [
   {
     path: '/pages/StatsPage',
@@ -75,6 +76,13 @@ const routes = [
   path: '/pages/UserWelcomePage',
   component: UserWelcomePage,
   name: 'UserWelcomePage',
+  props: true,
+  meta: {  }
+},
+{
+  path: '/pages/DoctorWelcomePage',
+  component: DoctorWelcomePage,
+  name: 'DoctorWelcomePage',
   props: true,
   meta: {  }
 },

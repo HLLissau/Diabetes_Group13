@@ -1,14 +1,42 @@
 <template>
    <div class="welcome-wrap">
-      <h1> Welcome </h1> this.$backend.getDoctorName()
-   
-   
-   
+      <h1> Welcome {{this.$backend.doctor.fullName}}  </h1> 
+
+     
+    <ListOfPatients :ListPatients="this.patients" />
+    <AddPatient/>
    
     </div>
 </template>
 
 <script>
+import ListOfPatients from "../components/ListOfPatients.vue";
+import AddPatient from "../components/AddPatient.vue";
+import axios from "axios";
+export default {
+ components: { AddPatient,ListOfPatients },
+ data() {
+  return{
+    patients: []
+  }
+ },
+ methods : {
+  refresh()  {
+    axios
+      .get(this.$backend.geturlPatientList())
+        .then(res => {
+          console.log("patientlist:",res.data)
+          this.patients = res.data
+        })
+  }
+
+ }, 
+  mounted() {
+    this.refresh()
+  }
+
+}
+
 </script>
 
 <style>

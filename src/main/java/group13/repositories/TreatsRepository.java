@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import group13.model.Doctor;
 import group13.model.Treats;
+import group13.model.Users;
 
 
 
@@ -16,7 +17,7 @@ import group13.model.Treats;
 public interface TreatsRepository extends CrudRepository<Treats,Long> {
 	List<Treats> findAll();
 	
-	@Query(value = " SELECT * FROM treats WHERE user_id = 1",
+	@Query(value = " SELECT * FROM treats WHERE user_id = ?1",
 			nativeQuery=true)
 	Optional<Treats> findId(Long id);
 	

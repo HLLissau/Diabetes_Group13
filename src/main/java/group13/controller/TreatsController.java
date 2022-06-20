@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import group13.model.Treats;
+import group13.model.Users;
 import group13.repositories.TreatsRepository;
 
 @Controller
@@ -31,5 +32,8 @@ public class TreatsController {
 		}
 		return ResponseEntity.ok(p);	
 		}
+	
+	
+	
 
 }
