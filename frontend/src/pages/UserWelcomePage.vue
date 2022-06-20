@@ -23,11 +23,11 @@
           <td id="heading">Value</td>
           <td id="heading">Time</td>
         </tr>
-        <CurrentData :observation = "this.basal"/>
-        <CurrentData :observation = "this.bolus"/>
-        <CurrentData :observation = "this.measurement"/>
-        <CurrentData :observation = "this.meals"/>
-        <CurrentData :observation = "this.exercise"/>
+        <CurrentData class="table-data" :observation = "this.basal"/>
+        <CurrentData class="table-data" :observation = "this.bolus"/>
+        <CurrentData class="table-data" :observation = "this.measurement"/>
+        <CurrentData class="table-data" :observation = "this.meals"/>
+        <CurrentData class="table-data" :observation = "this.exercise"/>
       </tbody>
       
     </table>
