@@ -48,12 +48,13 @@ public class UserController {
 	}
 
 	// delete user
-	@DeleteMapping("/api/v1/login/delete/{patientId}")
-	public ResponseEntity<?> deleteUser(@PathVariable Long patientId) {
-		Optional<Users> p = repository.findById(patientId);
-		if (p.isEmpty()) {
+	@DeleteMapping("/api/v1/patient/delete/{userId}")
+	public ResponseEntity<?> deleteUser(@PathVariable Long userId) {
+		Optional<Users> p = repository.findById(userId);
+		if (!p.isPresent()) {
 			return ResponseEntity.notFound().build();
 		}
+		System.out.println("test");
 		repository.delete(p.get());
 		return ResponseEntity.noContent().build();
 	}

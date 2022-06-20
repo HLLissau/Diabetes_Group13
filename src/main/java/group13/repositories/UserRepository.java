@@ -29,6 +29,9 @@ public interface UserRepository extends CrudRepository<Users,Long> {
 	List<Users> getPatients(Long doctorId);
 	
 	
+	//void deleteByid(Long userid);
+	
+	
 	
 		
 }
