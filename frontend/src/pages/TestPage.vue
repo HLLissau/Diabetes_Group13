@@ -28,24 +28,9 @@ export default {
     }
   },
   methods: {
-    async pullData(){
-      this.user = this.$backend.getUser()
-      await this.axios
-        .get(this.$backend.getUrlDoctorOfUser())
-        .then(res => {
-          var obje = res.data
-          this.$backend.doctor =  obje[0]
-
-          console.log("inDoctor: ", this.$backend.doctor)
-          })
-      console.log("inDoctor2: ", this.$backend.doctor)
-      
-
-    },
+    
   },
-  async created(){
-      await this.pullData()
-  }
+  
 }
 </script>
 
