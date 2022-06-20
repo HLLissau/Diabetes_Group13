@@ -48,8 +48,8 @@ export default class Backend {
   getUrlDoctorById(){
     return this.url + "/doctor/getByID/" + this.doctor.id
   }
-  getUrlUpdateUser(id, name, email, password){
-    return this.url + "/user/update/" + id + "/" + name + "/" + email + "/" + password
+  getUrlUpdateUser(){
+    return this.url + "/user/update/" + this.user.id + "/" + this.user.fullName + "/" + this.user.email + "/" + this.user.password
   }
 
 /*

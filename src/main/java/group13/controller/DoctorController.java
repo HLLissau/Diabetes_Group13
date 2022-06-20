@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import group13.model.Doctor;
+import group13.model.Treats;
 import group13.model.Users;
 import group13.repositories.DoctorRepository;
+import group13.repositories.TreatsRepository;
 import group13.repositories.UserRepository;
 
 @Controller
@@ -25,6 +27,7 @@ public class DoctorController {
 
 	@Autowired
 	private DoctorRepository doctorRepository;
+	
 
 	// create doctor
 	@PostMapping("/api/v1/doctor/create")
@@ -48,15 +51,16 @@ public class DoctorController {
 		}
 
 
-	// get doctor
-	@GetMapping("/api/v1/doctor/getByID/{doctorId}")
-	public ResponseEntity<Doctor> getDoctor(@PathVariable Long doctorId) {
-		Optional<Doctor> d = doctorRepository.findById(doctorId);
-		if (!d.isPresent()) {
-			return ResponseEntity.notFound().build();
-		}
-		return ResponseEntity.ok(d.get());
-	}
+	
+	// get doctors of user
+		@GetMapping("/api/v1/patient/getDoctor/{patientId}")
+		public ResponseEntity<List<Doctor>> getDoctor(@PathVariable Long patientId) {
+			List<Doctor> p = doctorRepository.getDoctor(patientId);
+			if (p.isEmpty()) {
+				return ResponseEntity.notFound().build();
+			}
+			return ResponseEntity.ok(p);	
+			}
 //
 //	// delete doctor
 //	@DeleteMapping("/api/v1/login/delete/{patientId}")

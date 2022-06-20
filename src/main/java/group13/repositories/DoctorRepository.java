@@ -8,6 +8,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import group13.model.Doctor;
+import group13.model.Treats;
 
 
 @Repository
@@ -23,6 +24,10 @@ public interface DoctorRepository extends CrudRepository<Doctor,Long> {
 		nativeQuery=true)
 	Optional<Doctor> loginDoctor(String email, String password);
 	
+	@Query(value = " select * from doctor where id in (SELECT doctor_id FROM treats WHERE user_id = ?1)",
+			nativeQuery=true)
+	List<Doctor> getDoctor(Long id);
 	
 }
+	
 

@@ -34,19 +34,12 @@ export default {
         .get(this.$backend.getUrlDoctorOfUser())
         .then(res => {
           var obje = res.data
-          this.$backend.doctor = {"id" : obje.doctorId}
+          this.$backend.doctor =  obje[0]
 
-          console.log("inDoctorId: ", this.$backend.doctor.id)
-          }),
+          console.log("inDoctor: ", this.$backend.doctor)
+          })
+      console.log("inDoctor2: ", this.$backend.doctor)
       
-      this.axios
-        .get(this.$backend.getUrlDoctorById())
-        .then(res => {
-          this.doctor = res.data
-          console.log("inDoctor: ",this.doctor)
-          });
-
-
 
     },
   },

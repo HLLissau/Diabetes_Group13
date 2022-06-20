@@ -17,9 +17,6 @@ import group13.model.Users;
 public interface TreatsRepository extends CrudRepository<Treats,Long> {
 	List<Treats> findAll();
 	
-	@Query(value = " SELECT * FROM treats WHERE user_id = ?1",
-			nativeQuery=true)
-	Optional<Treats> findId(Long id);
 	
 	
 }

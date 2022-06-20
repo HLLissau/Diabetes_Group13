@@ -7,10 +7,10 @@
   <div class="titel"><a> Doctor Name </a></div>
 </div>
 <div id="props"> 
-  <div class="info"><a> {{this.user.id}} </a></div>
-  <div class="info"><a> {{this.user.fullName}} </a></div>
-  <div class="info"><a> {{this.user.email}} </a></div>
-  <div class="info"><a> {{this.doctor.fullName}} </a></div>
+  <div class="info"><a> {{this.$backend.user.id}} </a></div>
+  <div class="info"><a> {{this.$backend.user.fullName}} </a></div>
+  <div class="info"><a> {{this.$backend.user.email}} </a></div>
+  <div class="info"><a> {{this.$backend.doctor.fullName}} </a></div>
 </div>
 <div id="alter"> 
   <div class="invisibel"> invisibel </div>
@@ -33,7 +33,7 @@
 <script>
 export default {
   name: 'UserInfo',
-  props: ['user','doctor'],
+  props: [],
   data() {
     return {   
         changeName: false,
@@ -45,37 +45,34 @@ export default {
   methods: {
     change(){
       console.log("kørt")
-      this.userOut = this.user
       if (this.changeName){
         console.log("pressed name:", document.getElementById("changedname").value )
-        //console.log (this.$regex.checkName(document.getElementById("changedname").value ))
-        this.userOut.fullName = document.getElementById("changedname").value
+        console.log ("regex", this.$regex.checkName(document.getElementById("changedname").value ))
+        this.$backend.user.fullName = document.getElementById("changedname").value
+        console.log("new name set to:" ,this.$backend.user.fullName)
         this.changeName= false
-
+      }
       if (this.changeEmail){
          console.log("pressed email:", document.getElementById("changedemail").value )
-        //console.log (this.$regex.checkEmail(document.getElementById("changedemail").value ))
-        this.userOut.email = document.getElementById("changedemail").value
+        console.log (this.$regex.checkEmail(document.getElementById("changedemail").value ))
+        this.$backend.user.email = document.getElementById("changedemail").value
         console.log("userOut email pressed",this.userOut)
         this.changeEmail= false
       } 
 
       if (this.changeDoctor){
          console.log("pressed Doctor:", document.getElementById("changedemail").value )
-        this.changeDoctor= false
+         this.changeDoctor= false
         
       }
 
-      console.log("url",this.$backend.getUrlUpdateUser(this.userOut.id,this.userOut.fullName,this.userOut.email,this.userOut.password))
+      console.log("url",this.$backend.getUrlUpdateUser())
             this.axios
-        .get(this.$backend.getUrlUpdateUser(this.userOut.id,this.userOut.fullName,this.userOut.email,this.userOut.password))
+        .get(this.$backend.getUrlUpdateUser())
         .then(res => {
           console.log("updated",res)
           })
-
-
-      }
-       
+             
     }
   },
       created(){
