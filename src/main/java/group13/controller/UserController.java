@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import group13.model.Doctor;
+import group13.model.Treats;
 import group13.model.Users;
 import group13.repositories.DoctorRepository;
+import group13.repositories.TreatsRepository;
 import group13.repositories.UserRepository;
 
 @Controller
@@ -25,6 +27,11 @@ public class UserController {
 
 	@Autowired
 	private UserRepository repository;
+	
+	@Autowired
+	private TreatsRepository treatsrepository;
+	
+	
 	// create user
 	@PostMapping("/api/v1/patient/create")
 	public ResponseEntity<Users> create(@RequestBody Users user) {
@@ -92,6 +99,23 @@ public class UserController {
 		return ResponseEntity.ok(p);	
 		}
 	
+	// get all patients of a doctor
+					 	      
+		@GetMapping("/api/v1/Doctor/{doctorId}/getPatientInfo/{userId}")
+		public ResponseEntity<Users> getPatientInfo(@PathVariable Long doctorId,@PathVariable Long userId) {
+		    System.out.println("getting treats for user:" + userId);
+			Optional<Treats> p = treatsrepository.findById(doctorId,userId);
+			
+		    if (p.isEmpty()) {
+				return ResponseEntity.notFound().build();
+			}
+		    Optional<Users> u = repository.findById(userId);
+		    if (u.isEmpty()) {
+				return ResponseEntity.notFound().build();
+			}
+		    System.out.println("test");
+			return ResponseEntity.ok(u.get());	
+			}
 	//change name
 		@GetMapping("/api/v1/user/update/{userId}/{name}/{email}/{password}")
 		public ResponseEntity<Users> changeName(@PathVariable Long userId,

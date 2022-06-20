@@ -7,21 +7,54 @@
  <ul>
         <li
         v-bind:key="p.id"
-        v-for="p in ListPatients"   
-        >{{p.fullName}}
+        v-for="p in ListPatients">
+        <input class="button" type="submit"  @click="this.viewPatient(p.id)" value="Detailed view" />
+        {{p.fullName}}
         </li>
       
 
     </ul>
-   
+    
+
 </div>
 </template>
 
 
 <script>
    export default {
-    component : { },
     name: 'listOfPatients',
-    props: ['ListPatients']
+    props: ['ListPatients'],
+    component : { },
+
+   methods : {
+    viewPatient(number) {
+        console.log("view :",number )
+        this.getUserdata(number)
+        
+    },
+    async getUserdata(userid) {
+    
+      var link =this.$backend.geturlGetUserInfoAsDoctor(userid)
+      this.loginerror=true
+      
+
+      await this.axios.get(
+        link        
+      ).then(
+
+        res => {
+          this.$backend.user = res.data
+          console.log("user: ", this.$backend.user )
+          this.$router.push('/pages/UserWelcomePage')
+
+        }
+      ) .catch(function (error) {
+    if (error.response) {
+      this.loginerror=true
+     }
+      }
+      )
+    },
+   }
    }
 </script>

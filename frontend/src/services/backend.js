@@ -118,6 +118,9 @@ export default class Backend {
   geturlPatientList() {
     return this.url + "/Doctor/" + this.doctor.id + "/getPatients"
   }
+  geturlGetUserInfoAsDoctor(userid) {
+    return this.url + "/Doctor/" + this.doctor.id + "/getPatientInfo/" + userid 
+  }
   
 
   getUrlCreateUserAccount(){

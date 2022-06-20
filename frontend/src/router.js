@@ -11,6 +11,10 @@ import CreateNewDoctorAccount from './pages/CreateNewDoctorAccount.vue'
 import FrontPage from './pages/FrontPage.vue'
 import UserWelcomePage from './pages/UserWelcomePage.vue'
 import DoctorWelcomePage from './pages/DoctorWelcomePage.vue'
+
+
+
+
 const routes = [
   {
     path: '/pages/StatsPage',

@@ -3,18 +3,26 @@
       <h1> Welcome {{this.$backend.doctor.fullName}}  </h1> 
 
      
-    <ListOfPatients :ListPatients="this.patients" />
-    <AddPatient/>
+
+   <ListOfPatients :ListPatients="this.patients" />
+   
+   <router-view :key="$route.path"></router-view>  
+    <!-- <AddPatient/> -->
    
     </div>
 </template>
 
 <script>
-import ListOfPatients from "../components/ListOfPatients.vue";
-import AddPatient from "../components/AddPatient.vue";
-import axios from "axios";
+import ListOfPatients from "../components/ListOfPatients.vue"
+import AddPatient from "../components/AddPatient.vue"
+import axios from "axios"
+import UserWelcomePage from "./UserWelcomePage.vue"
 export default {
- components: { AddPatient,ListOfPatients },
+ components: {
+    AddPatient,
+    ListOfPatients,
+    UserWelcomePage
+},
  data() {
   return{
     patients: []
@@ -28,6 +36,7 @@ export default {
           console.log("patientlist:",res.data)
           this.patients = res.data
         })
+    console.log("refreshed doctor", ListOfPatients)
   }
 
  }, 

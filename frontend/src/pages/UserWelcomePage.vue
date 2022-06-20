@@ -1,5 +1,10 @@
 <template>
    <div id="welcome-wrap">
+    <div v-if="$route.meta.showDoctorback"> >
+     
+      <input class="goback-button" type="submit"  @click="$router.push('/pages/DoctorWelcomePage')" value="Go Back"/> 
+      </div>   
+
     <MenuBar/>
   
      <router-view :key="$route.path"></router-view>  
@@ -141,7 +146,7 @@ export default {
     }
   },
     mounted(){
-        this.getDoctor()
+       // this.getDoctor()
         
 
 
