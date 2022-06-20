@@ -38,7 +38,7 @@ export default {
       backendData: [],
       backendAverage: [],
       average: false,
-      //label: 'measurement',
+      label: 'measurement',
       loaded: [],
     }
   },
@@ -101,9 +101,6 @@ export default {
           });
         })
         this.backendAverage = arr
-        //this.backendAverage
-        
-        this.componentKey += 1;
     },
     
     updateChoice(choice_from_child){
@@ -126,7 +123,7 @@ export default {
         }
         console.log("Average registered as",this.average)
         
-        
+        this.componentKey += 1;
     },
     
     getDatesFromChoice(choice_from_child){
