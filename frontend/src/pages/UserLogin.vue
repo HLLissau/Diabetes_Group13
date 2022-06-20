@@ -45,14 +45,24 @@ data(){
    methods: {
      
     
-    tryLogIn(Email,password){
+    async tryLogIn(Email,password){
       
-      
+      await this.getUserdata(Email,password)
+      this.getdoctor()
+    //  this.$router.push('/pages/UserWelcomePage')
+    //console.log("name", this.$backend.getUserId()) 
+   
+     
+    
+    
+    },
+    async getUserdata(Email,password) {
+    
       var link =this.$backend.getUrlLoginUser()
       this.loginerror=true
       
 
-     this.axios.get(
+      await this.axios.get(
         link + "/" + Email + "/" + password 
         
       ).then(
@@ -69,10 +79,19 @@ data(){
      }
       }
       )
+    },
+     getdoctor() {
+  this.axios
+        .get(this.$backend.getUrlDoctorOfUser())
+        .then(res => {
+          var obje = res.data
+          this.$backend.doctor =  obje[0]
 
-    //  this.$router.push('/pages/UserWelcomePage')
-    //console.log("name", this.$backend.getUserId()) 
       
+          })
+      console.log("inDoctor2: ", this.$backend.doctor)
+      
+
     }
   },
   created() {
