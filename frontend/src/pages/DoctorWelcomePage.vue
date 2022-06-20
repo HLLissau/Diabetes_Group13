@@ -51,7 +51,7 @@ export default {
 
 } */
 
-div#chart {
+/* div#chart {
   justify-content: flex-start;
   float: left;
   width: 30vw;
@@ -74,5 +74,5 @@ div#welcome {
 header {
   background-color: #222;
   padding: 15px;
-}
+} */
 </style>
