@@ -222,7 +222,10 @@ export default class Backend {
     return this.url + '/patient/' + this.user.id + '/getData/criticalLevels/' + date
   }
 
-
+  deleteUrlDeleteUser(){
+    return this.url + '/patient/delete/' + this.user.id
+    
+  }
   
   getDatesFromChoice(choice_from_child){
     var  myCurrentDate= new Date()

@@ -32,6 +32,19 @@ export default {
   methods: {
     deleteUser(){
       console.log("Boom")
+     this.axios
+        .delete(this.$backend.deleteUrlDeleteUser())
+        .then(res => {
+          var obje = res
+          console.log("deleteUserPressed",obje)
+          this.$router.push('/')
+
+      
+          })
+     
+  
+
+
     }
   },
   
