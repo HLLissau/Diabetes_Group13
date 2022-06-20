@@ -42,7 +42,6 @@ export default {
 
 div#info {
   padding-top: 80px;
-  background-color: yellow;
 }
 
 </style>
