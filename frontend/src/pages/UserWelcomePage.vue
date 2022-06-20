@@ -1,18 +1,20 @@
 <template>
+  <MenuBar/>
    <div id="welcome-wrap">
     <div v-if="$route.meta.showDoctorback"> >
      
       <input class="goback-button" type="submit"  @click="$router.push('/pages/DoctorWelcomePage')" value="Go Back"/> 
       </div>   
 
-    <MenuBar/>
+    
   
      <router-view :key="$route.path"></router-view>  
-
-  <div id="data-view">
     <div id="chart">
-      <WelcomeChart :veryhigh = "this.veryhigh" :high = "this.high" :target = "this.target" :low = "this.low" :verylow = "this.verylow" :key = "this.key"/>
-    </div>
+          <WelcomeChart :veryhigh = "this.veryhigh" :high = "this.high" :target = "this.target" :low = "this.low" :verylow = "this.verylow" :key = "this.key"/>
+        </div>
+    <div id="data-view">
+    
+    <h1 id="WelcomeHeading">Welcome {{this.$backend.user.fullName}}</h1>
     <table id="current">
       <!-- <CurrentData id="heading" :observation = "this.heading"/> -->
       <tbody>
@@ -21,11 +23,11 @@
           <td id="heading">Value</td>
           <td id="heading">Time</td>
         </tr>
-        <CurrentData :observation = "this.basal"/>
-        <CurrentData :observation = "this.bolus"/>
-        <CurrentData :observation = "this.measurement"/>
-        <CurrentData :observation = "this.meals"/>
-        <CurrentData :observation = "this.exercise"/>
+        <CurrentData class="table-data" :observation = "this.basal"/>
+        <CurrentData class="table-data" :observation = "this.bolus"/>
+        <CurrentData class="table-data" :observation = "this.measurement"/>
+        <CurrentData class="table-data" :observation = "this.meals"/>
+        <CurrentData class="table-data" :observation = "this.exercise"/>
       </tbody>
       
     </table>

@@ -15,7 +15,7 @@ div.wrap-login {
    align-items:center;
    flex-direction: column;
    vertical-align: middle;
-   top:50%;
+   /* top:50%; */
    position: relative;
 }
 

@@ -1,14 +1,11 @@
 <template>
+  <MenuBar/>
+  <div class="header">
+    <navigationBar v-on:child-choice="updateChoice"   />
+  </div>
   <div class="wrap"> 
-    <div id="menubar">
-       <MenuBar/>
-    </div>
     
-    <div class="header">
-      <navigationBar v-on:child-choice="updateChoice"   />
-    </div>
-    <h1 id = "statpageHeading">Stats page</h1>
-     <!-- <canvas id="myChart"></canvas> -->
+    
      <div id="chart-statspage">
            <PatientChart :propLabel = "label" :propData = "backendData" :propAverageData = "backendAverage" :propAverage = "average" :key = "componentKey" />
      </div>

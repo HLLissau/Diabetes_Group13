@@ -1,10 +1,8 @@
 <template>
     <nav>
-
         <dropDown title="Variable" :items="variabels" @child-choice="updateChoice"/>
         <dropDown title="Interval" :items="interval" @child-choice="updateChoice"/>
         <div class="menu-item" v-on:click="Average()" ><a class="title"> Average</a></div>
-        <div class="menu-item" id="settings"><a class="title">Settings</a></div>
     </nav>
 </template>
 

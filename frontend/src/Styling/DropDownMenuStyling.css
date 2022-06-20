@@ -28,4 +28,5 @@ div .menu-item .sub-menu {
 
 .sub-menu-item {
   border-bottom: 3px solid transparent;
+  height: 10vh;
 }
