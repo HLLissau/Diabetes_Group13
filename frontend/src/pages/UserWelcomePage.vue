@@ -7,6 +7,7 @@
   <div id="data-view">
     <div id="chart">
       <WelcomeChart :veryhigh = "this.veryhigh" :high = "this.high" :target = "this.target" :low = "this.low" :verylow = "this.verylow" :key = "this.key"/>
+      <text style="display: block; font-size: 2vw; padding-left: 5px; background-color: grey; color: white">Measurements the past 24 hours</text>
     </div>
     <table id="current">
       <!-- <CurrentData id="heading" :observation = "this.heading"/> -->

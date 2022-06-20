@@ -11,28 +11,6 @@ export default {
     props: ['veryhigh','high','target','low','verylow'],
     data() { 
     return {
-    current: {
-        type: 'doughnut',
-        data: {
-        labels: [
-            'Red',
-            'Blue',
-            'Yellow'
-        ],
-        datasets: [{
-            label: 'My First Dataset',
-            data: [300, 50, 100],
-            backgroundColor: [
-                'rgb(255, 99, 132)',
-                'rgb(54, 162, 235)',
-                'rgb(255, 205, 86)'
-            ],
-            hoverOffset: 4
-        }]
-        }
-        
-
-    },
     current2: {
         type:'bar',
         data: {
@@ -41,12 +19,12 @@ export default {
         {
             label: 'Very low',
             data: [this.verylow],
-            backgroundColor:'rgb(235, 23, 0)'
+            backgroundColor:'rgb(0, 200, 255)'
         },
         {
             label: 'Low',
             data: [this.low],
-            backgroundColor: 'rgb(255, 239, 0)'
+            backgroundColor: 'rgb(0, 255, 200)'
         },
         {
             label: 'Target',
@@ -66,13 +44,9 @@ export default {
         ]},
         options: {
             legend: {
-                display: false
-            },
-            plugins: {
-                title: {
-                    display: true,
-                    text: 'Chart.js Bar Chart - Stacked'
-                },
+                position: 'bottom',
+                allign: 'end',
+                display: true
             },
             responsive: true,
             maintainAspectRatio: false,
