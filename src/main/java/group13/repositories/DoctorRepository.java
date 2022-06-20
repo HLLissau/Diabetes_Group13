@@ -18,6 +18,8 @@ public interface DoctorRepository extends CrudRepository<Doctor,Long> {
 	
 	Optional<Doctor> findById(Long id);
 	
+
+	
 	@Query(value = "SELECT *  FROM doctor "
 		     + "WHERE email= ?1 "  
 		     + "And password = ?2",

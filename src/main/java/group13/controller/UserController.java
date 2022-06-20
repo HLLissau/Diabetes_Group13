@@ -58,6 +58,17 @@ public class UserController {
 		repository.delete(p.get());
 		return ResponseEntity.noContent().build();
 	}
+	// delete user
+		@DeleteMapping("/api/v1/patient/delete/{userId}/{password}")
+		public ResponseEntity<?> deleteUser2(@PathVariable Long userId,@PathVariable String password) {
+			Optional<Users> p = repository.findByIdAndPassword(userId,password);
+			if (!p.isPresent()) {
+				return ResponseEntity.notFound().build();
+			}
+			System.out.println("test");
+			repository.delete(p.get());
+			return ResponseEntity.noContent().build();
+		}
 	//login User
 	@GetMapping("/api/v1/login/loginUser/{email}/{password}")
 	public ResponseEntity<Users> loginUser(@PathVariable String email,@PathVariable String password){

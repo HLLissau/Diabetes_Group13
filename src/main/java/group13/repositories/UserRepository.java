@@ -27,6 +27,8 @@ public interface UserRepository extends CrudRepository<Users,Long> {
 	@Query(value = "select * from users where id in (SELECT user_id FROM treats WHERE doctor_id = ?1)" // " SELECT user_id FROM treats WHERE doctor_id = ?1"
 			,nativeQuery=true)
 	List<Users> getPatients(Long doctorId);
+
+	Optional<Users> findByIdAndPassword(Long userId, String password);
 	
 	
 	//void deleteByid(Long userid);

@@ -31,9 +31,12 @@ export default {
   },
   methods: {
     deleteUser(){
+     
+      var password = prompt('Your message to the user', 'Suggested user input')
+    
       console.log("Boom")
-     this.axios
-        .delete(this.$backend.deleteUrlDeleteUser())
+      this.axios
+        .delete(this.$backend.deleteUrlDeleteUser()+ "/" + password)
         .then(res => {
           var obje = res
           console.log("deleteUserPressed",obje)
