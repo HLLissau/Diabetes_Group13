@@ -1,5 +1,5 @@
 <template>
-  <div class="wrap">
+  <div class="info-wrap">
     <div id="menubar">
        <MenuBar/>
     </div>
@@ -58,6 +58,11 @@ export default {
 
 div#info {
   padding-top: 80px;
+}
+
+div#welcome-wrap {
+  width: 100vw;
+  height: 100vh;
 }
 
 </style>

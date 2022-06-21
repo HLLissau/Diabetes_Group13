@@ -1,6 +1,6 @@
 <template>
-  <MenuBar/>
-   <div id="welcome-wrap">
+  <div id="welcome-wrap">
+    <MenuBar/>
     <div v-if="$route.meta.showDoctorback"> >
      
       <input class="goback-button" type="submit"  @click="$router.push('/pages/DoctorWelcomePage')" value="Go Back"/> 
