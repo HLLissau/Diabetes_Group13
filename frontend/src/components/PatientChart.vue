@@ -74,7 +74,7 @@ export default {
             yAxes: [{
                     scaleLabel: {
                         display:     true,
-                        labelString: 'value'
+                        labelString: 'label'
                     }
                 }],
             height: 3000,
@@ -90,6 +90,10 @@ export default {
     testcon(input) {
       console.log("testcon: ", input)
     },
+
+    updateLabelString(s) {
+      this.planetChartData.options.scales.yAxes[0].scaleLabel.labelString = s
+    },
      
     updateTable(choice){
     this.planetChartData.data.datasets[1].label=choice
@@ -103,18 +107,23 @@ export default {
             }
             if (choice == "measurement"){
                 payload.y=data.measurement
+                this.updateLabelString("mmol / L")
               }
             if (choice == "bolus"){
                 payload.y=data.bolus
+                this.updateLabelString("U")
             }
             if (choice == "basal"){
                 payload.y=data.basal
+                this.updateLabelString("Insulin flow rate mU / min")
             }
             if (choice == "meals"){
                 payload.y=data.meals
+                this.updateLabelString("g CHO")
             }
             if (choice == "exercise"){
                 payload.y=data.exercise
+                this.updateLabelString("Intensity %")
             }
             overTime.push(payload) 
           });
