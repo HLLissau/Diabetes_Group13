@@ -8,8 +8,8 @@
   <div class="element"><a> password </a></div>
 </div>
 <div id="props"> 
-  <div class="element"><a> {{this.$backend.user.id}} </a></div>
-  <div class="element"><a> {{this.$backend.doctor.fullName}} </a></div>
+  <div class="element" style="font-weight: bold;"><a> {{this.$backend.user.id}} </a>  </div>
+  <div class="element" style="font-weight: bold;"><a> {{this.$backend.doctor.fullName}} </a></div>
   <div class="element"><a> {{this.$backend.user.fullName}} </a></div>
   <div class="element"><a> {{this.$backend.user.email}} </a></div>
   <div class="element"><a> ****** </a></div>
@@ -92,6 +92,9 @@ div#alter{
   padding-left: 5vw;
   float:left;
   width: 15vw;
+}
+div#inputs{
+
 }
 
 
