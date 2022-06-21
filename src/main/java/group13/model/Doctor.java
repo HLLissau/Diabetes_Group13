@@ -26,9 +26,6 @@ public class Doctor  {
 	@Column
 	private String email;
 	
-	
-	
-	
 	public Long getId() {
 		return id;
 	}

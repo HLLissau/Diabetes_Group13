@@ -35,16 +35,19 @@ public class UserController {
 	// create user
 	@PostMapping("/api/v1/patient/create")
 	public ResponseEntity<Users> create(@RequestBody Users user) {
-		return ResponseEntity.ok(repository.save(user));
+		Users u = repository.save(user);
+		Optional<Users> u2 = repository.loginUser(user.getEmail(), user.getPassword());
+		if (u2.isEmpty()) {
+			return ResponseEntity.notFound().build();
+		}
+		return ResponseEntity.ok(u2.get());
 	}
 
 	// get user
 	@GetMapping("/api/v1/login/get/user/{patientId}")
 	public ResponseEntity<Users> getUser(@PathVariable Long patientId) {
 		Optional<Users> p = repository.findById(patientId);
-		if (p.isEmpty()) {
-			return ResponseEntity.notFound().build();
-		}
+		
 		return ResponseEntity.ok(p.get());
 	}
 	
@@ -93,9 +96,7 @@ public class UserController {
 	@GetMapping("/api/v1/Doctor/{doctorId}/getPatients")
 	public ResponseEntity<Object> getPatients(@PathVariable Long doctorId) {
 	     List<Users> p = repository.getPatients(doctorId);
-		if (p.isEmpty()) {
-			return ResponseEntity.notFound().build();
-		}
+		
 		return ResponseEntity.ok(p);	
 		}
 	
@@ -103,8 +104,7 @@ public class UserController {
 					 	      
 		@GetMapping("/api/v1/Doctor/{doctorId}/getPatientInfo/{userId}")
 		public ResponseEntity<Users> getPatientInfo(@PathVariable Long doctorId,@PathVariable Long userId) {
-		    System.out.println("getting treats for user:" + userId);
-			Optional<Treats> p = treatsrepository.findById(doctorId,userId);
+		 	Optional<Treats> p = treatsrepository.findById(doctorId,userId);
 			
 		    if (p.isEmpty()) {
 				return ResponseEntity.notFound().build();
@@ -113,8 +113,7 @@ public class UserController {
 		    if (u.isEmpty()) {
 				return ResponseEntity.notFound().build();
 			}
-		    System.out.println("test");
-			return ResponseEntity.ok(u.get());	
+		  	return ResponseEntity.ok(u.get());	
 			}
 	//change name
 		@GetMapping("/api/v1/user/update/{userId}/{name}/{email}/{password}")

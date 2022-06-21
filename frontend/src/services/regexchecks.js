@@ -14,6 +14,7 @@ checkEmail(email) {
       email.focus;
       return false;
     }
+    return true
 }
   checkName(name) {
     var filter = /^([a-zA-Z0-9_.-])+((\s)+[a-zA-Z0-9-]+)+$/
@@ -22,6 +23,7 @@ checkEmail(email) {
       name.focus;
       return false;
     }
+    return true
   }
  checkpassword(pass1,pass2) {
     if (pass1 !=pass2) {
@@ -29,6 +31,7 @@ checkEmail(email) {
       //pass2.focus;
       return false;
     }
+    return true
 }
 
 }
