@@ -93,9 +93,6 @@ div#alter{
   float:left;
   width: 15vw;
 }
-div#inputs{
-
-}
 
 
 img.edit{
@@ -108,7 +105,7 @@ input.text{
   width: 12vw;
 }
 input.button{
-  font-size: 1.8vw;
+  font-size: 1.7vw;
   height: 2.8vw;
 }
 
