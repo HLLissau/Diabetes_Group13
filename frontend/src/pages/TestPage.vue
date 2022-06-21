@@ -5,8 +5,8 @@
     </div>
     <div id="info">
       <UserInfo :user = "this.user" :doctor = "this.doctor"/>
+      <input class="goback-button" type="submit"  @click="this.deleteUser()" value="Delete User">
     </div>
-     <input class="goback-button" type="submit"  @click="this.deleteUser()" value="Delete User">
 
   </div>
 </template>
@@ -58,11 +58,20 @@ export default {
 
 div#info {
   padding-top: 80px;
+  padding-left: 5vw;
 }
-
-div#welcome-wrap {
-  width: 100vw;
-  height: 100vh;
+input.goback-button{
+    width: 20vw;
+    height: auto;
+    margin-bottom: 15px;
+    border: none;
+    border-radius: 3px;
+    color: #ffffff;
+    cursor: pointer;
+    font-size: 1.8vw;
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+    background: #940000;
 }
 
 </style>

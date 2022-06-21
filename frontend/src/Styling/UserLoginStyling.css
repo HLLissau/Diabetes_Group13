@@ -19,7 +19,7 @@ div.wrap-login {
    position: relative;
 }
 
-input.login-button, input.goback-button {
+input.login-button {
     width: 40vw;
     height: 10vh;
     margin-bottom: 15px;
@@ -34,10 +34,6 @@ input.login-button, input.goback-button {
 
 input.login-button {
     background: #099e6d;
-}
-
-input.goback-button {
-    background: #940000;
 }
 
 input.goback-button:hover {
