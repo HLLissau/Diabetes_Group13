@@ -19,11 +19,15 @@ public class MeasurementController {
 
 	@Autowired
 	private MeasurementRepository MeasurementRepository;
-
+	
+	
 	// Getting all measurements for a user
 	@GetMapping("/api/v1/patient/{userId}/getData")
 	public ResponseEntity<List<Measurement>> getall(@PathVariable Long userId) {
 		List<Measurement> result = MeasurementRepository.findAllByUserId(userId);
+		if (result.isEmpty()) {
+			return ResponseEntity.notFound().build();
+		}
 		return ResponseEntity.ok(result);
 	}
 
@@ -32,6 +36,9 @@ public class MeasurementController {
 	public ResponseEntity<List<Measurement>> getData(@PathVariable long userId, @PathVariable String startDate,
 			@PathVariable String endDate) {
 		List<Measurement> result = MeasurementRepository.findByUserIdByTimeBetween(userId, startDate, endDate);
+		if (result.isEmpty()) {
+			return ResponseEntity.notFound().build();
+		}
 		return ResponseEntity.ok(result);
 	}
 //	
@@ -45,6 +52,10 @@ public class MeasurementController {
 	public ResponseEntity<List<Measurement>> averageByHour(@PathVariable long userId, @PathVariable String startDate,
 			@PathVariable String endDate) {
 		List<Measurement> result = MeasurementRepository.findAvgByUserIdByHourByTimeBetween(userId, startDate, endDate);
+		if (result.isEmpty()) {
+			return ResponseEntity.notFound().build();
+		}
+	
 		return ResponseEntity.ok(result);
 	}
 
@@ -53,6 +64,10 @@ public class MeasurementController {
 	public ResponseEntity<List<Measurement>> averageByDay(@PathVariable long userId, @PathVariable String startDate,
 			@PathVariable String endDate) {
 		List<Measurement> result = MeasurementRepository.findAvgByUserIdByDayByTimeBetween(userId, startDate, endDate);
+		if (result.isEmpty()) {
+			return ResponseEntity.notFound().build();
+		}
+	
 		return ResponseEntity.ok(result);
 	}
 
@@ -61,6 +76,10 @@ public class MeasurementController {
 	public ResponseEntity<List<Measurement>> averageByWeek(@PathVariable long userId, @PathVariable String startDate,
 			@PathVariable String endDate) {
 		List<Measurement> result = MeasurementRepository.findAvgByUserIdByWeekbyTimeBetween(userId, startDate, endDate);
+		if (result.isEmpty()) {
+			return ResponseEntity.notFound().build();
+		}
+	
 		return ResponseEntity.ok(result);
 	}
 
@@ -70,6 +89,10 @@ public class MeasurementController {
 			@PathVariable String endDate) {
 		List<Measurement> result = MeasurementRepository.findAvgByUserIdByMonthbyTimeBetween(userId, startDate,
 				endDate);
+		if (result.isEmpty()) {
+			return ResponseEntity.notFound().build();
+		}
+	
 		return ResponseEntity.ok(result);
 	}
 
@@ -80,6 +103,10 @@ public class MeasurementController {
 	public ResponseEntity<List<Measurement>> averageByYear(@PathVariable long userId, @PathVariable String startDate,
 			@PathVariable String endDate) {
 		List<Measurement> result = MeasurementRepository.findAvgByUserIdByYearbyTimeBetween(userId, startDate, endDate);
+		if (result.isEmpty()) {
+			return ResponseEntity.notFound().build();
+		}
+	
 		return ResponseEntity.ok(result);
 	}
 
@@ -89,6 +116,10 @@ public class MeasurementController {
 			@PathVariable String endDate) {
 		List<Measurement> result = MeasurementRepository.findAvgByUserIdByallTimebyTimeBetween(userId, startDate,
 				endDate);
+		if (result.isEmpty()) {
+			return ResponseEntity.notFound().build();
+		}
+	
 		return ResponseEntity.ok(result);
 	}
 	
@@ -97,7 +128,7 @@ public class MeasurementController {
 	 * GETTING RECENTS *
 	 ********************/
 
-	// Most recent bolus measurement and its time
+		// Most recent bolus measurement and its time
 	@GetMapping("/api/v1/patient/{userId}/getData/recent/bolus")
 	public ResponseEntity<Object> recentBolus(@PathVariable long userId) {
 		Object result = MeasurementRepository.findLatestBolus(userId);
@@ -140,32 +171,46 @@ public class MeasurementController {
 					  
 		public ResponseEntity<List<Measurement>> findAvgByUserIdForDay(@PathVariable long userId, @PathVariable String time) {
 			List<Measurement> result =MeasurementRepository.findAvgByUserIdForDay(userId, time);
+			if (result.isEmpty()) {
+				return ResponseEntity.notFound().build();
+			}
 			return ResponseEntity.ok(result);
 		}
 		
 		// Average measurements for a user grouped by hour, over last 7 days from time
 		@GetMapping("/api/v1/patient/{userId}/getData/average/ForWeek/{time}")
 		public ResponseEntity<List<Measurement>> findAvgByUserIdForWeek(@PathVariable long userId, @PathVariable String time) {
-			System.out.println(time);
 			List<Measurement> result =MeasurementRepository.findAvgByUserIdForWeek(userId, time);
+			if (result.isEmpty()) {
+				return ResponseEntity.notFound().build();
+			}
 			return ResponseEntity.ok(result);
 		}
 		// Average measurements for a user grouped by Day, over last  month from time
 				@GetMapping("/api/v1/patient/{userId}/getData/average/ForMonth/{time}")
 				public ResponseEntity<List<Measurement>> findAvgByUserIdForMonth(@PathVariable long userId, @PathVariable String time) {
 					List<Measurement> result =MeasurementRepository.findAvgByUserIdForMonth( userId,time);
+					if (result.isEmpty()) {
+						return ResponseEntity.notFound().build();
+					}
 					return ResponseEntity.ok(result);
 		}
 				// Average measurements for a user grouped by Week, over last  Year from time
 				@GetMapping("/api/v1/patient/{userId}/getData/average/ForYear/{time}")
 				public ResponseEntity<List<Measurement>> findAvgByUserIdForYear(@PathVariable long userId, @PathVariable String time) {
 					List<Measurement> result =MeasurementRepository.findAvgByUserIdForYear(userId, time);
+					if (result.size()<=1) {
+						return ResponseEntity.notFound().build();
+					}
 					return ResponseEntity.ok(result);
 		}
 				// Average measurements for a user grouped by Month, over All Time from time
 				@GetMapping("/api/v1/patient/{userId}/getData/average/ForAllTime/{time}")
 				public ResponseEntity<List<Measurement>> findAvgByUserIdForAllTime(@PathVariable long userId, @PathVariable String time) {
 					List<Measurement> result =MeasurementRepository.findAvgByUserIdForAllTime(userId, time);
+					if (result.size()<=1) {
+						return ResponseEntity.notFound().build();
+					}
 					return ResponseEntity.ok(result);
 		}
 	
