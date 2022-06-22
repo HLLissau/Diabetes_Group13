@@ -20,9 +20,9 @@ public interface UserRepository extends CrudRepository<Users,Long> {
 		nativeQuery=true)
 	Optional<Users> loginUser(String email,String password);
 	
-	@Query(value = "call updateUser(?1, ?2, ?3, ?4)",
+	@Query(value = "call updateUser(?1, ?2, ?3, ?4,?5)",
 		nativeQuery=true)
-	Optional<Users> updateUser(Long id, String name, String email, String password);
+	Optional<Users> updateUser(Long id, String name, String email, String oldpassword,String password);
 	
 	@Query(value = "select * from users where id in (SELECT user_id FROM treats WHERE doctor_id = ?1)" // " SELECT user_id FROM treats WHERE doctor_id = ?1"
 			,nativeQuery=true)
@@ -31,7 +31,7 @@ public interface UserRepository extends CrudRepository<Users,Long> {
 	Optional<Users> findByIdAndPassword(Long userId, String password);
 	
 	
-	//void deleteByid(Long userid);
+	void deleteByIdAndPassword(Long userid,String password);
 	
 	
 	

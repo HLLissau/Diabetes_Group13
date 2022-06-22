@@ -47,6 +47,7 @@ export default {
   },
   methods: {
     change(){
+      var link = this.$backend.getUrlUpdateUser()
       console.log("kørt")
       if (this.changeName){
         this.$regex.checkName(document.getElementById("changedname").value )
@@ -63,9 +64,11 @@ export default {
         this.$backend.user.password = document.getElementById("newpassword").value
         this.changePassword = false
       }
-      console.log("url",this.$backend.getUrlUpdateUser())
+      
+      link = link + "/" + this.$backend.user.password
+      console.log("url",link)
             this.axios
-        .get(this.$backend.getUrlUpdateUser())
+        .get(link )
         .then(res => {
           console.log("updated",res)
         })

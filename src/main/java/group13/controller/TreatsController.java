@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import group13.model.Doctor;
+import group13.model.Treats;
+import group13.model.Users;
 import group13.repositories.DoctorRepository;
 import group13.repositories.TreatsRepository;
 
@@ -24,7 +26,9 @@ public class TreatsController {
 	@Autowired
 	private DoctorRepository doctorRepository;
 	
+
 	
+	//get the doctor of a patient
 	@GetMapping("/api/v1/patient/getDoctor/{patientId}")
 	public ResponseEntity<List<Doctor>> getDoctor(@PathVariable Long patientId) {
 		List<Doctor> p = doctorRepository.getDoctor(patientId);

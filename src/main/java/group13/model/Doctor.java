@@ -26,7 +26,17 @@ public class Doctor  {
 	
 	@Column(unique=true)
 	private String email;
+
+	public Doctor() {
+		
+	}
 	
+	public Doctor(Long id,String name,String password,String email ){
+		this.id=id;
+		this.fullName=name;
+		this.password=password;
+		this.email= email;
+	}
 	public Long getId() {
 		return id;
 	}
