@@ -35,39 +35,42 @@ public class UserController {
 	// create user
 	@PostMapping("/api/v1/patient/create")
 	public ResponseEntity<Users> create(@RequestBody Users user) {
-		Users u = repository.save(user);
-		Optional<Users> u2 = repository.loginUser(user.getEmail(), user.getPassword());
-		if (u2.isEmpty()) {
+		repository.save(user);
+		Optional<Users> u = repository.loginUser(user.getEmail(), user.getPassword());
+		if (u.isEmpty()) {
 			return ResponseEntity.notFound().build();
 		}
-		return ResponseEntity.ok(u2.get());
+		return ResponseEntity.ok(u.get());
 	}
 
 	// get user
-	@GetMapping("/api/v1/login/get/user/{patientId}")
-	public ResponseEntity<Users> getUser(@PathVariable Long patientId) {
-		Optional<Users> p = repository.findById(patientId);
-		
+	@GetMapping("/api/v1/login/get/user/{userId}")
+	public ResponseEntity<Users> getUser(@PathVariable Long userId) {
+		Optional<Users> p = repository.findById(userId);
+		if (p.isEmpty()) {
+			return ResponseEntity.notFound().build();
+		}
+		p.get().setPassword("");
 		return ResponseEntity.ok(p.get());
 	}
 	
-	// get users
-	@GetMapping("/api/v1/login/get/users")
-	public ResponseEntity<List<Users>> getUsers() {
-		return ResponseEntity.ok(repository.findAll());
-	}
+//	// get users
+//	@GetMapping("/api/v1/login/get/users")
+//	public ResponseEntity<List<Users>> getUsers() {
+//		return ResponseEntity.ok(repository.findAll());
+//	}
 
 	// delete user
-	@DeleteMapping("/api/v1/patient/delete/{userId}")
-	public ResponseEntity<?> deleteUser(@PathVariable Long userId) {
-		Optional<Users> p = repository.findById(userId);
-		if (!p.isPresent()) {
-			return ResponseEntity.notFound().build();
-		}
-		System.out.println("test");
-		repository.delete(p.get());
-		return ResponseEntity.noContent().build();
-	}
+//	@DeleteMapping("/api/v1/patient/delete/{userId}")
+//	public ResponseEntity<?> deleteUser(@PathVariable Long userId) {
+//		Optional<Users> p = repository.findById(userId);
+//		if (!p.isPresent()) {
+//			return ResponseEntity.notFound().build();
+//		}
+//		System.out.println("test");
+//		repository.delete(p.get());
+//		return ResponseEntity.noContent().build();
+//	}
 	// delete user
 		@DeleteMapping("/api/v1/patient/delete/{userId}/{password}")
 		public ResponseEntity<?> deleteUser2(@PathVariable Long userId,@PathVariable String password) {
@@ -92,29 +95,7 @@ public class UserController {
 		return ResponseEntity.ok(p.get());
 		
 	}
-	// get all patients of a doctor
-	@GetMapping("/api/v1/Doctor/{doctorId}/getPatients")
-	public ResponseEntity<Object> getPatients(@PathVariable Long doctorId) {
-	     List<Users> p = repository.getPatients(doctorId);
-		
-		return ResponseEntity.ok(p);	
-		}
 	
-	// get all patients of a doctor
-					 	      
-		@GetMapping("/api/v1/Doctor/{doctorId}/getPatientInfo/{userId}")
-		public ResponseEntity<Users> getPatientInfo(@PathVariable Long doctorId,@PathVariable Long userId) {
-		 	Optional<Treats> p = treatsrepository.findById(doctorId,userId);
-			
-		    if (p.isEmpty()) {
-				return ResponseEntity.notFound().build();
-			}
-		    Optional<Users> u = repository.findById(userId);
-		    if (u.isEmpty()) {
-				return ResponseEntity.notFound().build();
-			}
-		  	return ResponseEntity.ok(u.get());	
-			}
 	//change name
 		@GetMapping("/api/v1/user/update/{userId}/{name}/{email}/{password}")
 		public ResponseEntity<Users> changeName(@PathVariable Long userId,

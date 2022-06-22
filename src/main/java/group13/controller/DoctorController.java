@@ -27,6 +27,10 @@ public class DoctorController {
 
 	@Autowired
 	private DoctorRepository doctorRepository;
+	@Autowired
+	private UserRepository patientRepository;
+	@Autowired
+	private TreatsRepository treatsrepository;
 	
 
 	// create doctor
@@ -50,20 +54,32 @@ public class DoctorController {
 			
 		}
 
-
-	
-	// get doctors of user
-		@GetMapping("/api/v1/patient/getDoctor/{patientId}")
-		public ResponseEntity<List<Doctor>> getDoctor(@PathVariable Long patientId) {
-			List<Doctor> p = doctorRepository.getDoctor(patientId);
-			if (p.isEmpty()) {
-				return ResponseEntity.notFound().build();
-			}
+		// get all patients of a doctor
+		@GetMapping("/api/v1/Doctor/{doctorId}/getPatients")
+		public ResponseEntity<Object> getPatients(@PathVariable Long doctorId) {
+		     List<Users> p = patientRepository.getPatients(doctorId);
+			
 			return ResponseEntity.ok(p);	
 			}
-//
+		
+		// get all patients of a doctor
+						 	      
+			@GetMapping("/api/v1/Doctor/{doctorId}/getPatientInfo/{userId}")
+			public ResponseEntity<Users> getPatientInfo(@PathVariable Long doctorId,@PathVariable Long userId) {
+			 	Optional<Treats> p = treatsrepository.findById(doctorId,userId);
+				
+			    if (p.isEmpty()) {
+					return ResponseEntity.notFound().build();
+				}
+			    Optional<Users> u = patientRepository.findById(userId);
+			    if (u.isEmpty()) {
+					return ResponseEntity.notFound().build();
+				}
+			  	return ResponseEntity.ok(u.get());	
+				}
+	
 //	// delete doctor
-//	@DeleteMapping("/api/v1/login/delete/{patientId}")
+//	@DeleteMapping("/api/v1/doctor/delete/{doctorId}")
 //	public ResponseEntity<?> deleteDoctor(@PathVariable Long doctorId) {
 //		Optional<Doctor> d = doctorRepository.findById(doctorId);
 //		if (d.isEmpty()) {
@@ -77,19 +93,8 @@ public class DoctorController {
 //		return ResponseEntity.noContent().build();
 //	}
 //
-//	// return patients of doctor {doctorId}
-//	@GetMapping("/api/v1/doctor/{doctorId}/patients")
-//	public ResponseEntity<List<User>> getAll(@PathVariable Long doctorId) {
-//		Optional<Doctor> d = doctorRepository.findById(doctorId);
-//		if (d.isEmpty() || d.get().getPatients().isEmpty()) {
-//			return ResponseEntity.notFound().build();
-//		}
-//		return ResponseEntity.ok(d.get().getPatients());
-//	}
-//	
-//	
 	// remove patient
-//	@PutMapping("/api/v1/remove/patient/{patientId}/{doctorId}")
+//	@PutMapping("/api/v1/doctor/remove/{patientId}/{doctorId}")
 //	public ResponseEntity<?> removePatient(@PathVariable Long patientId, @PathVariable Long doctorId) {
 //		Optional<User> p = repository.findById(patientId);
 //		Optional<Doctor> d = doctorRepository.findById(doctorId);

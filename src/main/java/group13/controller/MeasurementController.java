@@ -1,7 +1,6 @@
 package group13.controller;
 
-import java.math.BigInteger;
-import java.sql.Timestamp;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -118,7 +117,20 @@ public class MeasurementController {
 		Object result = MeasurementRepository.findLatestMeasurement(userId);
 		return ResponseEntity.ok(result);
 	}
-
+	// Most recent meals measurement and its time
+		@GetMapping("/api/v1/patient/{userId}/getData/recent/meals")
+		public ResponseEntity<Object> recentMeals(@PathVariable long userId) {
+			Object result = MeasurementRepository.findLatestMeals(userId);
+			return ResponseEntity.ok(result);
+		}
+		
+		// Most recent exercise measurement and its time
+		@GetMapping("/api/v1/patient/{userId}/getData/recent/exercise")
+		public ResponseEntity<Object> recentExercise(@PathVariable long userId) {
+			Object result = MeasurementRepository.findLatestExercise(userId);
+			return ResponseEntity.ok(result);
+		}
+		
 	/* 
 	 * The following Api's are used to generate averages used in statspage
 	 */
@@ -159,19 +171,6 @@ public class MeasurementController {
 	
 				
 				
-	// Most recent meals measurement and its time
-	@GetMapping("/api/v1/patient/{userId}/getData/recent/meals")
-	public ResponseEntity<Object> recentMeals(@PathVariable long userId) {
-		Object result = MeasurementRepository.findLatestMeals(userId);
-		return ResponseEntity.ok(result);
-	}
-	
-	// Most recent exercise measurement and its time
-	@GetMapping("/api/v1/patient/{userId}/getData/recent/exercise")
-	public ResponseEntity<Object> recentExercise(@PathVariable long userId) {
-		Object result = MeasurementRepository.findLatestExercise(userId);
-		return ResponseEntity.ok(result);
-	}
 	
 	/*****************************************************************
 	 * GETTING VERY HIGH / HIGH / TARGET / LOW / VERY LOW PERCENTAGES*

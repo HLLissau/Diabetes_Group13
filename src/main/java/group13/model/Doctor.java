@@ -23,7 +23,8 @@ public class Doctor  {
 	
 	@Column
 	private Timestamp createdAt;
-	@Column
+	
+	@Column(unique=true)
 	private String email;
 	
 	public Long getId() {

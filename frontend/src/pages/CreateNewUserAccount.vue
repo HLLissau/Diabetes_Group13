@@ -57,7 +57,8 @@ export default {
     async tryCreateAccount(){
       // check correct user input in fields
        
-       
+      console.log("form:", this.form ) 
+      console.log("regex",this.$regex.checkEmail(this.form.email))
       if ( this.$regex.checkName(this.form.fullName) &&   this.$regex.checkpassword(this.form.password, this.form.password2) &&  this.$regex.checkEmail(this.form.email)   ){
       
       
@@ -65,14 +66,7 @@ export default {
      
      await this.axios.post(
         link, this.form
-        /* {
-          "id" : 0,
-          "createdAt": new Date,
-          "name" : document.getElementById('username').value,
-          "password" : document.getElementById('password').value ,
-          "email" :document.getElementById('Email').value 
-        }
-        */
+       
         
       ).then(
 

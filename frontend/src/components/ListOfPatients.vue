@@ -45,7 +45,7 @@
         res => {
           this.$backend.user = res.data
           console.log("user: ", this.$backend.user )
-          this.$router.Meta({showDoctorback : true})
+
           this.$router.push('/pages/UserWelcomePage' )
 
         }

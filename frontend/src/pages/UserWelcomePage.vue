@@ -87,9 +87,10 @@ export default {
     async pullData(){
 
       var  date= new Date()
-      // date.setMonth(0)
-      // date.setDate(28)
+      date.setMonth(0)
+      date.setDate(28)
       date = moment(String(date)).format('YYYY-MM-DD hh:mm:ss')
+
       console.log("date", date);
       await this.axios
       .get(this.$backend.getUrlCriticalLevels(date))

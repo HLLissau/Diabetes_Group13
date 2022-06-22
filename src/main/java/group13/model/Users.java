@@ -22,7 +22,7 @@ public class Users {
 
 	@Column
 	private Timestamp createdAt;
-	@Column
+	@Column(unique=true)
 	private String email;
 	
 	

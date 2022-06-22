@@ -22,8 +22,14 @@ public interface TreatsRepository extends CrudRepository<Treats,Long> {
 		     + "And user_id = ?2",
 		nativeQuery=true)
 	Optional<Treats> findById(Long userId,Long doctorId);
+
+	@Query(value = " select * from doctor where id in (SELECT doctor_id FROM treats WHERE user_id = ?1)",
+			nativeQuery=true)
+	List<Doctor> getDoctor(Long id);
+	
 	
 }
+
 
 
 

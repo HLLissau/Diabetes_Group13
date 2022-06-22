@@ -6,8 +6,8 @@ export default class Regexchecks {
   }
 
 checkEmail(email) {
-      
-    var filter = /^([a-zA-Z0-9_.-])+@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+  var filter =  /^([a-zA-Z0-9_\-.]+)@([a-zA-Z0-9_\-.]+).([a-zA-Z]{2,5})$/
+  //  var filter = /^([a-zA-Z0-9_.-])+@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})$/;
 
     if (!filter.test(email)) {
       alert('Please provide a valid email address');
