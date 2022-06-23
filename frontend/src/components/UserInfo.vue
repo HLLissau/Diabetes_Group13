@@ -90,7 +90,7 @@ export default {
       changePassword: false,
     };
   },
-  methods: {
+  methods: { //Harald s204436
     change() {
       var correct = true;
       var newpassword = this.$backend.user.password;

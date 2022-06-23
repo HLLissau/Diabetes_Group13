@@ -17,8 +17,6 @@ export default {
     data () {
         return {
             average: false,
-           //variableChoice : "",
-           //invervalChoice : "",
 
            variabels: [
             {
@@ -55,23 +53,20 @@ export default {
                title: 'All time',
            }
            ],
-           //variabel: 'test',
            
         }
     },
 
-    methods: {
+    methods: { //Erik s204438
         Settings(){
             console.log()
         },
         updateChoice(choice_from_child){
-            //console.log("Navigationbaremit", choice_from_child)
             this.$emit('child-choice',choice_from_child)
         },
         Average() {
             this.average = !this.average
             this.updateChoice(this.average)
-            console.log("button average",this.average)
         },
         mounted(){
             this.average = false

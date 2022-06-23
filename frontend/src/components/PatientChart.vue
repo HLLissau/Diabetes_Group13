@@ -10,15 +10,10 @@ export default {
   name: 'PatientChart',
   
   props: ['propData','propLabel','propAverageData','propAverage'],
-  watch: {
-   /* propLabel: function (newValue) {
-      this.updateTable(newValue)
-    }*/
-  },
   data() {
     return {
       legend: "average",
-      planetChartData: {
+      chartData: {
         type: "scatter",
         data: {
           datasets: [
@@ -74,7 +69,7 @@ export default {
             yAxes: [{
                     scaleLabel: {
                         display:     true,
-                        labelString: 'label'
+                        labelString: 'value'
                     }
                 }],
             height: 3000,
@@ -90,15 +85,10 @@ export default {
     testcon(input) {
       console.log("testcon: ", input)
     },
-
-    updateLabelString(s) {
-      this.planetChartData.options.scales.yAxes[0].scaleLabel.labelString = s
-    },
      
-    updateTable(choice){
-    this.planetChartData.data.datasets[1].label=choice
-    //console.log("PatientChart-updateTable",this.propData)
-    //console.log("PatientChart-updateTable2",this.planetChartData.data.datasets[0].label)
+
+    updateTable(choice){ //Rolf s193939
+    this.chartData.data.datasets[1].label=choice
     var overTime = []
     this.propData.forEach(data => {
             var payload = {
@@ -107,23 +97,18 @@ export default {
             }
             if (choice == "measurement"){
                 payload.y=data.measurement
-                this.updateLabelString("mmol / L")
               }
             if (choice == "bolus"){
                 payload.y=data.bolus
-                this.updateLabelString("U")
             }
             if (choice == "basal"){
                 payload.y=data.basal
-                this.updateLabelString("Insulin flow rate mU / min")
             }
             if (choice == "meals"){
                 payload.y=data.meals
-                this.updateLabelString("g CHO")
             }
             if (choice == "exercise"){
                 payload.y=data.exercise
-                this.updateLabelString("Intensity %")
             }
             overTime.push(payload) 
           });
@@ -153,15 +138,13 @@ export default {
           });
       
           
-          //this.chosenData = overTime
-          this.planetChartData.data.datasets[1].data=overTime
-          this.planetChartData.data.datasets[0].data=averageSpan
+          this.chartData.data.datasets[1].data=overTime
+          this.chartData.data.datasets[0].data=averageSpan
 
-          //console.log("updateTable(done)",this.planetChartData.data.datasets[0].data)
-          this.planetChartData
+          this.chartData
 
           console.log("chartAverage",this.propAverage)
-          this.planetChartData.data.datasets[0].hidden = !this.propAverage
+          this.chartData.data.datasets[0].hidden = !this.propAverage
           
           if (this.propAverage){
             this.legend = ""
@@ -171,41 +154,10 @@ export default {
     }
   },
 
-  /* created() {
-    console.log("tjekCreated",this.backendData)
-    var arr = []
-    this.axios
-        .get(this.$backend.getAllData())
-        .then(res => {
-          this.backendData = res.data
-          this.backendData.forEach(data => {
-            var payload = {
-              t:new Date(data.time),
-              measurement:data.measurement,
-              meal:data.meals,
-              exercise:data.exercise,
-              bolus:data.bolus,
-              basal:data.basal
-            }  
-            arr.push(payload) 
-          });
-        })
-        this.backendData = arr
-        console.log("tjekAfterCreated",this.backendData)
-        this.planetChartData.data.datasets[0].data=this.dataProp
-        this.planetChartData.data.datasets[0].label=this.labelProp
-  }, */
-
-  mounted() {
-      
-     this.updateTable(this.propLabel)
-      const ctx = document.getElementById('patient-chart');
-      new Chart(ctx, this.planetChartData);
-
-      
-  },
-  created(){
-  
+  mounted() {  
+    this.updateTable(this.propLabel)
+    const ctx = document.getElementById('patient-chart');
+    new Chart(ctx, this.chartData);
   }
 
 }
