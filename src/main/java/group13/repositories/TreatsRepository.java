@@ -14,7 +14,7 @@ import group13.model.Users;
 
 
 @Repository
-public interface TreatsRepository extends CrudRepository<Treats,Long> {
+public interface TreatsRepository extends CrudRepository<Treats,Long> { //Rolf s193939
 	
 	
 	@Query(value = "SELECT *  FROM treats "

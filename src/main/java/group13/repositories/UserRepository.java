@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 import group13.model.Users;
 
 @Repository
-public interface UserRepository extends CrudRepository<Users,Long> {
+public interface UserRepository extends CrudRepository<Users,Long> { //Harald s204436
 	List<Users> findAll();
 
 	@Query(value = "SELECT *  FROM users "
