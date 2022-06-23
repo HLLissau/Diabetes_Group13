@@ -70,7 +70,7 @@ export default {
     }
   },
   methods: {
-    getDoctor() {
+    getDoctor() { //Harald s204436
       var doctorlink = this.$backend.getUrlDoctorOfUser()
       this.$backend.doctor = doctorlink
     },
@@ -78,13 +78,14 @@ export default {
     printname(){
       console.log("name", this.$backend.getUserId())
     },
-    // push measurement and date (in correct format)
-    pushMeasurementAndDate(measurementVariable, measurementValue, dateString) { // assuming date arrives as string
-        measurementVariable.push(measurementValue)
-        measurementVariable.push(moment(new Date(dateString)).format('HH:MM:SS, MMMM Do YYYY'))
+
+    pushMeasurementAndDate(measurementVariable, measurementValue, dateString) { //Harald s204436
+      // assuming date arrives as string
+      measurementVariable.push(measurementValue)
+      measurementVariable.push(moment(new Date(dateString)).format('HH:MM:SS, MMMM Do YYYY'))
     },
 
-    async pullData(){
+    async pullData(){ //Rolf s193939
 
       var  date= new Date()
       date.setMonth(0)
@@ -106,13 +107,6 @@ export default {
         this.key++;
 
       })
-
-        console.log("highOut",this.high)
-        console.log("targetOut",this.target)
-
-
-      
-
 
       //basal
         this.axios
@@ -149,11 +143,6 @@ export default {
     }
   },
     mounted(){
-       // this.getDoctor()
-        
-
-
-
         this.pullData()
         console.log("data pulled")
     }

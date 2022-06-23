@@ -11,9 +11,7 @@
         <input class="button" type="submit"  @click="this.viewPatient(p.id)" value="Detailed view" />
         {{p.fullName}}
         </li>
-      
-
-    </ul>
+</ul>
     
 
 </div>
@@ -32,7 +30,7 @@
         this.getUserdata(number)
         
     },
-    async getUserdata(userid) {
+    async getUserdata(userid) { //Harald s204436
     
       var link =this.$backend.geturlGetUserInfoAsDoctor(userid)
       this.loginerror=true

@@ -1,49 +1,56 @@
+/* Magnus s191252 */
+
 #heading {
   font-weight: bolder;
-  text-decoration: underline;
 }
 
 div#welcome-wrap {
-  width: 100%;
-  height: 90vh;
-  top: 10vh;
-  position:relative;
+  width: 100vw;
+  height: 100vh;
+}
+
+div#data-view {
+  width:100%;
+  height: 100%;
+  overflow: hidden;
 }
 
 div#chart {
   position: absolute;
   width: 15vw;
   height: 80vh;
-  top: 1vh;
+  top: 15vh;
   float: left;
 }
 
-div#data-view {
+table#current {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding-left: 4vw;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  /* font-size: 2.5vw; */
 }
 
 td#heading {
   font-weight: bolder;
 }
 
+header {
+  background-color: #222;
+  padding: 15px;
+}
+
 th, td {
   width: 20vw;
   padding: 20px 0;
   font-size: 2.5vw;
-}
-
-.table-data {
-  transform: scale(1, 2);
+  /* transform: scale(1, 2);
   -webkit-transform: scale(1, 2); 
   -moz-transform: scale(1, 2); 
   -ms-transform: scale(1, 2); 
-  -o-transform: scale(1, 2); 
-}
-
-h1#WelcomeHeading {
-  font-size: 5vw;
+  -o-transform: scale(1, 2); Opera */
 }

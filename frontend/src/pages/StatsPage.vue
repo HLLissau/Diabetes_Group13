@@ -1,4 +1,5 @@
 <template>
+  <div>
   <MenuBar/>
   <div class="header">
     <navigationBar v-on:child-choice="updateChoice"   />
@@ -9,6 +10,7 @@
      <div id="chart-statspage">
            <PatientChart :propLabel = "label" :propData = "backendData" :propAverageData = "backendAverage" :propAverage = "average" :key = "componentKey" />
      </div>
+  </div>
   </div>
 </template>
 
@@ -42,7 +44,7 @@ export default {
   methods: {
    
 
-    pullAverage(after,choice){
+    pullAverage(after,choice){ //Rolf s193939
           var data
           switch (choice) {
           case "Day": 
@@ -69,11 +71,8 @@ export default {
       startDate.setDate(startDate.getDate() - 2000)
       startDate =moment(String(startDate)).format('YYYY-MM-DD hh:mm:ss')
 
-
-      //pull all averages for alle variable
       var arr = []
       this.axios
-        //.get(this.$backend.getUrlAveragesByHour(startDate, moment(String(new Date())).format('YYYY-MM-DD hh:mm:ss')))
         .get(data)
         .then(res => {
           this.backendAverage = res.data
@@ -88,25 +87,18 @@ export default {
               bolus:data.bolus,
               basal:data.basal
             } 
-            //console.log("payload time before:", payload.t) 
-            //var temptime = new Date(new Date(payload.t).setDate(29)) 
-            //console.log("payload time middle:", temptime) 
-            //payload.t=temptime
-            //console.log("payload time after:", payload.t) 
-            //console.log("complete payload:", payload) 
             arr.push(payload) 
           });
         })
         this.backendAverage = arr
     },
     
-    updateChoice(choice_from_child){
+    updateChoice(choice_from_child){ // Harald s204436
         console.log("choice from child",choice_from_child)
         var values = ["measurement","meals","exercise", "basal","bolus"]
         var interval= ["Day","Week","Month","Year","All time"]
         if (values.includes(choice_from_child)) {
         this.label = choice_from_child
-        //console.log("updateChoice", choice_from_child)
         }
 
         else if (interval.includes(choice_from_child)) { 
@@ -123,7 +115,7 @@ export default {
         this.componentKey += 1;
     },
     
-    getDatesFromChoice(choice_from_child){
+    getDatesFromChoice(choice_from_child){ // Harald s204436
         var  myCurrentDate= new Date()
         if (this.testfunctions){
            myCurrentDate.setMonth(0)
@@ -167,7 +159,7 @@ export default {
           return [myPastDate,myCurrentDate]
     },
 
-    pullChartData(before,after,choice){
+    pullChartData(before,after,choice){ // Rolf s193939
     var data = []
     console.log("chart date choice", choice)
     switch (choice) {
@@ -216,8 +208,6 @@ export default {
         
   }
 
-
-
   },
   mounted() {
     if (this.testfunctions){ console.log("parentmount")}
@@ -227,17 +217,8 @@ export default {
     
   },
   created(){
-
-
     this.testfunctions = true
-    this.updateChoice("measurement")
-
-
-    
-    //this.pullAverage("2020-01-08 00:00:00","2022-01-08 00:00:00","Day")
-    
-    //this.componentKey += 1;
-        
+    this.updateChoice("measurement")   
   },
 }
 </script>

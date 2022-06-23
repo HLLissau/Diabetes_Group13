@@ -1,4 +1,4 @@
-<template>
+<template> <!-- Erik s204438 -->
   <div class="info-wrap">
     <div id="menubar">
        <MenuBar/>
@@ -30,7 +30,7 @@ export default {
     }
   },
   methods: {
-    deleteUser(){
+    deleteUser(){ //Erik s204438
      
       var password = prompt('Your message to the user', 'Suggested user input')
     

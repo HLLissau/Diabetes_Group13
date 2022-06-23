@@ -1,4 +1,5 @@
 <template>
+    <!-- Erik s204438 -->
     <div class="menu-item" @click="isOpen = !isOpen">
       <a class="title">
           {{ title }}
@@ -32,7 +33,6 @@ export default {
     },
     methods: {
       choice(item){
-        //console.log("emitting from dropdownmenu", item.title)
         this.$emit('child-choice',item.title)
       }
     }

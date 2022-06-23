@@ -1,6 +1,6 @@
 import moment from 'moment'
   
-export default class Backend {
+export default class Backend { //Harald s191252
     access() {
     
      let user = new user({
@@ -19,19 +19,10 @@ export default class Backend {
       createdAt: "",
       email : ""
     })
-    
-
-
-
     }
+
   constructor() {
     this.url = "http://localhost:8080/api/v1"
-    
-    
-   
-    
-    
-
   }
 
   getAllData() {
@@ -52,68 +43,9 @@ export default class Backend {
     return this.url + "/user/update/" + this.user.id + "/" + this.user.fullName + "/" + this.user.email + "/" + this.user.password
   }
 
-/*
-  getUserId() {
-    return this.UserId
-  }
-  setUserId(UserId) {
-     this.user.UserId = UserId
-  }
-  getUserName() {
-    return this.UserName
-  }
-  setUserName(UserName) {
-     this.UserName = UserName
-  }
-  getUserEmail() {
-    return this.email
-  }
-  setUserEmail(email) {
-     this.email = email
-  }
-  
-  getDoctorId() {
-    return this.doctorId
-  }
-  setDoctorId(doctorId) {
-     this.doctorId = doctorId
-  }
-  getDoctorName() {
-    return this.doctorName
-  }
-  setDoctorName(doctorName) {
-     this.doctorName = doctorName
-  }
-  getDoctorEmail() {
-    return this.email
-  }
-  setDoctorEmail(email) {
-     this.email = email
-  }
-
-  getDoctorpassword() {
-    return this.password
-  }
-  setDoctorpassword(password) {
-     this.password = password
-  }
-
-  getUserpassword() {
-    return this.password
-  }
-  setUserpassword(password) {
-     this.password = password
-  }
-  */
-
   getUrlUsers() {
     return this.url + "/login/get/users"
   }
-  /*
-  getUrlHospitalPatients() {
-    return this.url + "/hospitals/" + this.user.id + "/patients"
-  }
-  */
 
   geturlPatientList() {
     return this.url + "/Doctor/" + this.doctor.id + "/getPatients"
@@ -169,7 +101,6 @@ export default class Backend {
     var link = this.url + "/login/loginDoctor"
     return link
   }
-
 
   getUrlAverageForDay(date) {
     var link = this.url + "/patient/" + this.user.id + "/getData/average/ForDay/" + date

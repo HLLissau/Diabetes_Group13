@@ -1,8 +1,7 @@
 <template>
-  <div class="wrap">
+  <div class="wrap"> <!-- Harald s204436 -->
+
    <!-- <h1>Create new account </h1> -->
-
-
     <div>
               
               <div v-if="$route.meta.showCreateMenu" class="login-button"><button @click="$router.push('/pages/CreateNewUserAccount')"><h1>Create User Account</h1></button></div>

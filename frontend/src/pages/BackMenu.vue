@@ -1,4 +1,4 @@
-<template>
+<template> <!-- Magnus s191252 -->
    <div id="nav">
  
     <div id="chart">
@@ -20,11 +20,3 @@ export default {
   }
 }
 </script>
-<!--
-<style>
-.test {
-  position: absolute;
-  left: 100px;
-}
-
-</style>-->

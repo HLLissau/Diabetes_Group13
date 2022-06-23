@@ -1,3 +1,5 @@
+/* Magnus s191252 */
+
 import { createRouter, createWebHistory } from 'vue-router'
 
 import StatsPage from './pages/StatsPage.vue'

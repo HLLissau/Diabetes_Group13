@@ -1,17 +1,9 @@
-<template>
+<template> <!-- Erik s204438 -->
   <div class="wrap">
  
     <form v-on:submit.prevent ="submitForm">
       <div class="wrap-login">
        <h1 v-if="!$route.meta.hideFrontPage">Doctor Login</h1>
-
-       <!--
-        <router-view :key="$route.path"></router-view>
-        <input v-model="UserId" placeholder="User ID"  />
-        
-        <input type="password" id="password" placeholder="Password"  />
-        <button @click="tryLogIn(UserId,password)">Login</button>
-        <button @click="$router.go(-1)">Go Back</button>
      --><label>Email</label>
        <input class="login-field" v-model="form.Email" id="email" name="email"  placeholder="Email"  >
       <label>Password</label>
@@ -43,7 +35,7 @@ export default {
     
   },
   methods: {
-    submitForm(){
+    submitForm(){// Harald s204436
       
       var link =this.$backend.getUrlLoginDoctor()
 
@@ -65,10 +57,6 @@ export default {
      }
       }
       )
-
-    //  this.$router.push('/pages/UserWelcomePage')
-    //console.log("name", this.$backend.getUserId()) 
-      
     }
   
     }

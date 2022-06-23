@@ -1,4 +1,4 @@
-<template>
+<template> <!-- Magnus s204436 -->
    <div class="wrap">
 
     <h1 class="h1menu" v-if="$route.meta.showFrontPage">

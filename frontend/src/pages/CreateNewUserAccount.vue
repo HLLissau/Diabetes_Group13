@@ -1,4 +1,4 @@
-<template>
+<template> <!-- Magnus s191252 -->
   <div class="wrap-login">
     <h1>Create new User </h1>
     
@@ -12,11 +12,6 @@
            minlength="4" required>
       <label>Email</label>
       <input class="login-field" v-model="form.email" id="Email" name="Email"  placeholder="Group13@AreGreat.dk"   >
-
-
-                
-
-
     
     <input class="login-button" type="submit"  @click="tryCreateAccount()" value="Create Account"  >
     <input class="goback-button" type="submit"  @click="$router.go(-1)" value="Go Back">
@@ -54,9 +49,9 @@ export default {
   },
   methods: {
    
-    async tryCreateAccount(){
-      // check correct user input in fields
-       
+    async tryCreateAccount(){ //Rolf s204436
+
+      // check correct user input in fields  
       console.log("form:", this.form ) 
       console.log("regex",this.$regex.checkEmail(this.form.email))
       if ( this.$regex.checkName(this.form.fullName) &&   this.$regex.checkpassword(this.form.password, this.form.password2) &&  this.$regex.checkEmail(this.form.email)   ){
@@ -86,9 +81,6 @@ export default {
       }
       )
 
-    //  this.$router.push('/pages/UserWelcomePage')
-    //console.log("name", this.$backend.getUserId()) 
-  
       this.$backend.doctor =  {
           id : 0,
           fullName : "",
