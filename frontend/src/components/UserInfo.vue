@@ -94,18 +94,20 @@ export default {
     change() {
       var correct = true;
       var newpassword = this.$backend.user.password;
-      var link = this.$backend.getUrlUpdateUser();
+      var newname =this.$backend.user.fullName 
+      var newemail=this.$backend.user.email
+
       console.log("kørt");
       if (this.changeName) {
         correct =
           correct &&  this.$regex.checkName(document.getElementById("changedname").value);
-        this.$backend.user.fullName = document.getElementById("changedname").value;
+          newname= document.getElementById("changedname").value
         this.changeName = false;
       }
       if (this.changeEmail) {
         correct = correct && this.$regex.checkEmail(document.getElementById("changedemail").value);
-        this.$backend.user.email = document.getElementById("changedemail").value;
         this.changeEmail = false;
+        newemail= document.getElementById("changedemail").value
       }
       if (this.changePassword) {
         correct =  correct && this.$regex.checkpassword(document.getElementById("oldpassword").value,    this.$backend.user.password      );
@@ -113,10 +115,19 @@ export default {
         this.changePassword = false;
       }
 
-      link = link + "/" + newpassword;
+      
 
-      console.log("url", link, ".correct:" , correct);
+    
       if (correct) {
+
+        this.$backend.user.email = newemail
+        this.$backend.user.fullName = newname
+
+        var link = this.$backend.getUrlUpdateUser() + "/" + newpassword ;
+    
+        console.log("user before:", this.$backend.user)
+        console.log("url", link, ".correct:" , correct);
+       
         this.axios.get(link).then((res) => {
           console.log("updated", res);
           this.$backend.user = res.data;

@@ -9,15 +9,15 @@
 //
 //import org.junit.Test;
 //
-//import group13.model.Patient;
+//import group13.model.Users;
 //
 //public class ModelPatientTests {
-//	Patient patient;
+//	Users patient;
 //	
 //	@Test
 //	public void createNewPatient() {
 //		assertNull(patient);
-//		patient=new Patient("Hans");
+//		patient=new Users("Hans");
 //		patient.setId(10);
 //		assertTrue(patient.getId().equals(10L));
 //		assertNotNull(patient);
