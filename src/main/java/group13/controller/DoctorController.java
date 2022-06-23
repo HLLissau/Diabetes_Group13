@@ -22,7 +22,7 @@ import group13.repositories.UserRepository;
 
 @Controller
 @CrossOrigin
-public class DoctorController { //Harald s204436
+public class DoctorController { //Rolf s193939
 
 	@Autowired
 	private DoctorRepository doctorRepository;

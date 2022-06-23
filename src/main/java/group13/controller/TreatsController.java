@@ -19,7 +19,7 @@ import group13.repositories.TreatsRepository;
 
 @Controller
 @CrossOrigin
-public class TreatsController {
+public class TreatsController { //Magnus s191252
 	
 	@Autowired
 	private TreatsRepository repository;

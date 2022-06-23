@@ -13,7 +13,7 @@ import group13.model.Treats;
 
 
 @Repository
-public interface DoctorRepository extends CrudRepository<Doctor,Long> {
+public interface DoctorRepository extends CrudRepository<Doctor,Long> { //Magnus s191252
 	List<Doctor> findAll();
 	
 

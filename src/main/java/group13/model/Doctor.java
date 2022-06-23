@@ -9,7 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Doctor  {
+public class Doctor  { //Erik s204438
 	@Id
 	@Column
 	//@GeneratedValue(strategy = GenerationType.AUTO)

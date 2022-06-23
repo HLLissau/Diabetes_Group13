@@ -15,7 +15,7 @@ import group13.repositories.MeasurementRepository;
 
 @Controller
 @CrossOrigin
-public class MeasurementController {
+public class MeasurementController { //Harald s204436
 
 	@Autowired
 	private MeasurementRepository MeasurementRepository;

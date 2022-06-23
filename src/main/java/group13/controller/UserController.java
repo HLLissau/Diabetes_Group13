@@ -17,7 +17,7 @@ import group13.repositories.UserRepository;
 
 @Controller
 @CrossOrigin
-public class UserController {
+public class UserController { //Erik s204438
 
 	@Autowired
 	private UserRepository repository;
@@ -53,24 +53,6 @@ public class UserController {
 		return ResponseEntity.ok(p.get());
 	}
 	
-//	// get users
-//	@GetMapping("/api/v1/login/get/users")
-//	public ResponseEntity<List<Users>> getUsers() {
-//		return ResponseEntity.ok(repository.findAll());
-//	}
-
-	// delete user
-//	@DeleteMapping("/api/v1/patient/delete/{userId}")
-//	public ResponseEntity<?> deleteUser(@PathVariable Long userId) {
-//		Optional<Users> p = repository.findById(userId);
-//		if (!p.isPresent()) {
-//			return ResponseEntity.notFound().build();
-//		}
-//		System.out.println("test");
-//		repository.delete(p.get());
-//		return ResponseEntity.noContent().build();
-//	}
-	// delete user
 		@DeleteMapping("/api/v1/patient/delete/{userId}/{password}")
 		public ResponseEntity<?> deleteUser(@PathVariable Long userId,@PathVariable String password) {
 			Optional<Users> p = repository.findByIdAndPassword(userId,password);
