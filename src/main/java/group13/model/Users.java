@@ -24,8 +24,16 @@ public class Users {
 	private Timestamp createdAt;
 	@Column(unique=true)
 	private String email;
+	public Users() {
+		
+	}
 	
-	
+	public Users(Long id,String name,String password,String email ){
+		this.id=id;
+		this.fullName=name;
+		this.password=password;
+		this.email= email;
+	}
 	
 	
 	public Long getId() {

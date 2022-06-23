@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import group13.model.Doctor;
@@ -32,7 +31,22 @@ public class DoctorController {
 	@Autowired
 	private TreatsRepository treatsrepository;
 	
+	//getAll
+	public ResponseEntity<List<Doctor>> getAllDoctor(){
+		return ResponseEntity.ok(doctorRepository.findAll());
+		}
 
+	//getById
+	public ResponseEntity<Doctor> getDoctor(Long Id){
+		Optional<Doctor> d = doctorRepository.findById(Id);
+		if (!d.isPresent()) {
+			return ResponseEntity.notFound().build();
+		}
+		d.get().setPassword("");
+		return ResponseEntity.ok(d.get());
+	}
+	
+	
 	// create doctor
 	@PostMapping("/api/v1/doctor/create")
 	public ResponseEntity<Doctor> create(@RequestBody Doctor doctor) {
@@ -56,9 +70,14 @@ public class DoctorController {
 
 		// get all patients of a doctor
 		@GetMapping("/api/v1/Doctor/{doctorId}/getPatients")
-		public ResponseEntity<Object> getPatients(@PathVariable Long doctorId) {
-		     List<Users> p = patientRepository.getPatients(doctorId);
+		public ResponseEntity<List<Users>> getPatients(@PathVariable Long doctorId) {
+			Optional<Doctor> d = doctorRepository.findById(doctorId);
 			
+	    if (!d.isPresent()) {
+				return ResponseEntity.notFound().build();
+			}
+			 List<Users> p = patientRepository.getPatients(doctorId);
+		     
 			return ResponseEntity.ok(p);	
 			}
 		
@@ -66,33 +85,33 @@ public class DoctorController {
 						 	      
 			@GetMapping("/api/v1/Doctor/{doctorId}/getPatientInfo/{userId}")
 			public ResponseEntity<Users> getPatientInfo(@PathVariable Long doctorId,@PathVariable Long userId) {
-			 	Optional<Treats> p = treatsrepository.findById(doctorId,userId);
+			 	
+				Optional<Treats> p = treatsrepository.findById(doctorId,userId);
 				
-			    if (p.isEmpty()) {
+			    if (!p.isPresent()) {
 					return ResponseEntity.notFound().build();
 				}
 			    Optional<Users> u = patientRepository.findById(userId);
-			    if (u.isEmpty()) {
-					return ResponseEntity.notFound().build();
-				}
+		
 			  	return ResponseEntity.ok(u.get());	
 				}
 	
-//	// delete doctor
-//	@DeleteMapping("/api/v1/doctor/delete/{doctorId}")
-//	public ResponseEntity<?> deleteDoctor(@PathVariable Long doctorId) {
-//		Optional<Doctor> d = doctorRepository.findById(doctorId);
-//		if (d.isEmpty()) {
-//			return ResponseEntity.notFound().build();
-//		}
-//		while (!d.get().getPatients().isEmpty()) {
+	// delete doctor
+	@DeleteMapping("/api/v1/doctor/delete/{doctorId}/{password}")
+	public ResponseEntity<?> deleteDoctor(@PathVariable Long doctorId,@PathVariable String password) {
+		Optional<Doctor> d = doctorRepository.findByIdAndPassword(doctorId,password);
+		if (!d.isPresent()) {
+			return ResponseEntity.notFound().build();
+		}
+//		ResponseEntity<List<Users>> treats = this.getPatients(d.get().getId());
+//		while (!treats.getBody().isEmpty()) {
 //			
 //			d.get().deletePatient(d.get().getPatients().get(0));
 //		}
-//		doctorRepository.delete(d.get());
-//		return ResponseEntity.noContent().build();
-//	}
-//
+		doctorRepository.delete(d.get());
+		return ResponseEntity.noContent().build();
+	}
+
 	// remove patient
 //	@PutMapping("/api/v1/doctor/remove/{patientId}/{doctorId}")
 //	public ResponseEntity<?> removePatient(@PathVariable Long patientId, @PathVariable Long doctorId) {
