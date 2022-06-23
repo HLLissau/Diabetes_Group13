@@ -66,7 +66,7 @@ public class APIUsersTests {
 		assertThat(reply.contains(user));
 	}
 	
-	//post a user that already exist
+	//post a user that have duplicate email
 	@Test
 	public void PostAddsItemAlreadyExist() throws Exception {
 			ResponseEntity response = controller.getAll();

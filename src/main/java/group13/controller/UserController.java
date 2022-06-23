@@ -109,7 +109,6 @@ public class UserController {
 			System.out.println("userid: "+ userId + ". oldpassword: " + oldPassword  + ".New:" + newPassword);
 					
 			Optional<Users> p = repository.updateUser(userId,name,email,oldPassword,newPassword);
-			System.out.println("user updated?:" +  "userid: "+ p.get().getId() + ". oldpassword: " + oldPassword  + ".New:" + p.get().getPassword());
 			if (!p.isPresent()) {
 				return ResponseEntity.notFound().build();
 			}
