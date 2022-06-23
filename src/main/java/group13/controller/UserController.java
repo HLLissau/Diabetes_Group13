@@ -84,28 +84,32 @@ public class UserController {
 	@GetMapping("/api/v1/login/loginUser/{email}/{password}")
 	public ResponseEntity<Users> loginUser(@PathVariable String email,@PathVariable String password){
 		
-		//System.out.println("userid: "+ userId + ". password: " + password);
+		System.out.println("email: "+ email + " password: " + password);
 				
 		Optional<Users> p = repository.loginUser(email,password);
 		if (!p.isPresent()) {
+			System.out.println("error");
 			return ResponseEntity.notFound().build();
+			
 		}
 		return ResponseEntity.ok(p.get());
 		
 	}
 	
 	//change name
-		@GetMapping("/api/v1/user/update/{userId}/{name}/{email}/{oldPassword}/{password}")
-		public ResponseEntity<Users> updateUser(@PathVariable Long userId,
+		@GetMapping("/api/v1/user/update/{userId}/{name}/{email}/{oldPassword}/{newPassword}")
+		public ResponseEntity<Users> updateUser(
+				@PathVariable Long userId,
 				@PathVariable String name,
 				@PathVariable String email,
-				@PathVariable String password,
-				@PathVariable String oldPassword)
+				@PathVariable String oldPassword,
+				@PathVariable String newPassword)
 		{
 			
-			//System.out.println("userid: "+ userId + ". password: " + password);
+			System.out.println("userid: "+ userId + ". oldpassword: " + oldPassword  + ".New:" + newPassword);
 					
-			Optional<Users> p = repository.updateUser(userId,name,email,oldPassword,password);
+			Optional<Users> p = repository.updateUser(userId,name,email,oldPassword,newPassword);
+			System.out.println("user updated?:" +  "userid: "+ p.get().getId() + ". oldpassword: " + oldPassword  + ".New:" + p.get().getPassword());
 			if (!p.isPresent()) {
 				return ResponseEntity.notFound().build();
 			}

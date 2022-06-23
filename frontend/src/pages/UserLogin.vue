@@ -68,6 +68,7 @@ data(){
       ).then(
 
         res => {
+          console.log("user: ", this.$backend.user )
           this.$backend.user = res.data
           console.log("user: ", this.$backend.user )
           this.$router.push('/pages/UserWelcomePage')

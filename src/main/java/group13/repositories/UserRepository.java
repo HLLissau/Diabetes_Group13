@@ -22,7 +22,7 @@ public interface UserRepository extends CrudRepository<Users,Long> {
 	
 	@Query(value = "call updateUser(?1, ?2, ?3, ?4,?5)",
 		nativeQuery=true)
-	Optional<Users> updateUser(Long id, String name, String email, String oldpassword,String password);
+	Optional<Users> updateUser(Long id, String name, String email, String oldpassword,String newpassword);
 	
 	@Query(value = "select * from users where id in (SELECT user_id FROM treats WHERE doctor_id = ?1)" // " SELECT user_id FROM treats WHERE doctor_id = ?1"
 			,nativeQuery=true)
