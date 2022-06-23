@@ -157,8 +157,10 @@ public class APIUsersTests {
 					assertNull(response.getBody());
 				}
 				
-}
-//	
-//	
-//	
-//	
+//				// Is user logged in
+//				@Test
+//				public void loggedIn(Long id,String password) {
+//				  ResponseEntity<Users> response =controller.getUser(id);
+//				  assertEquals(200,response.getStatusCode().value());
+//				  assertEquals(password,response.getBody().getPassword())
+} 
