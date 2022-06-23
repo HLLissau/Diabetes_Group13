@@ -93,7 +93,7 @@ export default {
   methods: {
     change() {
       var correct = true;
-      var newpassword = document.getElementById("oldpassword").value;
+      var newpassword = this.$backend.user.password;
       var link = this.$backend.getUrlUpdateUser();
       console.log("kørt");
       if (this.changeName) {
